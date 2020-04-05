@@ -1,0 +1,21 @@
+[ignore]
+.*/node_modules/.*
+
+[include]
+
+[libs]
+flow-typed
+
+[lints]
+# all=off by default
+all=warn
+untyped-type-import=error
+sketchy-null-bool=off
+
+[options]
+module.file_ext=.js
+module.file_ext=.json
+module.file_ext=
+server.max_workers=4
+
+[strict]
