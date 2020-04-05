@@ -1,0 +1,19 @@
+{
+  "name": "SpottedShorttermBinary",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "eslint-plugin-ecmascript-compat": "^1.0.0",
+    "eslint-plugin-flowtype": "^4.7.0",
+    "flow": "^0.2.3",
+    "root": "^3.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
