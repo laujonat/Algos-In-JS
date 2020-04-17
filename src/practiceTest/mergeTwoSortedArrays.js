@@ -50,35 +50,36 @@ You can use only constant extra space.
 
 
 */
-
+// INCOMPLETE BAD
 function merger_first_into_second(arr1, arr2) {
-    if(arr1.length <= 1) {
-        // console.log(Array.from(Array(Math.floor(arr2.length/2)).keys()););
-        return Array.from(Array(Math.floor(arr2.length/2)).keys());
+  if (arr1.length <= 1) {
+    return Array.from(Array(Math.floor(arr2.length / 2)).keys());
+  }
+  let i = 0;
+  // find half way point of array2
+  let j =
+    arr2.length % 2 === 0
+      ? Math.floor(arr2.length / 2) - 1
+      : Math.floor(arr2.length / 2);
+  console.log(j);
+  let lastElementInArray1; // number
+  while (j >= 0) {
+    // n-1
+    lastElementInArray1 = arr1[j - 1]; // smallest element greater than arr[j]
+    let i;
+    for (i = j; i >= 0 && arr1[i] > arr2[j]; i--) {
+      arr1[i + 1] = arr1[i];
+      // j--;
     }
-     let i = 0;
-     // find half way point of array2
-     let j = arr2.length % 2 === 0 ? Math.floor(arr2.length/2) -1: Math.floor(arr2.length/2);
-     console.log(j);
-    // iterate over arr2 starting from j = (n - 1) / 2
-    let lastElementInArray1; // number
-    while(j >= 0) { // n-1
-        lastElementInArray1 =  arr1[j-1]; // smallest element greater than arr[j]
-        let i;
-        for(i = j; i >= 0 && arr1[i] > arr2[j]; i--) {
-            arr1[i+1] = arr1[i];
-            // j--;
-        }
-        if(lastElementInArray1 > arr2[j] || i != (j -1)) {
-            arr1[i+1] = arr2[j];
-            arr2[j] = lastElementInArray1;
-        }
-        j--;
-       
+    if (lastElementInArray1 > arr2[j] || i != j - 1) {
+      arr1[i + 1] = arr2[j];
+      arr2[j] = lastElementInArray1;
     }
-    console.log(arr1,arr2);
+    j--;
+  }
+  console.log(arr1, arr2);
 }
 
-var arr1 = [1,3,5];
-var arr2 = [2,4,6, 0, 0, 0];
+var arr1 = [1, 3, 5];
+var arr2 = [2, 4, 6, 0, 0, 0];
 merger_first_into_second(arr1, arr2);

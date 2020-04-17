@@ -31,7 +31,6 @@ const quickSortV2Helper = function(arr, start, end) {
 
   let low = start;
   let pivot = arr[end];
-  // console.log('PIVOT', pivot);
   for (let i = start; i < end; i++) {
     if (arr[i] < pivot) {
       [arr[i], arr[low]] = [arr[low], arr[i]];
@@ -52,5 +51,31 @@ const quickSortV2 = function(arr, n) {
   const res = quickSortV2Helper(arr, 0, n - 1);
   return res;
 };
+const a = [
+  3,
+  5,
+  56,
+  23,
+  3,
+  5,
+  6,
+  45,
+  3,
+  23,
+  456,
+  546,
+  45,
+  23,
+  3,
+  4,
+  6,
+  7,
+  43,
+  45,
+  6,
+  6,
+];
 
+let res = quickSortV2(a, a.length);
+console.log(res);
 module.exports = { quickSort, quickSortV2 };

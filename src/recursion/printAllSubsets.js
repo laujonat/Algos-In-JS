@@ -10,28 +10,25 @@
 
     2^n = C(n, 0) + C(n, 1) + C(n, 2) + .... + (n, n) 
 */
-
-const printAllSubsetsHelper = function(
+const generateSubsets = (
   arr: Array<?number>,
-  result: Array<T> = []
-): Array<Array<?number>> {
-  function generateSubsets(arr, subset: Array<?number> = []) {
-    if (arr.length === 0) {
-      result.push(subset);
-    } else {
-      // exclude
-      generateSubsets(arr.slice(1), subset);
-      console.log("subset", subset, "arr[0]", arr[0]);
-      // include
-      generateSubsets(arr.slice(1), subset.concat(arr[0]));
-    }
+  subset: Array<?number>,
+  result: Array<Array<?number>> = []
+): Array<Array<?number>> => {
+  if (arr.length === 0) {
+    result.push(subset);
+  } else {
+    // exclude
+    generateSubsets(arr.slice(1), subset, result);
+    // include
+    generateSubsets(arr.slice(1), subset.concat(arr[0]), result);
   }
-  generateSubsets(arr);
   return result;
 };
 
 const printAllSubsets = function(arr: Array<?number>): void {
-  const result = printAllSubsetsHelper(arr, []);
+  const ret = generateSubsets(arr, []);
+  console.log(ret);
 };
-
+let a = [1, 2, 3, 4, 5];
 printAllSubsets([1, 2, 3]);
