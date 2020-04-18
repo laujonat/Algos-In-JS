@@ -10,7 +10,7 @@ flow-typed
 # all=off by default
 all=warn
 untyped-type-import=error
-sketchy-null-bool=off
+; sketchy-null-bool=off
 
 [options]
 module.file_ext=.js

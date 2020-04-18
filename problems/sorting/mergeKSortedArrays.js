@@ -53,6 +53,7 @@ const merge = function(arr: A, start: number, n: number, order: boolean): A {
 };
 
 // Naive solution: O(nm*log(nm))
+// Basically sorts the array first and then calls quicksort on the array.
 function mergeKSorted(lists) {
   const length = lists.length;
   const res = [];

@@ -14,6 +14,7 @@
 # Tests
 sauce_connect.log
 /coverage
+sandbox/**/*
 .theia/
 core.*
 lib/

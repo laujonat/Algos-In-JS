@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6"
+  },
+  "exclude": ["node_modules"],
+  "include": [
+    "sorting/**/*",
+    "dcp/**/*",
+    "ds/**/*",
+    "problems/**/*",
+    "sandbox/**/*"
+  ]
+}

@@ -37,15 +37,16 @@ const findOrder = (arr: A) => {
   return isAscending;
 };
 // O(nklog(k))
+// Merges two sorted arrays at a time
 const mergeKSortedArrayV2 = function(arr: K): A {
   let order: boolean = findOrder(arr);
 
   while (arr.length > 1) {
-    let a1: A = arr.shift(); // 1 3 5 7
-    let a2: A = arr.shift(); // 2 4 6 8
+    let a1: A = arr.shift();
+    let a2: A = arr.shift();
     let aux = [];
-    let i = 0; // 24
-    let j = 0; // 26
+    let i = 0;
+    let j = 0;
     while (i < a1.length && j < a2.length) {
       if (order) {
         // true -> asc
