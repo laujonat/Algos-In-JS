@@ -22,7 +22,7 @@ Constraints:
 0 ≤ k ≤ 20
 [output] array.integer
 */
-
+// Run O(n*k) where k is small
 const solve = function(arr, k) {
   if (arr.length <= 1) {
     return arr;
@@ -37,6 +37,7 @@ const solve = function(arr, k) {
     let kk = 0;
     while (kk < k && arr[j + 1] < curr) {
       arr[j] = arr[j + 1];
+      process.stdout.write("arr" + arr.toString() + "\n");
       kk++;
       j++;
     }
@@ -45,6 +46,8 @@ const solve = function(arr, k) {
 
   return arr;
 };
+// O(nlogk) solution
+const solveV2 = function(arr, k) {};
 let arr = [1, 4, 5, 2, 3, 7, 8, 6, 10, 9];
 let k = 2;
 let arr2 = [6, 1, 4, 11, 2, 0, 3, 7, 10, 5, 8, 9];

@@ -9,6 +9,19 @@ class SinglyLinkedList {
     this.head = null;
   }
 
+  *[Symbol.iterator]() {
+    let self = this;
+    let curr = this.head;
+    while (curr) {
+      yield curr;
+      curr = curr.next;
+    }
+  }
+
+  size() {
+    return this.length;
+  }
+
   add(data) {
     let node = new Node(data);
     let curr = this.head;
@@ -81,13 +94,39 @@ class SinglyLinkedList {
       curr = curr.next;
     }
   }
+
+  displayForward() {
+    if (!this.head) {
+      return null;
+    }
+    this[Symbol.iterator] = function() {
+      let curr = this.head;
+      return {
+        next() {
+          if (curr) {
+            let res = { value: curr, done: false };
+            curr = curr.next;
+            return res;
+          }
+          return { done: true };
+        },
+      };
+    };
+
+    const res = [];
+    for (let node of this) {
+      res.push(node.data);
+    }
+  }
 }
 
-var linkedList = new SinglyLinkedList();
-linkedList.add(5);
-linkedList.add(0);
-linkedList.add(3);
-linkedList.printNodes();
-linkedList.remove(2);
-linkedList.add(1);
-linkedList.printNodes();
+// const linkedList = new SinglyLinkedList();
+// linkedList.add(5);
+// linkedList.add(0);
+// linkedList.add(3);
+// linkedList.printNodes();
+// linkedList.remove(2);
+// linkedList.add(1);
+// linkedList.printNodes();
+
+module.exports = SinglyLinkedList;

@@ -11,6 +11,19 @@ class DoublyLinkedList {
     this.tail = null;
   }
 
+  *[Symbol.iterator]() {
+    let self = this;
+    let curr = this.head;
+    while (curr) {
+      yield curr;
+      curr = curr.next;
+    }
+  }
+
+  size() {
+    return this.length;
+  }
+
   add(data) {
     let node = new Node(data);
 
@@ -24,6 +37,27 @@ class DoublyLinkedList {
     }
 
     this.length++;
+    return node;
+  }
+
+  rootNode() {
+    return this.head;
+  }
+
+  reverse() {
+    let temp = null;
+    let curr = this.head;
+    while (curr) {
+      temp = curr.prev;
+      curr.prev = curr.next;
+      curr.next = temp;
+      curr = curr.prev;
+    }
+    // check for single node list before setting head and tail
+    if (temp) {
+      this.tail = temp.next;
+      this.head = temp.prev;
+    }
   }
 
   search(pos) {
@@ -58,9 +92,17 @@ class DoublyLinkedList {
     }
   }
 
+  *iterateListForward() {
+    let curr = this.head;
+    while (curr) {
+      yield curr;
+      curr = curr.next;
+    }
+  }
+
   displayForward() {
     // implement iterator
-    let curr = this.head; // console.log(curr);
+    let curr = this.head;
     let self = this;
     self[Symbol.iterator] = () => {
       return {
@@ -88,8 +130,8 @@ class DoublyLinkedList {
   }
 
   displayBackward() {
-    let self = this;
     let curr = this.tail;
+    let self = this;
     self[Symbol.iterator] = () => {
       return {
         next() {
@@ -110,6 +152,24 @@ class DoublyLinkedList {
       console.log(`[${currIdx}]: ${node.data}`);
       currIdx--;
     }
+  }
+
+  removeRoot() {
+    let curr = this.head;
+    let node = curr;
+    if (!curr) {
+      console.trace("Nothing to remove.");
+    }
+    curr = curr.next;
+    if (curr) {
+      curr.prev = null;
+      this.head = curr;
+    } else {
+      this.head = null;
+      this.tail = null;
+    }
+    this.length--;
+    return node;
   }
 
   removeLast() {
@@ -170,12 +230,4 @@ class DoublyLinkedList {
   }
 }
 
-var linkedList = new DoublyLinkedList();
-linkedList.add(1);
-linkedList.add(2);
-linkedList.add(3);
-linkedList.add(4);
-linkedList.displayForward();
-console.log("remove last");
-linkedList.removeLast();
-linkedList.displayBackward();
+module.exports = DoublyLinkedList;
