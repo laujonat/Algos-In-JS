@@ -144,7 +144,6 @@ class BinarySearchTree {
     while (curr.right != null) {
       curr = curr.right;
     }
-    console.log("max: ", curr.key);
     return curr;
   }
   // O(height) => O(logn) for balanced binary tree

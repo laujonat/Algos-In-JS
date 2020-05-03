@@ -85,9 +85,6 @@ class Graph {
       buildGraphFromTree(map, node.right, node);
     }
   }
-
-  // bfs(v)
-  // dfs(v) -> preorder
 }
 
 const g = new Graph(9);
