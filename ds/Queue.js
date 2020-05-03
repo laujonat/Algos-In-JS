@@ -26,9 +26,7 @@ Queue.prototype.isEmpty = function() {
 Queue.prototype.print = function() {
   let currIdx = 0;
   for (let node of this.list.iterateListForward()) {
-    console.log("------------");
     console.log(`[${currIdx}]: ${node.data}`);
-    console.log("------------");
     currIdx++;
   }
 };

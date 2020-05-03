@@ -1,10 +1,6 @@
 /*
   Construct a graph using an adjacency list. 
-
   A graph is connected is there is a path between any two vertices.
- 
-
-
 */
 const LinkedList = require("./DoublyLinkedList.js");
 const Queue = require("./Queue.js");
@@ -67,10 +63,8 @@ class Graph {
     }
     return false;
   }
-  //  Eulerian Path:
-  //   - Traversal of the graph that passes through each edge exactly once.
-  //   - There are either 0 or 2 vertices with odd degree.
-  //   - Has path iff every vertex of degree >= 1 lies in the same connected component, and every vertex has an even degree.
+  // Eulerian Path:
+  // https://math.stackexchange.com/questions/1871065/euler-path-for-directed-graph
   hasEulerianPath() {
     let odd = 0; // no of vertices with odd degree
     for (let vertex of this.adjList.entries()) {
@@ -122,27 +116,33 @@ class Graph {
     let queue = new Queue();
     // Starting vertex
     queue.enqueue(source);
-    let seen = {};
+    const seen = {};
     while (!queue.isEmpty()) {
       let v = queue.dequeue();
       console.log("Current vertex", v);
+      seen[v] = 1;
       this.neighbors(v).forEach((el) => {
         if (!seen[el]) {
           seen[el] = 1;
           queue.enqueue(el);
         }
       });
-      console.log("Seen", seen);
+      console.log("------------------");
       queue.print();
+      console.log("------------------");
     }
   }
 }
 
+let dag = new Graph(5);
+dag.addEdge(0, 1, false);
+dag.addEdge(0, 2, false);
+dag.addEdge(1, 3, false);
+dag.addEdge(1, 4, false);
+console.log("has cycle", dag.hasEulerianCycle());
+console.log("has eulerian path", dag.hasEulerianPath());
+
 let graph = new Graph(10);
-// graph.addEdge(0, 1, false);
-// graph.addEdge(0, 2, false);
-// graph.addEdge(1, 3, false);
-// graph.addEdge(1, 4, false);
 graph.addEdge(0, 1);
 graph.addEdge(0, 3);
 graph.addEdge(0, 6);
