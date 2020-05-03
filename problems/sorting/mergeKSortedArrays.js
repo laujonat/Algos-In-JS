@@ -82,5 +82,5 @@ let a = [
   [21, 14, 10, 5, 4, 3],
 ];
 
-let res = mergeKSorted(a);
-console.log(res);
+// let res = mergeKSorted(a);
+module.exports = mergeKSorted;

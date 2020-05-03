@@ -90,8 +90,5 @@ let res = insertionSortV1(a, a.length);
 let resB = insertionSortV1(b, b.length);
 let resC = insertionSortV2(d, d.length);
 let resD = insertionSortV3(d, d.length);
-console.log("res", res);
-console.log("resB", resB);
-console.log("resC", resC);
-console.log("resD", resD);
-module.exports = { insertionSortV1, insertionSortV2 };
+
+module.exports = { insertionSortV1, insertionSortV2, insertionSortV3 };

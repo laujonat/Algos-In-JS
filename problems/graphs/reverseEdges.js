@@ -18,3 +18,5 @@ Constraints:
   No multiple edges (connecting any pair of nodes in one direction) or self loops (edges connecting a node with itself) in the input graph.
   You are not allowed to modify the given graph. Return a newly built graph. 
  */
+
+module.exports = {};

@@ -18,8 +18,26 @@ class SinglyLinkedList {
     }
   }
 
+  getFirst() {
+    return this.head.data;
+  }
+
   size() {
     return this.length;
+  }
+
+  addFirst(data) {
+    let node = new Node(data);
+    let curr = this.head;
+    if (!curr) {
+      this.head = node;
+      this.length++;
+      return node;
+    }
+    node.next = curr;
+    this.head = node;
+    this.length++;
+    return node.data;
   }
 
   add(data) {
@@ -28,7 +46,7 @@ class SinglyLinkedList {
     if (!curr) {
       this.head = node;
       this.length++;
-      return node;
+      return node.data;
     }
 
     while (curr.next) {
@@ -36,7 +54,7 @@ class SinglyLinkedList {
     }
     curr.next = node;
     this.length++;
-    return node;
+    return node.data;
   }
 
   search(pos) {
@@ -51,6 +69,48 @@ class SinglyLinkedList {
       currIdx++;
     }
     return curr;
+  }
+
+  removeFirst() {
+    let curr = this.head;
+    if (!curr) {
+      console.trace("Invalid position given.");
+      return null;
+    }
+    const deleted = curr;
+    this.head = curr.next;
+    this.length--;
+    return deleted.data;
+  }
+
+  removeLast() {
+    let curr = this.head;
+    if (!curr) {
+      console.trace("Invalid position given.");
+      return null;
+    }
+    let prev = null;
+    while (curr.next) {
+      prev = curr;
+      curr = curr.next;
+    }
+    this.length--;
+    let deleted = prev;
+    prev.next = null;
+    return deleted.data;
+  }
+
+  getLast() {
+    let curr = this.head;
+    if (!curr) {
+      console.trace("Invalid position given.");
+      return null;
+    }
+
+    while (curr.next) {
+      curr = curr.next;
+    }
+    return curr.data;
   }
 
   remove(pos) {

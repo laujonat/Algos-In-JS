@@ -62,3 +62,5 @@ function kthSmallestElement(root: typeof TreeNode, k: number) {
   findKthSmallestElement(root, k);
   return answer;
 }
+
+module.exports = kthSmallestElement;

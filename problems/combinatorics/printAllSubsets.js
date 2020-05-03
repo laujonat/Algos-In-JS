@@ -31,4 +31,5 @@ const printAllSubsets = function(arr: Array<?number>): void {
   console.log(ret);
 };
 let a = [1, 2, 3, 4, 5];
-printAllSubsets([1, 2, 3]);
+// printAllSubsets([1, 2, 3]);
+module.exports = printAllSubsets;

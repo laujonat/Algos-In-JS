@@ -71,4 +71,4 @@ const mergeSort = function(arr: R, n: number): R {
   const res = merge(leftArr, rightArr);
   return res;
 };
-module.exports = { mergeSort };
+module.exports = mergeSort;

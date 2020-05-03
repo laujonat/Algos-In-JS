@@ -111,10 +111,10 @@ const topK = function(arr, k) {
   return res;
 };
 
-console.log(topK([1, 5, 4, 4, 2], 3));
-console.log(topK([1, 5, 1, 5, 1], 2));
-console.log(
-  topK([4, 2, 1, 6, 2, 10, 4, 3, 10, 6, 5, 6, 7, 2, 10, 10, 4, 6, 5, 8], 7)
-);
+// console.log(topK([1, 5, 4, 4, 2], 3));
+// console.log(topK([1, 5, 1, 5, 1], 2));
+// console.log(
+//   topK([4, 2, 1, 6, 2, 10, 4, 3, 10, 6, 5, 6, 7, 2, 10, 10, 4, 6, 5, 8], 7)
+// );
 
 module.exports = topK;

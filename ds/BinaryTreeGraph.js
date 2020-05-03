@@ -85,9 +85,6 @@ class Graph {
       buildGraphFromTree(map, node.right, node);
     }
   }
-
-  // bfs(v)
-  // dfs(v) -> preorder
 }
 
 const g = new Graph(9);
@@ -107,4 +104,4 @@ g.addEdge("B", "D");
 g.addEdge("D", "C");
 g.addEdge("D", "E");
 
-g.printGraph();
+module.exports = Graph;

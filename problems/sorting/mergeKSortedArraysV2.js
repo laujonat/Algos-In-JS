@@ -93,6 +93,7 @@ const lists = [
   [9, 9, 9, 9, 9],
   [9, 9, 9, 9, 9],
 ];
-let res = mergeKSortedArrayV2(lists);
-let res2 = mergeKSortedArrayV2(a);
-console.log(res, res2);
+// let res = mergeKSortedArrayV2(lists);
+// let res2 = mergeKSortedArrayV2(a);
+
+module.exports = mergeKSortedArrayV2;
