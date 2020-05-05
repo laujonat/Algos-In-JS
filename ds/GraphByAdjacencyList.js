@@ -54,10 +54,7 @@ class Graph {
         odd++;
       }
     }
-    if (odd === 0) {
-      return true;
-    }
-    return false;
+    return odd === 0;
   }
   // Eulerian Path:
   // https://math.stackexchange.com/questions/1871065/euler-path-for-directed-graph
@@ -76,10 +73,7 @@ class Graph {
         odd++;
       }
     }
-    if (odd === 0 || odd === 2) {
-      return true;
-    }
-    return false;
+    return odd === 0 || odd === 2 ? true : false;
   }
 
   *vertices(source) {
@@ -106,6 +100,42 @@ class Graph {
   }
 
   shortestPathBFS(source, target) {}
+
+  // O(degree(v)) -> O(n + m)
+  // Recursive solution
+  dfsV2(source) {
+    // Vertices that have been discovered but not yet captured
+    const stack = [];
+    // Starting vertex
+    const visited = new Map();
+    const parent = {};
+    const seen = {};
+    let distance = 0;
+    stack.push({ vertex: source, distance: 0 });
+    while (stack.length !== 0) {
+      let { vertex: v, distance: d } = stack.pop();
+      seen[v] = 1;
+      let d1 = [];
+      console.log(`Distance from [${source}] to [${v}]: ${d}`);
+      // Explore neighboring vertices
+      this.neighbors(v).forEach((currentVertex) => {
+        console.log(seen);
+        if (!seen[currentVertex]) {
+          parent[currentVertex] = v;
+          this.dfsV2(currentVertex);
+          // Capture discovered vertex
+          seen[currentVertex] = 1;
+          // First edge to discover vertex
+          d1.push(currentVertex);
+          stack.push({ vertex: currentVertex, distance: d + 1 });
+        }
+      });
+      visited.set(v, d1);
+      console.log(`Vertex [${v}] discovered vertices: [${visited.get(v)}]`);
+    }
+  }
+
+  // O(degree(v))
   dfs(source) {
     // Vertices that have been discovered but not yet captured
     const stack = [];
