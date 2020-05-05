@@ -174,17 +174,19 @@ class BinarySearchTree {
   }
 }
 
-let root = new TreeNode(4, ["x"]);
-let bst = new BinarySearchTree(root);
-bst.push(2, ["x"]);
-bst.push(7, ["x"]);
-bst.push(5, ["x"]);
-bst.push(8, ["x"]);
-bst.push(1, ["x"]);
-bst.push(3, ["x"]);
-bst.push(9, ["x"]);
-bst.push(6, ["x"]);
+// let root = new TreeNode(4, ["x"]);
+// let bst = new BinarySearchTree(root);
+// bst.push(2, ["x"]);
+// bst.push(7, ["x"]);
+// bst.push(5, ["x"]);
+// bst.push(8, ["x"]);
+// bst.push(1, ["x"]);
+// bst.push(3, ["x"]);
+// bst.push(9, ["x"]);
+// bst.push(6, ["x"]);
 
-bst.printInorderTraversal(bst.root);
-bst.printPreorderTraversal(bst.root);
-bst.printInorderTraversal(bst.root);
+// bst.printInorderTraversal(bst.root);
+// bst.printPreorderTraversal(bst.root);
+// bst.printInorderTraversal(bst.root);
+
+module.exports = { BinarySearchTree };

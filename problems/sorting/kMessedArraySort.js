@@ -53,7 +53,9 @@ let k = 2;
 let arr2 = [6, 1, 4, 11, 2, 0, 3, 7, 10, 5, 8, 9];
 let k2 = 6;
 
-let res = solve(arr, k);
-let res2 = solve(arr2, k2);
-console.log(res);
-console.log(res2);
+// let res = solve(arr, k);
+// let res2 = solve(arr2, k2);
+// console.log(res);
+// console.log(res2);
+
+module.exports = solve;

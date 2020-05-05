@@ -58,5 +58,6 @@ function findZeroSum(arr) {
 }
 let a = [10, 3, -4, 1, -6, 9];
 let b = [-2, 2, 0, -2, 2];
-console.log(findZeroSum(a));
-console.log(findZeroSum(b));
+// console.log(findZeroSum(a));
+// console.log(findZeroSum(b));
+module.exports = findZeroSum;

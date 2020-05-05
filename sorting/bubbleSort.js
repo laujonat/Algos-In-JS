@@ -1,33 +1,4 @@
 // @flow
-
-var tB = [
-  2,
-  5,
-  1,
-  9,
-  10,
-  3,
-  4,
-  12,
-  541,
-  23,
-  13,
-  1,
-  51,
-  131,
-  56,
-  34,
-  12,
-  67,
-  45,
-  8,
-  12,
-  34,
-  7,
-  234,
-  0
-];
-
 type R = Array<number>;
 
 const bubbleSort = function(arr: R, n: number): R {
@@ -44,4 +15,4 @@ const bubbleSort = function(arr: R, n: number): R {
   return arr;
 };
 
-module.exports = { bubbleSort };
+module.exports = bubbleSort;

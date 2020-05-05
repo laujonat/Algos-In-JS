@@ -104,4 +104,4 @@ g.addEdge("B", "D");
 g.addEdge("D", "C");
 g.addEdge("D", "E");
 
-g.printGraph();
+module.exports = Graph;

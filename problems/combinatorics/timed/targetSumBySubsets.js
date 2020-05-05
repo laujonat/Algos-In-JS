@@ -41,6 +41,5 @@ const twoSumBySubsets = function(arr, target) {
   const sortedArr = arr.sort(compare);
   return choicePattern(arr, 0, target, 0);
 };
-let a = twoSumBySubsets([6, 3, 5, 3, 6], 6);
-let ab = twoSumBySubsets([-11, 8], 8);
-console.log(a, ab);
+// let a = twoSumBySubsets([6, 3, 5, 3, 6], 6);
+// let ab = twoSumBySubsets([-11, 8], 8);

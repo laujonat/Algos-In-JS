@@ -24,7 +24,7 @@ function solve(arr) {
 
   return arr;
 }
-
+module.exports = solve;
 // let a = [1, 3, 2, 4];
 // let c = [1, 2, 3, 4];
 // let b = [1, 1, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4];

@@ -51,4 +51,5 @@ function dutchNationalFlag(arr) {
 }
 
 let a = ["G", "B", "G", "G", "R", "B", "R", "G"];
-console.log(dutchNationalFlag(a));
+
+module.exports = dutchNationalFlag;

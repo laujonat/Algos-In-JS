@@ -40,16 +40,14 @@ function generateAllSubsets(s) {
 }
 
 const str = "xyz";
-const res = generateAllSubsets(str);
-const str_b = "a";
-const res_b = generateAllSubsets(str_b);
-// const str_c = "lkjhgfdsaqwertyuiopm";
-// const res_c = generateAllSubsets(str_c);
-console.assert(
-  res.toString() === ["", "z", "y", "yz", "x", "xz", "xy", "xyz"].toString(),
-  "result is ",
-  res
-);
-console.assert(res_b.toString() === ["", "a"].toString(), "result is", res_b);
+// const res = generateAllSubsets(str);
+// const str_b = "a";
+// const res_b = generateAllSubsets(str_b);
+// console.assert(
+//   res.toString() === ["", "z", "y", "yz", "x", "xz", "xy", "xyz"].toString(),
+//   "result is ",
+//   res
+// );
+// console.assert(res_b.toString() === ["", "a"].toString(), "result is", res_b);
 
 module.exports = generateAllSubsets;

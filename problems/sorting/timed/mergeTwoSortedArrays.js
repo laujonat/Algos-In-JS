@@ -71,7 +71,7 @@ function mergeFirstIntoSecondArrV2(arr1, arr2) {
   return arr2;
 }
 
-function mergeFirstIntoSecondArr(arr1, arr2) {
+function mergeFirstIntoSecondArr(arr1: Array<number>, arr2: Array<number>) {
   let i = 0;
   let j = 0;
   let half = arr2.length / 2;
@@ -103,3 +103,5 @@ function mergeFirstIntoSecondArr(arr1, arr2) {
 // var arr2 = [2, 4, 6, 0, 0, 0];
 // mergeFirstIntoSecondArr(arr1, arr2);
 // console.log(arr1, arr2);
+
+module.exports = mergeFirstIntoSecondArr;

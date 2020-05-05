@@ -78,6 +78,6 @@ const a = [
 const b = [2, 7, 5, 3, 0, 0, 2];
 let res = quickSortV2(a, a.length);
 let resB = quickSortV2(b, b.length);
-console.log(res);
-console.log(resB);
+// console.log(res);
+// console.log(resB);
 module.exports = { quickSort, quickSortV2 };

@@ -57,7 +57,7 @@ function solve(arr) {
   }
   return res;
 }
-
+module.exports = solve;
 // let arr = ["key1 abcd", "key2 two", "key3 aaaa", "key1 zzz"];
 // let res = solve(arr);
 // console.log(res);

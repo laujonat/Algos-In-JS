@@ -25,20 +25,20 @@ const printPermutations = function(str) {
   permutationHelper("", str);
 };
 
-// O(2^n)
-const permutationHelperV2 = function(slate: string, str: string): void {
-  if (str.length === 0) {
-    // -> does nothing
-    console.log(slate);
-  }
-  // exclude
-  permutationHelperV2(slate, str.slice(1));
-  // include
-  permutationHelperV2(slate.concat(str[0]), str.slice(1));
+const permutationsV2 = function(str: string) {
+  const res = [];
+  const helper = (current, i) => {
+    if (i >= str.length) {
+      res.push(current);
+      return;
+    }
+    helper(current + str.slice(i), i + 1);
+    helper(str.slice(i + 1) + current, i + 1);
+    return res;
+  };
+  return helper("", 0);
 };
 
-const printPermutationsV2 = function(str: string): void {
-  permutationHelper("", str);
-};
-
-printPermutationsV2("abc");
+// let res = permutationsV2("abc");
+// console.log(res);
+module.exports = permutationsV2;

@@ -59,5 +59,5 @@ function find_all_well_formed_brackets(n) {
   return res;
 }
 
-$a = find_all_well_formed_brackets(2);
-console.log($a);
+// $a = find_all_well_formed_brackets(2);
+module.exports = find_all_well_formed_brackets;

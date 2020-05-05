@@ -41,7 +41,7 @@ class DoublyLinkedList {
   }
 
   rootNode() {
-    return this.head;
+    return this.head ? this.head.data : null;
   }
 
   reverse() {

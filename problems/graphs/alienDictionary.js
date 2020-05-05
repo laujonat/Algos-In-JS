@@ -24,3 +24,5 @@ Constraints:
 */
 
 function find_order(words) {}
+
+module.exports = find_order;

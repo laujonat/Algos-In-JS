@@ -11,6 +11,7 @@ class Graph {
     this.n = n;
     this.bidir = true;
     this.adjList = new Map();
+    this.visited = new Map();
     for (let i = 0; i < n; i++) {
       this.adjList.set(i, new LinkedList());
     }
@@ -21,6 +22,9 @@ class Graph {
     if (this.adjList.get(start)) {
       this.adjList.get(start).add(end);
       this.edgeMap.set(start, end);
+    } else {
+      this.adjList.set(start, new LinkedList());
+      this.adjList.get(start).add(end);
     }
     if (!bidir) {
       this.bidir = false;
@@ -28,12 +32,15 @@ class Graph {
     } else {
       if (this.adjList.get(end)) {
         this.adjList.get(end).add(start);
+      } else {
+        this.adjList.set(end, new LinkedList());
+        this.adjList.get(end).add(start);
       }
     }
   }
   rootVertex() {
-    const iterable = this.adjList.values().next();
-    if (iterable.value) {
+    const iterable = this.adjList.keys().next();
+    if (String(iterable.value)) {
       return iterable.value;
     }
     return null;
@@ -79,14 +86,13 @@ class Graph {
   *vertices(source) {
     let vertices = this.adjList.get(source);
     if (!vertices) {
-      console.info("Vertex has no edges");
       return;
     }
     let currIdx = 0;
     let res = "";
     for (let v of vertices) {
       yield v;
-      res.concat(`${v.data} -> `);
+      res.concat(`${v} -> `);
       currIdx++;
     }
   }
@@ -99,101 +105,96 @@ class Graph {
     return vertices;
   }
 
+  findConnectedComponents() {
+    this.visited = new Map();
+    let connected = 0;
+    const key = this.rootVertex();
+    this.visited.set(key, connected);
+    for (const node of this.vertices(key)) {
+      if (!this.visited.get(node)) {
+        this.visited.set(node, connected);
+        connected++;
+        this.bfs(node, connected, this.visited);
+      }
+    }
+    return connected;
+  }
+
   shortestPathBFS(source, target) {}
 
+  shortestPathDFS(source, target) {}
+
   // O(degree(v)) -> O(n + m)
-  // Recursive solution
-  dfsV2(source) {
-    // Vertices that have been discovered but not yet captured
+  dfsV2(source, c, dist = 0) {
+    console.info("visiting", source, "distance", dist);
     const stack = [];
-    // Starting vertex
-    const visited = new Map();
     const parent = {};
-    const seen = {};
+    this.visited.set(source, c);
+    this.neighbors(source).forEach((currentVertex) => {
+      console.info("captured", Array.from(this.visited.keys()));
+      if (!this.visited.get(currentVertex)) {
+        this.visited.set(currentVertex, c);
+        parent[currentVertex] = source;
+        this.dfsV2(currentVertex, c, dist + 1);
+      }
+    });
+  }
+
+  /**
+   * @param {number} source
+   * @param {number} c //connected component source
+   * O(degree(v))
+   */
+  dfs(source, c, visited = new Map()) {
+    const stack = [];
+    const parent = {};
     let distance = 0;
+    let connected = c ? c : source;
     stack.push({ vertex: source, distance: 0 });
     while (stack.length !== 0) {
       let { vertex: v, distance: d } = stack.pop();
-      seen[v] = 1;
+      console.info("visiting: ", v, "distance", d);
+      visited.set(source, connected);
       let d1 = [];
-      console.log(`Distance from [${source}] to [${v}]: ${d}`);
-      // Explore neighboring vertices
       this.neighbors(v).forEach((currentVertex) => {
-        console.log(seen);
-        if (!seen[currentVertex]) {
+        if (!visited.get(currentVertex)) {
           parent[currentVertex] = v;
-          this.dfsV2(currentVertex);
-          // Capture discovered vertex
-          seen[currentVertex] = 1;
-          // First edge to discover vertex
+          visited.set(currentVertex, connected);
           d1.push(currentVertex);
           stack.push({ vertex: currentVertex, distance: d + 1 });
         }
+        console.info("captured: ", Array.from(visited.keys()));
       });
-      visited.set(v, d1);
-      console.log(`Vertex [${v}] discovered vertices: [${visited.get(v)}]`);
     }
   }
 
-  // O(degree(v))
-  dfs(source) {
-    // Vertices that have been discovered but not yet captured
-    const stack = [];
-    // Starting vertex
-    const visited = new Map();
-    const parent = {};
-    const seen = {};
-    let distance = 0;
-    stack.push({ vertex: source, distance: 0 });
-    while (stack.length !== 0) {
-      let { vertex: v, distance: d } = stack.pop();
-      seen[v] = 1;
-      let d1 = [];
-      console.log(`Distance from [${source}] to [${v}]: ${d}`);
-      // Explore neighboring vertices
-      this.neighbors(v).forEach((currentVertex) => {
-        if (!seen[currentVertex]) {
-          parent[currentVertex] = v;
-          // Capture discovered vertex
-          seen[currentVertex] = 1;
-          // First edge to discover vertex
-          d1.push(currentVertex);
-          stack.push({ vertex: currentVertex, distance: d + 1 });
-        }
-      });
-      visited.set(v, d1);
-      console.log(`Vertex [${v}] discovered vertices: [${visited.get(v)}]`);
-    }
-  }
-
-  // BFS -> queue
-  bfs(source) {
+  /**
+   * @param {number} source
+   * @param {number} c //connected component source
+   * O(degree(v))
+   */
+  bfs(source, c, visited = new Map()) {
     // Vertices that have been discovered but not yet captured
     const queue = new Queue();
-    // Starting vertex
-    const visited = new Map();
     const parent = {};
-    const seen = {};
+    const seen = new Map();
     let distance = 0;
+    let connected = c ? c : source;
     queue.enqueue({ vertex: source, distance: 0 });
     while (!queue.isEmpty()) {
       let { vertex: v, distance: d } = queue.dequeue();
-      seen[v] = 1;
+      visited.set(v, connected);
       let d1 = [];
-      console.log(`Distance from [${source}] to [${v}]: ${d}`);
-      // Explore neighboring vertices
       this.neighbors(v).forEach((currentVertex) => {
-        if (!seen[currentVertex]) {
+        console.info("visiting: ", currentVertex, "distance", d + 1);
+        if (!visited.get(currentVertex)) {
           parent[currentVertex] = v;
-          // Capture discovered vertex
-          seen[currentVertex] = 1;
-          // First edge to discover vertex
+          visited.set(currentVertex, connected);
           d1.push(currentVertex);
           queue.enqueue({ vertex: currentVertex, distance: d + 1 });
         }
+        console.info("captured: ", Array.from(visited.keys()));
       });
-      visited.set(v, d1);
-      console.log(`Vertex [${v}] discovered vertices: [${visited.get(v)}]`);
     }
   }
 }
@@ -203,8 +204,8 @@ dag.addEdge(0, 1, false);
 dag.addEdge(0, 2, false);
 dag.addEdge(1, 3, false);
 dag.addEdge(1, 4, false);
-console.log("has cycle", dag.hasEulerianCycle());
-console.log("has eulerian path", dag.hasEulerianPath());
+// console.log("has cycle", dag.hasEulerianCycle());
+// console.log("has eulerian path", dag.hasEulerianPath());
 
 let graph = new Graph(10);
 graph.addEdge(0, 1);
@@ -223,16 +224,19 @@ graph.addEdge(4, 9);
 graph.addEdge(5, 9);
 graph.addEdge(7, 8);
 graph.addEdge(7, 9);
-console.log("has cycle", graph.hasEulerianCycle());
-console.log("has eulerian path", graph.hasEulerianPath());
+// console.log("has cycle", graph.hasEulerianCycle());
+// console.log("has eulerian path", graph.hasEulerianPath());
 
-let dfs = new Graph(8);
+let dfs = new Graph(10);
 dfs.addEdge(0, 1, false);
 dfs.addEdge(0, 2, false);
+dfs.addEdge(2, 3, false);
+dfs.addEdge(2, 4, false);
 dfs.addEdge(1, 5, false);
 dfs.addEdge(1, 6, false);
 dfs.addEdge(6, 7, false);
 dfs.addEdge(7, 8, false);
-dfs.addEdge(2, 3, false);
-dfs.addEdge(2, 4, false);
+dfs.addEdge(10, 11, false);
+dfs.addEdge(11, 12, false);
+dfs.addEdge(12, 10, false);
 module.exports = dfs;
