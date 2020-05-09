@@ -14,11 +14,14 @@
 # Tests
 sauce_connect.log
 /coverage
-sandbox/**/*
-dailycodingproblems/
-dailycodingproblems/**/*
+/sandbox
+/dailycodingproblems
 dcp/**/*
 .theia/
 core.*
 lib/
 npm-debug.log
+/utils
+jsconfig.json
+/dist
+/public
