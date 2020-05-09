@@ -1,14 +1,30 @@
 const path = require("path");
 
-module.exports = {
-  entry: "./index.js",
-  mode: "development",
-  node: {
-    net: "empty",
-    fs: "empty"
-  },
-  output: {
-    filename: "[name].js",
-    path: path.resolve(__dirname, "public")
-  }
-};
+module.exports = [
+    {
+        name: 'server',
+        mode: 'development',
+        entry: './index.js',
+        watch: true,
+        target: 'node',
+        output: {
+            path: path.resolve('./public'),
+            filename: 'node.js',
+        },
+    },
+    {
+        name: 'client',
+        mode: 'development',
+        watch: true,
+        watchOptions: {
+            aggregateTimeout: 200,
+            poll: 1000
+        },
+        devtool: 'eval',
+        entry: './src/index.js',
+        output: {
+            path: path.resolve('./public'),
+            filename: 'index.js',
+        },
+    }
+];
