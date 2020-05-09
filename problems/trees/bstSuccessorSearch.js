@@ -6,4 +6,35 @@
     Explain your solution and analyze its time and space complexities.
 */
 
-module.exports = {};
+const findInOrderSuccessor = function(inputNode) {
+  if (!inputNode) {
+    return;
+  }
+  let parent = inputNode.parent;
+  let rightChild = inputNode.right;
+  let leftChild = inputNode.left;
+  let key = inputNode.key;
+
+  if (!rightChild || !leftChild) {
+    while (parent) {
+      if (parent.key > key) {
+        return parent;
+      }
+      parent = parent.parent;
+    }
+    return null;
+  }
+  if (rightChild) {
+    return rightChild;
+  }
+
+  if (rightChild.left) {
+    while (leftChild.left) {
+      leftChild = leftChild.left;
+    }
+    return leftChild;
+  } else {
+    return rightChild;
+  }
+};
+module.exports = findInOrderSuccessor;

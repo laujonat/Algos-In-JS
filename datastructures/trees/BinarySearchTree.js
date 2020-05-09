@@ -20,6 +20,7 @@ function TreeNode(key: number, value: Array<string>) {
   this.value = value;
   this.left = null;
   this.right = null;
+  this.parent = null;
 }
 
 class BinarySearchTree {
@@ -95,6 +96,35 @@ class BinarySearchTree {
       this.printPostorderTraversal(root.left);
       this.printPostorderTraversal(root.right);
       console.dir(root);
+    }
+  }
+
+  getInOrderSuccessor(root: TreeNodeType) {
+    if (!root) {
+      return;
+    }
+    let parent = root.parent;
+    let leftChild = root.left;
+    let rightChild = root.right;
+    let key = root.key;
+    if (!rightChild || !leftChild) {
+      while (parent) {
+        if (parent.key > key) {
+          return parent;
+        }
+        parent = parent.parent;
+      }
+      return null;
+    }
+    if (rightChild) {
+      leftChild = rightChild.left;
+      if (leftChild) {
+        while (leftChild.left) {
+          leftChild = leftChild.left;
+        }
+        return leftChild;
+      }
+      return rightChild;
     }
   }
 

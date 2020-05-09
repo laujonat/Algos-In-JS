@@ -6,6 +6,7 @@ process.stdin.setEncoding("utf-8");
 
 let inputString = "";
 let currentLine = 0;
+let arrayOfFiles = [];
 let dirPath = path.join(__dirname, "lib");
 function getCompiledFiles(dirPath, arrayOfFiles) {
   let files = fs.readdirSync(dirPath);
@@ -20,25 +21,15 @@ function getCompiledFiles(dirPath, arrayOfFiles) {
   });
   return arrayOfFiles;
 }
-process.stdin.on("data", function(inputStdin) {
-  console.log("hello");
-  eval(inputString);
-  console.log(inputString);
-  // inputString += inputStdin;
-});
-process.stdout.write("\n Reading js files: \n");
-getCompiledFiles(dirPath, []).forEach((filePath) => {
+getCompiledFiles(dirPath, arrayOfFiles).forEach((filePath) => {
   require(filePath);
 });
-
-process.on("SIGINT", function() {
-  process.stdout.write("\n end \n");
-  inputString = inputString.split("\n");
-  main();
-  process.exit();
+// Reading passed parameter
+process.argv.forEach(function(val, index, array) {
+  console.log(index + ": " + val);
 });
 
-function main() {
-  // var root = readBinaryTree();
-  console.log("Running..");
-}
+// Getting executable path
+console.log(process.execPath);
+
+console.log(arrayOfFiles);
