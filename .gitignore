@@ -15,6 +15,9 @@
 sauce_connect.log
 /coverage
 sandbox/**/*
+dailycodingproblems/
+dailycodingproblems/**/*
+dcp/**/*
 .theia/
 core.*
 lib/

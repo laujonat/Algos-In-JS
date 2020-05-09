@@ -3,8 +3,8 @@
   A graph is connected is there is a path between any two vertices.
   An undirected graph is complete if there is an edge between every pair of vertices
 */
-const LinkedList = require("./DoublyLinkedList.js");
-const Queue = require("./Queue.js");
+const LinkedList = require("../struct/DoublyLinkedList.js");
+const Queue = require("../struct/Queue.js");
 
 class Graph {
   constructor(n) {

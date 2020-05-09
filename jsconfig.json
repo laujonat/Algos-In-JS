@@ -5,10 +5,12 @@
   },
   "exclude": ["node_modules"],
   "include": [
-    "sorting/**/*",
-    "dcp/**/*",
-    "ds/**/*",
+    "datastructures/graphs/**/*",
+    "datastructures/sorting/**/*",
+    "datastructures/struct/**/*",
+    "datastructures/trees/**",
     "problems/**/*",
-    "sandbox/**/*"
+    "sandbox/**/*",
+    "datastructures/node/**/*"
   ]
 }
