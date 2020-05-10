@@ -24,4 +24,5 @@ npm-debug.log
 /utils
 jsconfig.json
 /dist
-/public
+public/index.js
+public/node.js

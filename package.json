@@ -27,7 +27,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "start": "npm run webpack",
+    "start": "webpack --config webpack.config.js",
     "start:dev": "node node.js",
     "build": "npm run flow:build && npm run build:ds && npm run build:problems && npm run build:sandbox",
     "build:ds": "babel ./datastructures/ -d lib/",

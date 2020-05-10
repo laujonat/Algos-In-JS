@@ -22,13 +22,6 @@ module.exports = [
     },
     devtool: "eval",
     entry: "./src/index.js",
-    output: {
-      path: path.resolve("./public"),
-      filename: "index.js"
-    }
-  }
-];
-/*
     module: {
       rules: [
         {
@@ -38,11 +31,16 @@ module.exports = [
             {
               loader: "css-loader",
               options: {
-                importLoaders: 1,
                 modules: true
               }
             }
           ]
         }
       ]
-    },*/
+    },
+    output: {
+      path: path.resolve("./public"),
+      filename: "index.js"
+    }
+  }
+];
