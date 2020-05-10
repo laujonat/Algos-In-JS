@@ -21,6 +21,7 @@
     "flow-bin": "^0.122.0",
     "flow-remove-types": "^2.122.0",
     "html-loader": "^1.1.0",
+    "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0"
