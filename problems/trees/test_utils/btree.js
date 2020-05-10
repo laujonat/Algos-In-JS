@@ -33,6 +33,17 @@ btree.insert(0, 2);
 btree.insert(0, 5);
 btree.insert(0, 5);
 btree.insert(0, 9);
+
+// const btree = new BinaryTree(4);
+// btree.setRootIndex(0);
+// btree.insert(0, 1);
+// btree.insert(0, 2);
+// btree.insert(0, 3);
+// btree.insert(0, 4);
+// btree.leftEdge(0, 1);
+// btree.rightEdge(1, 2);
+// btree.leftEdge(2, 3);
+
 // btree.insert(0, 300);
 // btree.insert(0, 200);
 // btree.insert(0, 400);

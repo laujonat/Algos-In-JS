@@ -12,8 +12,37 @@ Input format:
   
   Output format:  
   Return an array containing the node values in post-order traversal of the tree.
-
 */
 const { btree, btreeInvalid } = require("./test_utils/btree.js");
+// O(n) space
+// O(n) time
+function postorderTraversal(root) {
+  if (!root) {
+    return null;
+  }
+  const res = [];
+  const stack = [];
+  stack.push(root);
+  while (stack.length != 0) {
+    let node = stack[stack.length - 1];
+    let left = node.left_ptr;
+    let right = node.right_ptr;
+    if (!left && !right) {
+      res.push(node.val);
+      stack.pop();
+    } else {
+      if (right) {
+        stack.push(right);
+        node.right_ptr = null;
+      }
+      if (left) {
+        stack.push(left);
+        node.left_ptr = null;
+      }
+    }
+  }
+  return res;
+}
 
-function postorderTraversal(root) {}
+// let res = postorderTraversal(btree.root);
+module.exports = postorderTraversal;
