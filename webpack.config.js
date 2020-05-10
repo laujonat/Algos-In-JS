@@ -4,13 +4,13 @@ module.exports = [
   {
     name: "server",
     mode: "development",
-    entry: "./index.js",
+    entry: ["./index.js", "./node.js"],
     watch: true,
     target: "node",
     output: {
       path: path.resolve("./public"),
-      filename: "node.js"
-    }
+      filename: "node.js",
+    },
   },
   {
     name: "client",
@@ -18,12 +18,16 @@ module.exports = [
     watch: true,
     watchOptions: {
       aggregateTimeout: 200,
-      poll: 1000
+      poll: 1000,
     },
     devtool: "eval",
-    entry: "./src/index.js",
+    entry: ["./src/index.js", "./public/style.css"],
     module: {
       rules: [
+        {
+          test: /\.html$/i,
+          loader: "html-loader",
+        },
         {
           test: /\.css$/i,
           use: [
@@ -31,16 +35,16 @@ module.exports = [
             {
               loader: "css-loader",
               options: {
-                modules: true
-              }
-            }
-          ]
-        }
-      ]
+                modules: true,
+              },
+            },
+          ],
+        },
+      ],
     },
     output: {
       path: path.resolve("./public"),
-      filename: "index.js"
-    }
-  }
+      filename: "index.js",
+    },
+  },
 ];

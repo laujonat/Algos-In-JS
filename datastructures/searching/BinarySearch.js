@@ -1,6 +1,7 @@
 /*
   Use the information that the array is sorted/ Time complexity to O(Log n).
 */
+"use-strict";
 const BinarySearch = (arr, target) => {
   let start = 0;
   let end = arr.length - 1;

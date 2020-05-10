@@ -5,21 +5,53 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!--Import materialize.css-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <header>
+    <header class="header center red-text text-lighten-1">
       <h1>
-        Javascript Testing Environment
+        Sandbox
       </h1>
+      <div class="row center">
+        <h5 class="header col s12 light grey-text text-lighten-1">
+          Technical Interview Questions
+        </h5>
+      </div>
     </header>
-
-    <main></main>
-
+    <main>
+      <div class="progress">
+        <div class="indeterminate"></div>
+      </div>
+      <div class="container">
+        <form class="search-form">
+          <input
+            id="search-input"
+            type="text"
+            class="input-field col s6"
+            placeholder="Search for questions or data structures"
+          />
+          <ul class="collection"></ul>
+        </form>
+      </div>
+    </main>
     <footer>
-      <p class="footer">
+      <p class="footer-text">
         Enjoy!
       </p>
     </footer>

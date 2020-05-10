@@ -1,3 +1,62 @@
-.footer {
+/*
+Theme Name: Javascript Code Sandbox
+Description: Styles for index.html
+Author: Jonathan Lau
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1em;
+  background-color: rgb(232, 234, 237);
+  font-family: "Ubuntu Mono", Arial, Helvetica, sans-serif;
+  height: 100vh;
+  width: 100vw;
+}
+
+header {
+  margin: 30px;
+}
+h1 {
+  font-size: 2.5em;
+  width: 100%;
+  margin: 10px auto;
+}
+
+h5 {
+  font-size: 1.15em;
+}
+
+main {
+  margin: 24px;
+  height: 90%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#search-input {
+  border-radius: 3px;
+  padding: 5px 5px;
+  background-color: white;
+}
+
+.progress {
+  display: none;
+}
+
+footer {
+  clear: both;
+  position: relative;
+  display: flex;
+  justify-content: start;
+  height: 200px;
+  width: 100%;
+  margin: 2em 250px;
+}
+.footer-text {
   font-size: 0.875em;
 }
