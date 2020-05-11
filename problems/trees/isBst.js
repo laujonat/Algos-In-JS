@@ -12,11 +12,10 @@ Is It A BST
 
 */
 const BinaryTree = require("../trees/BinaryTree.js");
-const { TreeNodeNoKey } = require("../node/TreeNode.js");
 const { btree, btreeInvalid } = require("./test_utils/btree.js");
 
 // Inefficient Solution
-const isBST = (root) => {
+const isBSTV1 = (root) => {
   if (!root) {
     return 1;
   }
@@ -51,7 +50,7 @@ const isBST = (root) => {
 };
 
 // O(n) Solution
-function isBSTV2(root) {
+function isBst(root) {
   const bstHelper = (node, minVal, maxVal) => {
     if (!node) {
       return 1;
@@ -70,5 +69,4 @@ function isBSTV2(root) {
   return 0;
 }
 
-let res = isBSTV2(btree.root);
-console.log(res);
+module.exports = isBst;

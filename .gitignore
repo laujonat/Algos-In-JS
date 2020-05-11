@@ -21,7 +21,6 @@ dcp/**/*
 core.*
 lib/
 npm-debug.log
-/utils
 jsconfig.json
 /dist
 public/index.js

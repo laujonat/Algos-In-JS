@@ -7,9 +7,8 @@ const glob = require("glob");
 const watcher = require("./utils/watcher.js");
 
 glob.sync("./lib/**/*.js").forEach(function(file) {
-  require(path.resolve(file));
+  // require(path.resolve(__dirname, file));
 });
-
 const app = express();
 app.use(cors()), app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json({ limit: "50mb" }));

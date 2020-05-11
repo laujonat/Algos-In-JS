@@ -146,7 +146,26 @@ input[type="search"]::-webkit-search-results-decoration {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
+::-webkit-input-placeholder {
+  color: rgb(34, 34, 34);
+  opacity: 0.8 !important; /* for older chrome versions. may no longer apply. */
+}
 
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: rgb(34, 34, 34);
+  opacity: 0.8 !important;
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: rgb(34, 34, 34);
+  opacity: 0.8 !important;
+}
+
+:-ms-input-placeholder {
+  color: rgb(34, 34, 34);
+}
 input[type="search"] {
   -webkit-appearance: none;
   -moz-appearance: none;

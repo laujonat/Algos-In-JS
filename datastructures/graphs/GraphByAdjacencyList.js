@@ -1,7 +1,11 @@
 /*
-  Construct a graph using an adjacency list. 
-  A graph is connected is there is a path between any two vertices.
-  An undirected graph is complete if there is an edge between every pair of vertices
+  Description: Graph implementation using an adjacency list. 
+  Properties: {
+      "n": "Number of vertices",
+      "bidir": "Set true if graph is directed",
+      "visited": "Class instance of Map",
+      "edgeMap": "Map of all edges that exist in the graph"
+  }
 */
 const LinkedList = require("../struct/DoublyLinkedList.js");
 const Queue = require("../struct/Queue.js");
@@ -17,7 +21,6 @@ class Graph {
     }
     this.edgeMap = new Map();
   }
-
   addEdge(start: number, end: number, bidir = true) {
     if (this.adjList.get(start)) {
       this.adjList.get(start).add(end);
@@ -239,4 +242,4 @@ dfs.addEdge(7, 8, false);
 dfs.addEdge(10, 11, false);
 dfs.addEdge(11, 12, false);
 dfs.addEdge(12, 10, false);
-module.exports = dfs;
+module.exports = Graph;

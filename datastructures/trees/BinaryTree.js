@@ -1,4 +1,4 @@
-const { TreeNodeNoKey } = require("../node/TreeNode.js");
+const { TreeNode } = require("../node/TreeNode.js");
 const Edge = require("../node/Edge.js");
 
 /**
@@ -43,7 +43,7 @@ class BinaryTree {
     this.noOfEdges = this.edges.length;
     var nodes = [];
     for (var i = 0; i < this.noOfNodes; i++) {
-      nodes.push(new TreeNodeNoKey(this.nodeValues[i]));
+      nodes.push(new TreeNode(i, this.nodeValues[i]));
     }
     for (var i = 0; i < this.noOfEdges; i++) {
       var edge = this.edges[i];

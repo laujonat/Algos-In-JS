@@ -3,7 +3,6 @@
   Given a binary tree, find the number of unival subtrees. An unival tree is a tree that has the same value in every node.
 */
 const BinaryTree = require("../trees/BinaryTree.js");
-const { TreeNodeNoKey } = require("../node/TreeNode.js");
 
 const btree = new BinaryTree(7);
 btree.setRootIndex(0);

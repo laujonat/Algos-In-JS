@@ -24,38 +24,60 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header class="header center red-text text-lighten-1">
-      <h1>
-        Sandbox
-      </h1>
-      <div class="row center">
-        <h5 class="header col s12 light grey-text text-lighten-1">
-          Technical Interview Questions
-        </h5>
+    <main class="row">
+      <div class="row">
+        <div class="col m6 l3">
+          <header class="header center red-text text-lighten-1">
+            <h1>
+              Sandbox
+            </h1>
+            <div class="row">
+              <h5 class="header light grey-text text-lighten-0">
+                Technical Interview Questions
+              </h5>
+            </div>
+          </header>
+          <div
+            style="width:50%;margin:auto;"
+            class="divider blue-grey lighten-3"
+          ></div>
+        </div>
       </div>
-    </header>
-    <main>
-      <div class="progress">
-        <div class="indeterminate"></div>
-      </div>
-      <div class="container">
+      <div class="container col m6 l3">
         <form class="search-form">
           <input
+            autocomplete="off"
             id="search-input"
             type="text"
-            class="input-field col s6"
+            class="input-field light col s6"
             placeholder="Search for questions or data structures"
           />
           <ul class="collection"></ul>
         </form>
       </div>
+      <div id="view" class="col l16">
+        <div class="container col s5 m6 l10">
+          <div class="progress">
+            <div class="indeterminate"></div>
+          </div>
+          <div class="col s5 m6 l4">
+            <div class="card-panel">
+              <span class="dark-gray-text"
+                >I am a very simple card. I am good at containing small bits of
+                information. I am convenient because I require little markup to
+                use effectively. I am similar to what is called a panel in other
+                frameworks.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
-    <footer>
+    <!-- <footer>
       <p class="footer-text">
         Enjoy!
       </p>
-    </footer>
-
+    </footer> -->
     <script src="/index.js"></script>
   </body>
 </html>
