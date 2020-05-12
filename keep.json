@@ -1,0 +1,498 @@
+[
+  {
+    "id": 0,
+    "name": "Graph By Adjacency List",
+    "description": " Construct a graph using an adjacency list. ",
+    "type": "graphs",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/graphs/GraphByAdjacencyList.js",
+    "properties": {
+      "n": "Number of vertices",
+      "bidir": "Set true if graph is directed",
+      "visited": "Class instance of Map",
+      "edgeMap": "Map of all edges that exist in the graph"
+    },
+    "params": {
+      "n": "Constructor denoting the number of vertices"
+    }
+  },
+  {
+    "id": 1,
+    "name": "Edge",
+    "category": "datastructures",
+    "type": "node",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/node/Edge.js",
+    "params": []
+  },
+  {
+    "id": 2,
+    "name": "Tree Node",
+    "category": "datastructures",
+    "type": "node",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/node/TreeNode.js",
+    "params": []
+  },
+  {
+    "id": 3,
+    "name": "Binary Search",
+    "category": "datastructures",
+    "type": "searching",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/searching/BinarySearch.js",
+    "params": []
+  },
+  {
+    "id": 4,
+    "name": "Bubble Sort",
+    "category": "datastructures",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/sorting/bubbleSort.js",
+    "params": []
+  },
+  {
+    "id": 5,
+    "name": "Counting Sort",
+    "category": "datastructures",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/sorting/countingSort.js",
+    "params": []
+  },
+  {
+    "id": 6,
+    "name": "Insertion Sort",
+    "category": "datastructures",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/sorting/insertionSort.js",
+    "params": []
+  },
+  {
+    "id": 7,
+    "name": "Merge Sort",
+    "category": "datastructures",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/sorting/mergeSort.js",
+    "params": []
+  },
+  {
+    "id": 8,
+    "name": "Quick Sort",
+    "category": "datastructures",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/sorting/quickSort.js",
+    "params": []
+  },
+  {
+    "id": 9,
+    "name": "Selection Sort",
+    "category": "datastructures",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/sorting/selectionSort.js",
+    "params": []
+  },
+  {
+    "id": 10,
+    "name": "De Queue",
+    "category": "datastructures",
+    "type": "struct",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/struct/DeQueue.js",
+    "params": []
+  },
+  {
+    "id": 11,
+    "name": "Doubly Linked List",
+    "category": "datastructures",
+    "type": "struct",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/struct/DoublyLinkedList.js",
+    "params": []
+  },
+  {
+    "id": 12,
+    "name": "Min Heap",
+    "category": "datastructures",
+    "type": "struct",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/struct/MinHeap.js",
+    "params": []
+  },
+  {
+    "id": 13,
+    "name": "Queue",
+    "category": "datastructures",
+    "type": "struct",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/struct/Queue.js",
+    "params": []
+  },
+  {
+    "id": 14,
+    "name": "Singly Linked List",
+    "category": "datastructures",
+    "type": "struct",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/struct/SinglyLinkedList.js",
+    "params": []
+  },
+  {
+    "id": 15,
+    "name": "Binary Search Tree",
+    "category": "datastructures",
+    "type": "trees",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/trees/BinarySearchTree.js",
+    "params": []
+  },
+  {
+    "id": 16,
+    "name": "Binary Tree",
+    "category": "datastructures",
+    "type": "trees",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/trees/BinaryTree.js",
+    "params": []
+  },
+  {
+    "id": 17,
+    "name": "Binary Tree Graph",
+    "category": "datastructures",
+    "type": "trees",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/trees/BinaryTreeGraph.js",
+    "params": []
+  },
+  {
+    "id": 18,
+    "name": "Fib With Dp",
+    "category": "problems",
+    "type": "dp",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/dp/fibWithDp.js",
+    "params": []
+  },
+  {
+    "id": 19,
+    "name": "Alien Dictionary",
+    "category": "problems",
+    "type": "graphs",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/graphs/alienDictionary.js",
+    "params": []
+  },
+  {
+    "id": 20,
+    "name": "Reverse Edges",
+    "category": "problems",
+    "type": "graphs",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/graphs/reverseEdges.js",
+    "params": []
+  },
+  {
+    "id": 21,
+    "name": "Array Flatten",
+    "category": "problems",
+    "type": "recursion",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/recursion/arrayFlatten.js",
+    "params": []
+  },
+  {
+    "id": 22,
+    "name": "Backtrack Problem",
+    "category": "problems",
+    "type": "recursion",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/recursion/backtrackProblem.js",
+    "params": []
+  },
+  {
+    "id": 23,
+    "name": "Binary Strings",
+    "category": "problems",
+    "type": "recursion",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/recursion/binaryStrings.js",
+    "params": []
+  },
+  {
+    "id": 24,
+    "name": "Generate All Expressions",
+    "category": "problems",
+    "type": "recursion",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/recursion/generateAllExpressions.js",
+    "params": []
+  },
+  {
+    "id": 25,
+    "name": "How Many Ts",
+    "category": "problems",
+    "type": "recursion",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/recursion/howManyBSTs.js",
+    "params": []
+  },
+  {
+    "id": 26,
+    "name": "Tree",
+    "category": "problems",
+    "type": "recursion",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/recursion/hTree.js",
+    "params": []
+  },
+  {
+    "id": 27,
+    "name": "Lettercase Permutation",
+    "category": "problems",
+    "type": "recursion",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/recursion/lettercasePermutation.js",
+    "params": []
+  },
+  {
+    "id": 28,
+    "name": "Longest Palindrome",
+    "category": "problems",
+    "type": "recursion",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/recursion/longestPalindrome.js",
+    "params": []
+  },
+  {
+    "id": 29,
+    "name": "Num Paths To Destination",
+    "category": "problems",
+    "type": "recursion",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/recursion/numPathsToDestination.js",
+    "params": []
+  },
+  {
+    "id": 30,
+    "name": "Palindromic Decomp",
+    "category": "problems",
+    "type": "recursion",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/recursion/palindromicDecomp.js",
+    "params": []
+  },
+  {
+    "id": 31,
+    "name": "Print All Subsets",
+    "category": "problems",
+    "type": "recursion",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/recursion/printAllSubsets.js",
+    "params": []
+  },
+  {
+    "id": 32,
+    "name": "Print Permutations",
+    "category": "problems",
+    "type": "recursion",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/recursion/printPermutations.js",
+    "params": []
+  },
+  {
+    "id": 33,
+    "name": "Subsets Of Set",
+    "category": "problems",
+    "type": "recursion",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/recursion/subsetsOfSet.js",
+    "params": []
+  },
+  {
+    "id": 34,
+    "name": "",
+    "category": "problems",
+    "type": "recursion",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/recursion/timed/formedBrackets.js",
+    "params": []
+  },
+  {
+    "id": 35,
+    "name": "",
+    "category": "problems",
+    "type": "recursion",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/recursion/timed/targetSumBySubsets.js",
+    "params": []
+  },
+  {
+    "id": 36,
+    "name": "Towers Of Hanoi",
+    "category": "problems",
+    "type": "recursion",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/recursion/towersOfHanoi.js",
+    "params": []
+  },
+  {
+    "id": 37,
+    "name": "Group Numbers",
+    "category": "problems",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/groupNumbers.js",
+    "params": []
+  },
+  {
+    "id": 38,
+    "name": "Index Equals Value",
+    "category": "problems",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/indexEqualsValue.js",
+    "params": []
+  },
+  {
+    "id": 39,
+    "name": "Messed Array Sort",
+    "category": "problems",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/kMessedArraySort.js",
+    "params": []
+  },
+  {
+    "id": 40,
+    "name": "Lexographical Order",
+    "category": "problems",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/lexographicalOrder.js",
+    "params": []
+  },
+  {
+    "id": 41,
+    "name": "Merge Sorted Arrays",
+    "category": "problems",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/mergeKSortedArrays.js",
+    "params": []
+  },
+  {
+    "id": 42,
+    "name": "Merge Sorted Arrays",
+    "category": "problems",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/mergeKSortedArraysV2.js",
+    "params": []
+  },
+  {
+    "id": 43,
+    "name": "Merge Sorted Arrays",
+    "category": "problems",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/mergeKSortedArraysV3.js",
+    "params": []
+  },
+  {
+    "id": 44,
+    "name": "Three Sum",
+    "category": "problems",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/threeSum.js",
+    "params": []
+  },
+  {
+    "id": 45,
+    "name": "",
+    "category": "problems",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/timed/bstKthSmallestElement.js",
+    "params": []
+  },
+  {
+    "id": 46,
+    "name": "",
+    "category": "problems",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/timed/dutchNationalFlag.js",
+    "params": []
+  },
+  {
+    "id": 47,
+    "name": "",
+    "category": "problems",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/timed/formedBrackets.js",
+    "params": []
+  },
+  {
+    "id": 48,
+    "name": "",
+    "category": "problems",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/timed/mergeTwoSortedArrays.js",
+    "params": []
+  },
+  {
+    "id": 49,
+    "name": "Top Numbers",
+    "category": "problems",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/topKNumbers.js",
+    "params": []
+  },
+  {
+    "id": 50,
+    "name": "Word Count Engine",
+    "category": "problems",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/wordCountEngine.js",
+    "params": []
+  },
+  {
+    "id": 51,
+    "name": "Binary Tree Paths",
+    "category": "problems",
+    "type": "trees",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/trees/binaryTreePaths.js",
+    "params": []
+  },
+  {
+    "id": 52,
+    "name": "Bst From Sorted Array",
+    "category": "problems",
+    "type": "trees",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/trees/bstFromSortedArray.js",
+    "params": []
+  },
+  {
+    "id": 53,
+    "name": "Bst Successor Search",
+    "category": "problems",
+    "type": "trees",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/trees/bstSuccessorSearch.js",
+    "params": []
+  },
+  {
+    "id": 54,
+    "name": "Inorder Traversal",
+    "category": "problems",
+    "type": "trees",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/trees/inorderTraversal.js",
+    "params": []
+  },
+  {
+    "id": 55,
+    "name": "Is Bst",
+    "category": "problems",
+    "type": "trees",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/trees/isBst.js",
+    "params": []
+  },
+  {
+    "id": 56,
+    "name": "Postorder Traversal",
+    "category": "problems",
+    "type": "trees",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/trees/postorderTraversal.js",
+    "params": []
+  },
+  {
+    "id": 57,
+    "name": "Preorder Traversal",
+    "category": "problems",
+    "type": "trees",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/trees/preorderTraversal.js",
+    "params": []
+  },
+  {
+    "id": 58,
+    "name": "Single Value Tree",
+    "category": "problems",
+    "type": "trees",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/trees/singleValueTree.js",
+    "params": []
+  },
+  {
+    "id": 59,
+    "name": "Test",
+    "category": "problems",
+    "type": "trees",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/trees/test_utils/btree.js",
+    "params": []
+  },
+  {
+    "id": 60,
+    "name": "Ip Address",
+    "category": "problems",
+    "type": "warmup",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/warmup/ipAddress.js",
+    "params": []
+  }
+]

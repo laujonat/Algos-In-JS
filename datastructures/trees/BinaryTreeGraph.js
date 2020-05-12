@@ -67,34 +67,16 @@ class Graph {
       console.log(i + " -> " + conc);
     }
   }
-  // preorder
-  // Why is list better than graph
-  buildGraphFromTree(
-    map: Map<number, Array<typeof TreeNode>>,
-    node: typeof TreeNode,
-    parent: typeof TreeNode
-  ) {
-    if (node != null) {
-      map.put(node.val, new Map());
-      if (parent != null) {
-        map.get(node.val).push(parent);
-        map.get(parent.val).push(node);
-      }
-
-      buildGraphFromTree(map, node.left, node);
-      buildGraphFromTree(map, node.right, node);
-    }
-  }
 }
 
 const g = new Graph(9);
-var vertices = ["F", "B", "G", "A", "D", "C", "E", "I", "H"];
 
+var vertices = ["F", "B", "G", "A", "D", "C", "E", "I", "H"];
 for (var i = 0; i < vertices.length; i++) {
   g.addVertex(vertices[i]);
 }
 
-// adding edges
+// // adding edges
 g.addEdge("F", "B");
 g.addEdge("G", "G");
 g.addEdge("G", "I");
@@ -103,5 +85,5 @@ g.addEdge("B", "A");
 g.addEdge("B", "D");
 g.addEdge("D", "C");
 g.addEdge("D", "E");
-
+g.printGraph();
 module.exports = Graph;

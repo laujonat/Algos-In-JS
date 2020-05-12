@@ -25,3 +25,5 @@ jsconfig.json
 /dist
 public/index.js
 public/node.js
+datastructures.json
+# keep.json

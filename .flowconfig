@@ -1,5 +1,6 @@
 [ignore]
 .*/node_modules/.*
+.*/lib/
 
 [include]
 
@@ -19,3 +20,6 @@ module.file_ext=
 server.max_workers=4
 
 [strict]
+
+[libs]
+./lib

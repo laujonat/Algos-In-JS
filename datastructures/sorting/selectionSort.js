@@ -1,5 +1,5 @@
-// Selection sort could be modified to repeatedly select the maximum 
-// element instead of the minimum, and putting the maximum element into its final place. 
+// Selection sort could be modified to repeatedly select the maximum
+// element instead of the minimum, and putting the maximum element into its final place.
 
 const selectionSort = function(arr: Array<number>, n: number): Array<number> {
   for (let i = 0; i < n - 1; i++) {
@@ -14,6 +14,6 @@ const selectionSort = function(arr: Array<number>, n: number): Array<number> {
     }
   }
   return arr;
-}
+};
 
-module.exports = {selectionSort};
+module.exports = { selectionSort };

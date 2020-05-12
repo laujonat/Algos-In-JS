@@ -1,0 +1,250 @@
+[
+  {
+    "id": 0,
+    "name": "Graph By Adjacency List",
+    "description": " Graph implementation using an adjacency list",
+    "type": "graphs",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/graphs/GraphByAdjacencyList.js",
+    "properties": {
+      "n": "Number of vertices",
+      "bidir": "Set true if graph is directed",
+      "visited": "Class instance of Map",
+      "edgeMap": "Map of all edges that exist in the graph"
+    },
+    "params": {
+      "n": "Constructor denoting the number of vertices"
+    },
+    "dependencies": [
+      {
+        "name": "Doubly Linked List",
+        "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/struct/DoublyLinkedList.js"
+      },
+      {
+        "name": "Queue",
+        "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/struct/Queue.js"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Binary Search",
+    "description": "Search a sorted array by repeatedly dividing the search interval in half. Begin with an interval covering the whole array. If the value of the search key is less than the item in the middle of the interval, narrow the interval to the lower half. Otherwise narrow it to the upper half. Repeatedly check until the value is found or the interval is empty.",
+    "type": "searching",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/searching/BinarySearch.js",
+    "properties": {},
+    "params": {
+      "arr": "Array of numbers",
+      "target": "Integer search target"
+    },
+    "dependencies": []
+  },
+  {
+    "id": 2,
+    "name": "Bubble Sort",
+    "description": "Bubble Sort works by repeatedly swapping the adjacent elements if they are in wrong order.",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/searching/BinarySearch.js",
+    "properties": {},
+    "params": {
+      "arr": "Array of numbers",
+      "target": "Integer search target"
+    },
+    "dependencies": []
+  },
+  {
+    "id": 3,
+    "name": "Counting Sort",
+    "description": "Counting sort is a sorting algorithm that sorts the elements of an array by counting the number of occurrences of each unique element in the array. The count is stored in an auxiliary array and the sorting is done by mapping the count as an index of the auxiliary array.",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/sorting/countingSort.js",
+    "properties": {},
+    "params": {
+      "arr": "Array of numbers",
+      "n": "Number of elements in Array."
+    },
+    "dependencies": []
+  },
+  {
+    "id": 4,
+    "name": "Insertion Sort Top-Down",
+    "description": "Insertion sort is a sorting algorithm that places an unsorted element at its suitable place in each iteration.",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/sorting/insertionSortV2.js",
+    "properties": {},
+    "params": {
+      "arr": "Array of numbers",
+      "n": "Number of elements in Array."
+    },
+    "dependencies": []
+  },
+  {
+    "id": 5,
+    "name": "Insertion Sort Bottom-Up",
+    "description": "Insertion sort is a sorting algorithm that places an unsorted element at its suitable place in each iteration. Iterative Approach.",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/sorting/insertionSort.js",
+    "properties": {},
+    "params": {
+      "arr": "Array of numbers",
+      "n": "Number of elements in Array."
+    },
+    "dependencies": []
+  },
+  {
+    "id": 5,
+    "name": "Insertion Sort Bottom-Up",
+    "description": "Insertion sort is a sorting algorithm that places an unsorted element at its suitable place in each iteration. Iterative Approach.",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/sorting/insertionSort.js",
+    "properties": {},
+    "params": {
+      "arr": "Array of numbers",
+      "n": "Number of elements in Array."
+    },
+    "dependencies": []
+  },
+  {
+    "id": 6,
+    "name": "Merge Sort",
+    "description": "The MergeSort algorithm repeatedly divides the array into two halves until we reach a stage where we try to perform MergeSort on a subarray of size 1 i.e. p == r. After that, the merge function comes into play and combines the sorted arrays into larger arrays until the whole array is merged.",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/sorting/mergeSort.js",
+    "properties": {},
+    "params": {
+      "arr": "Array of numbers",
+      "n": "Number of elements in Array."
+    },
+    "dependencies": []
+  },
+  {
+    "id": 6,
+    "name": "Quicksort (Trivial)",
+    "description": "Quicksort is an algorithm based on divide and conquer approach in which the array is split into subarrays and these sub-arrays are recursively called to sort the elements.",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/sorting/quickSortV1.js",
+    "properties": {},
+    "params": {
+      "arr": "Array of numbers",
+      "n": "Number of elements in Array."
+    },
+    "dependencies": []
+  },
+  {
+    "id": 6,
+    "name": "Quicksort  (In-place)",
+    "description": "Quicksort is an algorithm based on divide and conquer approach in which the array is split into subarrays and these sub-arrays are recursively called to sort the elements.",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/sorting/quickSort.js",
+    "properties": {},
+    "params": {
+      "arr": "Array of numbers",
+      "n": "Number of elements in Array."
+    },
+    "dependencies": []
+  },
+  {
+    "id": 7,
+    "name": "Quicksort  (In-place)",
+    "description": "Quicksort is an algorithm based on divide and conquer approach in which the array is split into subarrays and these sub-arrays are recursively called to sort the elements.",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/sorting/quickSort.js",
+    "properties": {},
+    "params": {
+      "arr": "Array of numbers",
+      "n": "Number of elements in Array."
+    },
+    "dependencies": []
+  },
+  {
+    "id": 8,
+    "name": "Selection Sort",
+    "description": "Selection sort is an algorithm that selects the smallest element from an unsorted list in each iteration and places that element at the beginning of the unsorted list.",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/sorting/selectionSort.js",
+    "properties": {},
+    "params": {
+      "arr": "Array of numbers",
+      "n": "Number of elements in Array."
+    },
+    "dependencies": []
+  },
+  {
+    "id": 9,
+    "name": "Double Ended Queue (Dequeue)",
+    "description": "A double ended queue, also called as deque, is a list in which the elements can be inserted or deleted at either end in constant time. It is also known as a head-tail linked list because elements can be added to or removed from either the front (head) or the back (tail) end",
+    "type": "sorting",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/sorting/selectionSort.js",
+    "properties": {},
+    "params": {
+      "arr": "Array of numbers",
+      "n": "Number of elements in Array."
+    },
+    "dependencies": [
+      {
+        "name": "Singly Linked List",
+        "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/struct/SinglyLinkedList.js"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Min Heap",
+    "description": "A Binary Heap is a Binary Tree with following properties.  It’s a complete tree (All levels are completely filled except possibly the last level and the last level has all keys as left as possible). This property of Binary Heap makes them suitable to be stored in an array. A Binary Heap is either Min Heap or Max Heap. In a Min Binary Heap, the key at root must be minimum among all keys present in Binary Heap. The same property must be recursively true for all nodes in Binary Tree. Max Binary Heap is similar to MinHeap.",
+    "type": "data structure",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/struct/MinHeap.js",
+    "properties": {},
+    "params": {
+      "elements": "Array of numbers"
+    },
+    "dependencies": []
+  },
+  {
+    "id": 11,
+    "name": "Queue",
+    "description": "Queue is also an abstract data type or a linear data structure, just like stack data structure, in which the first element is inserted from one end called the REAR(also called tail), and the removal of existing element takes place from the other end called as FRONT(also called head). This makes queue as FIFO(First in First Out) data structure, which means that element inserted first will be removed first.",
+    "type": "data structure",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/struct/Queue.js",
+    "properties": {},
+    "params": {},
+    "dependencies": [
+      {
+        "name": "Linked List (Singly or Doubly)",
+        "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/struct/DoublyLinkedList.js"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Binary Tree",
+    "description": "A Binary Tree is a tree data structure in which each node has at most two children, which are referred to as the left child and the right child and the topmost node in the tree is called the root.",
+    "type": "data structure",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/struct/BinaryTree.js",
+    "properties": {},
+    "params": {
+      "n": "Number of elements in Array."
+    },
+    "dependencies": [
+      {
+        "name": "TreeNode",
+        "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/struct/TreeNode.js"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Binary Search Tree",
+    "description": "For a binary tree to be a binary search tree, the data of all the nodes in the left sub-tree of the root node should be less than the data of the root. The data of all the nodes in the right subtree of the root node should be greater than equal to the data of the root. As a result, the leaves on the farthest left of the tree have the lowest values, whereas the leaves on the right of the tree have the greatest values.",
+    "type": "data structure",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/struct/BinaryTree.js",
+    "properties": {},
+    "params": {
+      "root": "Root TreeNode "
+    },
+    "dependencies": [
+      {
+        "name": "TreeNode",
+        "filepath": "/home/laujonat/Programs/algoRepl/lib/datastructures/struct/TreeNode.js"
+      }
+    ]
+  }
+]

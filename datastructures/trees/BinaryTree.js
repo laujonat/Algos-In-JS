@@ -1,4 +1,4 @@
-const { TreeNode } = require("../node/TreeNode.js");
+const TreeNode = require("../node/TreeNode.js");
 const Edge = require("../node/Edge.js");
 
 /**
@@ -13,7 +13,6 @@ class BinaryTree {
     this.nodeValues = [];
     this.edges = [];
   }
-
   setRootIndex(idx: number) {
     this.rootIndex = idx;
   }

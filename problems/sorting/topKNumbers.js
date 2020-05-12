@@ -22,17 +22,11 @@ Notes
 
 Output: Return an integer array res, containing K largest elements. If there are less than K unique elements, return all of them. Order of elements in res does not matter.
 Constraints:
-
 1 <= n <= 10^5
 1 <= K <= 10^5
 arr may contain duplicate numbers.
 arr may or may not be sorted
-
 */
-
-/*
- * Complete the function below.
- */
 /*
  
  n*log(n) -> obtain top K elements
@@ -116,5 +110,4 @@ const topK = function(arr, k) {
 // console.log(
 //   topK([4, 2, 1, 6, 2, 10, 4, 3, 10, 6, 5, 6, 7, 2, 10, 10, 4, 6, 5, 8], 7)
 // );
-
 module.exports = topK;

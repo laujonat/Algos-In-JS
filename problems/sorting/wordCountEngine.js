@@ -23,3 +23,29 @@ Constraints:
 [input] string document
 [output] array.array.string
 */
+
+const wordCountEngine = (document) => {
+  const map = new Map();
+  document.split(" ").forEach((word, i) => {
+    let w = word.toLowerCase();
+    let regex = w.match(/[a-zA-Z]+/gi)[0];
+    if (map.get(regex)) {
+      map.get(regex).count += 1;
+    } else {
+      map.set(regex, { count: 1 });
+    }
+  });
+  let arr = [];
+  for (const [k, v] of map.entries()) {
+    if (arr[v.count]) {
+      arr.push([k, v.count.toString()]);
+    } else {
+      arr.push([k, v.count.toString()]);
+    }
+  }
+  return arr;
+};
+let document =
+  "Practice makes perfect. you'll only get Perfect by practice. just practice!";
+// console.log(wordCountEngine(document));
+module.exports = wordCountEngine;
