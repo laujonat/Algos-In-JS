@@ -10,17 +10,14 @@ const helper = (
   subset: Array<?number>,
   result: Array<Array<?number>> = []
 ): Array<Array<?number>> => {
-  console.log("arr level", arr);
   if (arr.length === 0) {
     if (k === subset.length) {
       result.push(subset);
     }
   } else {
     // exclude
-    console.log("exclude", subset);
     helper(arr.slice(1), k, subset, result);
     // include
-    console.log("include", subset);
     helper(arr.slice(1), k, subset.concat(arr[0]), result);
   }
   return result;

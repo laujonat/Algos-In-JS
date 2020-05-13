@@ -1,4 +1,5 @@
-/*
+/* 
+@flow
 Bracket Match
 A string of brackets is considered correctly matched if every opening bracket in the string can be paired up with a later closing bracket, and vice versa. For instance, “(())()” is correctly matched, whereas “)(“ and “((” aren’t. For instance, “((” could become correctly matched by adding two closing brackets at the end, so you’d return 2.
 
@@ -26,7 +27,7 @@ Constraints:
   [output] integer
 */
 "use-strict";
-const bracketMatch = function(str) {
+const bracketMatch = function(str: string): number {
   if (str.length < 2) {
     return 1;
   }
@@ -45,5 +46,4 @@ const bracketMatch = function(str) {
   }
   return ans + count;
 };
-console.log(bracketMatch(")"));
 module.exports = bracketMatch;

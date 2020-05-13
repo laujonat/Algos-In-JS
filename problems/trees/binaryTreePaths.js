@@ -30,7 +30,6 @@ function printAllPaths(root) {
   if (!root) {
     return [];
   }
-
   let paths = [];
   const dfs = (node, paths) => {
     paths.push(node.val);
@@ -50,6 +49,4 @@ function printAllPaths(root) {
   dfs(root, paths);
 }
 
-// let res = printAllPaths(btree.root);
-// console.log(res);
 module.exports = printAllPaths;

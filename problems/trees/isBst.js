@@ -11,7 +11,7 @@ Is It A BST
   By definition, tree having a single node or leaf nodes are BST
 
 */
-const BinaryTree = require("../../datastructures/trees/BinaryTree.js");
+const BinaryTree = require("../../dsaa/trees/BinaryTree.js");
 const { btree, btreeInvalid } = require("./test_utils/btree.js");
 
 // Inefficient Solution

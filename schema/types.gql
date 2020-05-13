@@ -1,0 +1,85 @@
+const graphqlHTTP = require("express-graphql");
+const graphql = require("graphql");
+const app = require("./index.js");
+const path = require("path");
+const fs = require("fs");
+
+// Reference: https://stackoverflow.com/questions/45598812/graphql-blackbox-any-type
+const objectScalarType = new graphql.GraphQLScalarType({
+  name: "Object",
+  description: "Arbitrary object",
+  parseValue: (value) => {
+    return typeof value === "object"
+      ? value
+      : typeof value === "string"
+      ? JSON.parse(value)
+      : null;
+  },
+  serialize: (value) => {
+    return typeof value === "object"
+      ? value
+      : typeof value === "string"
+      ? JSON.parse(value)
+      : null;
+  },
+  parseLiteral: (ast) => {
+    switch (ast.kind) {
+      case graphql.Kind.STRING:
+        return JSON.parse(ast.value);
+      case graphql.Kind.OBJECT:
+        throw new Error(`Not sure what to do with OBJECT for ObjectScalarType`);
+      default:
+        return null;
+    }
+  },
+});
+
+const DependenciesType = new graphql.GraphQLObjectType({
+  name: "dependencies",
+  fields: () => ({
+    name: { type: graphql.GraphQLString },
+    filepath: { type: graphql.GraphQLString },
+  }),
+});
+
+const GraphType = new graphql.GraphQLObjectType({
+  name: "graphByAdjList",
+  fields: () => {
+    return {
+      n: { type: graphql.GraphQLString },
+      bidir: { type: graphql.GraphQLString },
+      visited: { type: graphql.GraphQLString },
+      edgeMap: { type: graphql.GraphQLString },
+    };
+  },
+});
+
+module.exports = {
+  objectScalarType, 
+  structType: new graphql.GraphQLObjectType({
+    name: "struct",
+    fields: {
+      id: { type: graphql.GraphQLString },
+      dataid: { type: graphql.GraphQLString },
+      name: { type: graphql.GraphQLString },
+      type: { type: graphql.GraphQLString },
+      description: { type: graphql.GraphQLString },
+      filepath: { type: graphql.GraphQLString },
+      properties: { type: objectScalarType },
+      params: { type: objectScalarType },
+      dependencies: { type: objectScalarType },
+    },
+    resolve: (_, { value }) => {
+        return objectScalarType.parseValue[value];
+    },
+  }),
+  problemType: new graphql.GraphQLObjectType({
+    name: "problem",
+    fields: {
+      id: { type: graphql.GraphQLString },
+      name: { type: graphql.GraphQLString },
+      category: { type: graphql.GraphQLString },
+      filepath: { type: graphql.GraphQLString },
+    },
+  }),
+};

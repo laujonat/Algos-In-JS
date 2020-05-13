@@ -7,33 +7,32 @@ const exec = util.promisify(require("child_process").exec);
 
 const log = console.log.bind(console);
 const dirmap = new Map();
-const dsdir = path.join(__dirname, "../datastructures");
+const dsdir = path.join(__dirname, "../dsaa");
 const pdir = path.join(__dirname, "../problems");
-dirmap.set(dsdir, { files: [], path: "", dir: "datastructures" });
+dirmap.set(dsdir, { files: [], path: "", dir: "dsaa" });
 dirmap.set(pdir, { files: [], path: "", dir: "problems" });
 function execPromise(command) {
-  console.log("COMMAND", command);
   return new Promise(function(resolve, reject) {
     exec(command, (error, stdout, stderr) => {
-      console.log("asd", command);
+      log(command);
       if (error) {
         reject(error);
         return;
       }
-      console.log("asdsad", stdout.trim());
+      log("asdsad", stdout.trim());
       resolve(stdout.trim());
     });
   });
 }
 
 const buildJsFiles = (dir) => {
-  console.log(dir);
+  log(dir);
   execPromise(`babel ${dir} -d lib/${dir}`)
     .then(function(result) {
-      console.log("RES", result);
+      log(result);
     })
     .catch(function(e) {
-      console.error(e.message);
+      error(e.message);
     });
 };
 
@@ -90,19 +89,18 @@ for (const [src, { files, path, dir }] of dirmap.entries()) {
       let idx2 = path.lastIndexOf("/");
       path = path.substring(idx + 1, idx2);
       idx2 = path.lastIndexOf("/");
-      // buildJsFiles(path.substring(0, idx2));
       try {
         execPromise(
           `babel ${path.substring(0, idx2)} -d lib/${path.substring(0, idx2)}`
         )
           .then(function(result) {
-            console.log(result);
+            log(result);
           })
           .catch(function(e) {
-            console.error(e.message);
+            error(e.message);
           });
       } catch (e) {
-        console.error(e);
+        error(e);
       }
     });
 }

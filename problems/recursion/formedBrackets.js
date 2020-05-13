@@ -30,24 +30,26 @@ Constraints:
 Only use round brackets. '(' and ')'.
 
 */
-
-function backtrack(res, slate, numOpen, numClose, bound) {
-  console.log("PASSING SLATE", slate);
-  if (numOpen === 0 && numClose === 0) {
+function backtrack(
+  res: Array<?string>,
+  slate: string,
+  numOpen: number,
+  numClosed: number,
+  n: number
+): ?Array<?string> {
+  if (numClosed === n) {
     res.push(slate);
-    console.log(res, "state", slate);
     return;
-    // return res;
   }
-
-  if (numOpen < bound) {
-    console.log(numOpen, numClose);
-    backtrack(res, slate.concat("("), numOpen++, numClose, bound);
+  // exclude
+  if (numOpen < n) {
+    backtrack(res, slate.concat("("), numOpen + 1, numClosed, n);
   }
-  if (numClose === numOpen) {
-    console.log(numOpen, numClose);
-    backtrack(res, slate.concat(")"), numOpen, numClose++, bound);
+  // include
+  if (numClosed < numOpen) {
+    backtrack(res, slate.concat(")"), numOpen, numClosed + 1, n);
   }
+  return res;
 }
 
 function find_all_well_formed_brackets(n) {

@@ -2,7 +2,7 @@
   Single Value Tree
   Given a binary tree, find the number of unival subtrees. An unival tree is a tree that has the same value in every node.
 */
-const BinaryTree = require("../../datastructures/trees/BinaryTree.js");
+const BinaryTree = require("../../dsaa/trees/BinaryTree.js");
 
 const btree = new BinaryTree(7);
 btree.setRootIndex(0);

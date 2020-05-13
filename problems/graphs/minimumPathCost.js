@@ -20,5 +20,30 @@ Constraints:
 [input] Node rootNode
 0 ≤ rootNode.cost ≤ 100000
 [output] integer
-
 */
+function Node(cost) {
+  this.cost = cost;
+  this.children = [];
+}
+
+const getCheapestCost = function(root) {
+  if (root.children.length === 0) {
+    return root.cost;
+  } else {
+    let mcost = Number.POSITIVE_INFINITY;
+    root.children.forEach((node) => {
+      let pcost = getCheapestCost(node);
+      if (pcost < mcost) {
+        mcost = pcost;
+      }
+    });
+    return (mcost += root.cost);
+  }
+};
+// let r = new Node(0);
+// r.children = [new Node(5), new Node(3), new Node(6)];
+// r.children[0].children = [new Node(4)];
+// r.children[1].children = [new Node(2), new Node(4)];
+// r.children[2].children = [new Node(1), new Node(5)];
+// let res = getCheapestCost(r);
+module.exports = getCheapestCost;

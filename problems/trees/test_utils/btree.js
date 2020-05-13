@@ -1,4 +1,4 @@
-const BinaryTree = require("../../../datastructures/trees/BinaryTree.js");
+const BinaryTree = require("../../../dsaa/trees/BinaryTree.js");
 
 const btreeInvalid = new BinaryTree(7);
 btreeInvalid.setRootIndex(0);

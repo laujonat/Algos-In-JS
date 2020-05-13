@@ -1,8 +1,8 @@
 const http = require("http");
 const app = require("./index.js");
-const chokidar = require("chokidar");
 const path = require("path");
 const watcher = require("./utils/watcher.js");
+
 const log = (message) => {
   process.stdout.write(`${message}\n`);
 };
