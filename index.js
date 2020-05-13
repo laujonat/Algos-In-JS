@@ -4,10 +4,8 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const glob = require("glob");
-const watcher = require("./utils/watcher.js");
 
 glob.sync("./lib/**/*.js").forEach(function(file) {
-  console.log("FILE", file);
   require(file);
 });
 const app = express();

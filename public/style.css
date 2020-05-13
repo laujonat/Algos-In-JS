@@ -33,19 +33,31 @@ h5 {
 }
 
 main {
-  height: 90%;
+  height: 100%;
+}
+
+.row {
+  z-index: -1;
 }
 
 .container {
   margin: 10px 0 0 0;
-  max-height: 600px;
 }
-
+.wrapper {
+  display: inline;
+  position: relative;
+  border: 1px solid green;
+}
 /* / */
 /* / Main Panel */
 /* / */
 #display {
   margin: 0 auto;
+}
+
+.divider {
+  width: 55%;
+  margin: auto;
 }
 
 .card-panel {
@@ -57,10 +69,29 @@ main {
 #view {
   color: #263238;
   padding: 20px;
-  margin: -5% 25%;
+  margin: -7% 25%;
   width: 50vw;
+  height: 100vh;
   font-weight: 200;
   background: #fafafa;
+}
+
+#view-content-container {
+  color: #263238;
+  margin: 0 auto;
+  border: 1px solid green;
+}
+
+#view-content {
+  margin: auto;
+  color: #263238;
+  border: 1px solid green;
+}
+
+#search-panel {
+  position: absolute;
+  top: 20%;
+  left: 80px;
 }
 
 /* / */
@@ -91,11 +122,11 @@ main {
 .search-form {
   color: #263238;
   width: 450px;
-  padding: 20px;
+  padding: 14px 20px;
   margin: auto;
   background: rgba(0, 0, 0, 0.2);
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
 }
 
 .search-form input {

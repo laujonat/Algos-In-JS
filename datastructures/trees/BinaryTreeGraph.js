@@ -69,21 +69,21 @@ class Graph {
   }
 }
 
-const g = new Graph(9);
+// const g = new Graph(9);
 
-var vertices = ["F", "B", "G", "A", "D", "C", "E", "I", "H"];
-for (var i = 0; i < vertices.length; i++) {
-  g.addVertex(vertices[i]);
-}
+// var vertices = ["F", "B", "G", "A", "D", "C", "E", "I", "H"];
+// for (var i = 0; i < vertices.length; i++) {
+//   g.addVertex(vertices[i]);
+// }
 
-// // adding edges
-g.addEdge("F", "B");
-g.addEdge("G", "G");
-g.addEdge("G", "I");
-g.addEdge("I", "H");
-g.addEdge("B", "A");
-g.addEdge("B", "D");
-g.addEdge("D", "C");
-g.addEdge("D", "E");
-g.printGraph();
+// // // adding edges
+// g.addEdge("F", "B");
+// g.addEdge("G", "G");
+// g.addEdge("G", "I");
+// g.addEdge("I", "H");
+// g.addEdge("B", "A");
+// g.addEdge("B", "D");
+// g.addEdge("D", "C");
+// g.addEdge("D", "E");
+// g.printGraph();
 module.exports = Graph;

@@ -1,7 +1,7 @@
 "use-strict";
+let viewPanel = document.querySelector("#view-content");
 let searchInput = document.getElementById("search-input");
 let collection = document.querySelector(".collection");
-
 let headers = new Headers();
 headers.append("Content-Type", "text/plain");
 headers.set("Content-Type", "application/json;charset=UTF-8");
@@ -27,29 +27,37 @@ function isEmpty(str) {
 
 const searchData = (searchText) => {
   const regex = new RegExp(searchText, "gi");
-  console.log(regex, fileSync);
+  fileSync.sort((a, b) => a.id - b.id);
+  console.log(fileSync);
   return new Promise((resolve) =>
     resolve(fileSync.filter((m) => m.name.match(regex)))
   );
 };
 
 function handleChange(e) {
-  if (!isEmpty(e.target.value)) {
-    showSearchResults(this.value);
+  if (!isEmpty(e.currentTarget.value)) {
+    showSearchResults(e.currentTarget.value);
   }
   collection.innerHTML = "";
 }
 
+function handleListItemEvent(i) {
+  viewPanel.appendChild(h1);
+}
+
 function showSearchResults(searchQuery) {
   searchData(searchQuery).then((res) => {
-    const html = res.map(
-      (el) => `
-      <li class="collection-item">
-        <div class="collection-item-wrap">${el.name}</div>
-      </li>
-    `
-    );
-    collection.innerHTML = html.join("");
+    const html = res.map((el, i) => {
+      var li = document.createElement("li");
+      var div = document.createElement("div");
+      li.setAttribute("class", "collection-item");
+      li.onclick = () => handleListItemEvent(i);
+      div.setAttribute("class", "collection-item-wrap");
+      li.appendChild(div);
+      div.appendChild(document.createTextNode(el.name + el.id));
+      collection.appendChild(li);
+      return li;
+    });
   });
 }
 
@@ -58,3 +66,16 @@ window.addEventListener("load", () => sendGetRequest());
 // Register for both events
 searchInput.addEventListener("change", handleChange);
 searchInput.addEventListener("keyup", handleChange);
+document.addEventListener("click", (evt) => {
+  let targetElement = evt.target; // clicked element
+
+  do {
+    if (targetElement == collection) {
+      return;
+    }
+    targetElement = targetElement.parentNode;
+  } while (targetElement);
+
+  collection.innerHTML = "";
+  searchInput.value = "";
+});

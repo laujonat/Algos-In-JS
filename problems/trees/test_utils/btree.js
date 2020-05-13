@@ -25,13 +25,20 @@ btreeInvalid.buildTree();
 
 const btree = new BinaryTree(7);
 btree.setRootIndex(0);
-btree.insert(0, 5);
-btree.insert(0, 4);
-btree.insert(0, 6);
+btree.insert(0, 1);
 btree.insert(0, 2);
+btree.insert(0, 3);
+btree.insert(0, 4);
 btree.insert(0, 5);
-btree.insert(0, 5);
-btree.insert(0, 9);
+btree.insert(0, 6);
+btree.insert(0, 7);
+// btree.insert(0, 5);
+// btree.insert(0, 4);
+// btree.insert(0, 6);
+// btree.insert(0, 2);
+// btree.insert(0, 5);
+// btree.insert(0, 5);
+// btree.insert(0, 9);
 
 // const btree = new BinaryTree(4);
 // btree.setRootIndex(0);

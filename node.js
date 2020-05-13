@@ -2,19 +2,11 @@ const http = require("http");
 const app = require("./index.js");
 const chokidar = require("chokidar");
 const path = require("path");
-
+const watcher = require("./utils/watcher.js");
 const log = (message) => {
   process.stdout.write(`${message}\n`);
 };
 const root = path.resolve(__dirname, "index.js");
-chokidar
-  .watch(root, {
-    interval: 1000,
-    persistent: true,
-  })
-  .on("all", (event, path) => {
-    log(event, path);
-  });
 
 const normalizePort = (val) => {
   const port = parseInt(val, 10);

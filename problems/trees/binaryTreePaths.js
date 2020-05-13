@@ -23,3 +23,33 @@ Constraints:
   0 <= number of tree nodes <= 10^5
   -10^9 <= values in the nodes <= 10^9
 */
+
+const { btree, btreeInvalid } = require("./test_utils/btree.js");
+
+function printAllPaths(root) {
+  if (!root) {
+    return [];
+  }
+
+  let paths = [];
+  const dfs = (node, paths) => {
+    paths.push(node.val);
+    if (!node.left_ptr && !node.right_ptr) {
+      console.log(paths);
+      paths.pop();
+      return paths;
+    }
+    if (node.left_ptr) {
+      dfs(node.left_ptr, paths);
+    }
+    if (node.right_ptr) {
+      dfs(node.right_ptr, paths);
+    }
+    paths.pop();
+  };
+  dfs(root, paths);
+}
+
+// let res = printAllPaths(btree.root);
+// console.log(res);
+module.exports = printAllPaths;
