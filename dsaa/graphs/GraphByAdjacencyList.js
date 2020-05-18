@@ -11,9 +11,9 @@ const LinkedList = require("../struct/DoublyLinkedList.js");
 const Queue = require("../struct/Queue.js");
 
 class Graph {
-  constructor(n) {
+  constructor(n, bidir) {
     this.n = n;
-    this.bidir = true;
+    this.bidir = bidir ? bidir : true;
     this.adjList = new Map();
     this.visited = new Map();
     for (let i = 0; i < n; i++) {

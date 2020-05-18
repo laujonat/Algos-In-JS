@@ -13,11 +13,12 @@ class BinaryTree {
     this.nodeValues = [];
     this.edges = [];
   }
+
   setRootIndex(idx: number) {
     this.rootIndex = idx;
   }
 
-  insert(root, data: number) {
+  insert(root: TreeNode, data: number) {
     if (!data && data !== 0) {
       throw new Error("Invalid value");
     }
@@ -32,6 +33,32 @@ class BinaryTree {
   rightEdge(parent: number, child: number) {
     var edge = new Edge(parent, child, "R");
     this.edges.push(edge);
+  }
+
+  getNode(root: TreeNode, key: number) {
+    if (!root || root.key === key) {
+      return root;
+    } else {
+      let curr = root;
+      const left = this.getNode(curr.left_ptr, key);
+      if (left) {
+        return left;
+      }
+      const right = this.getNode(curr.right_ptr, key);
+      if (right) {
+        return right;
+      }
+    }
+  }
+
+  printTree(root) {
+    if (!root) {
+      return null;
+    }
+    let curr = root;
+    console.log(curr.val);
+    this.printTree(curr.left_ptr);
+    this.printTree(curr.right_ptr);
   }
 
   buildTree() {

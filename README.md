@@ -24,6 +24,7 @@
 - Event Loop https://blog.carbonfive.com/the-javascript-event-loop-explained/
 - Form Data https://www.javascripture.com/FormData
 - Async https://exploringjs.com/impatient-js/ch_async-js.html
+- Critial Rendering Path https://developers.google.com/web/fundamentals/performance/critical-rendering-path/
 - Interview Prep
   - https://khan4019.github.io/front-end-Interview-Questions/bst.html
   - https://frontendmasters.com/books/front-end-handbook/2018/

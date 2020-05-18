@@ -9,9 +9,7 @@ Author: Jonathan Lau
   font-family: "Ubuntu Mono", Arial, Helvetica, sans-serif;
   letter-spacing: 0.4px;
 }
-/* / */
-/* / Shared */
-/* / */
+
 body {
   font-size: 1.11em;
   height: 100vh;
@@ -19,7 +17,7 @@ body {
 }
 
 header {
-  margin: auto;
+  margin: 0 auto 20px auto;
 }
 
 h1 {
@@ -29,6 +27,30 @@ h1 {
 
 h5 {
   font-size: 1.15em;
+}
+
+table {
+  font-size: 14px;
+  width: 100vw;
+  text-align: justify;
+  display: inline-block;
+  padding: 0 15px;
+  margin: 0 10px;
+}
+
+table:after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+}
+
+td {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 15px;
+}
+th {
+  /* border: 1px solid rgba(0, 0, 0, 0.12); */
+  padding: 15px;
 }
 
 main {
@@ -41,27 +63,18 @@ main {
   margin-bottom: 0;
 }
 
-.container {
-  margin: 10px 0 0 0;
-}
 .wrapper {
   display: inline;
   position: relative;
   padding: 20px;
   z-index: 99;
-  /* width: 200px; */
   border: 1px solid transparent;
-}
-/* / */
-/* / Main Panel */
-/* / */
-#display {
-  margin: 0 auto;
 }
 
 .divider {
-  width: 55%;
   margin: auto;
+  padding: 20px;
+  width: 55%;
 }
 
 .card-panel {
@@ -70,10 +83,19 @@ main {
     rgba(0, 0, 0, 0.2) 0px 1px 2.5px 0px;
 }
 
+#field-header {
+  font-weight: bold;
+}
+
+#field-header:before {
+  content: "[";
+}
+#field-header:after {
+  content: "]";
+}
 #view {
   color: #263238;
   padding: 20px;
-  margin: -5% 25%;
   width: 50vw;
   height: 100vh;
   font-weight: 200;
@@ -82,27 +104,27 @@ main {
 
 #view-content-container {
   color: #263238;
-  margin: 0 auto;
+  height: 100vh;
+  background-color: #f5f5f5;
 }
 
 #view-content {
-  margin: auto;
+  background-color: white;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: justify;
+  height: 100%;
+  margin: 0 auto;
+  width: 100%;
   color: #263238;
 }
 
 #view-content-header {
   padding: 20px;
-  border: 1px solid orange;
 }
 
 .row .view-main {
   margin: 0;
-}
-
-#search-panel {
-  position: absolute;
-  top: 20%;
-  left: 80px;
 }
 
 /* / */
@@ -138,9 +160,6 @@ main {
   margin: 0 auto;
 }
 
-/* / */
-/* / Input Form  */
-/* / */
 .search-form {
   color: #263238;
   width: 450px;

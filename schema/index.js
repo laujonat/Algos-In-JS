@@ -21,15 +21,7 @@ function getConfig(file) {
 
 let structs = getConfig(path.resolve(__dirname, "../dsaa.json"));
 let problems = getConfig(path.resolve(__dirname, "../data.json"));
-// const structsListType = new graphql.GraphQLUnionType({
-//   name: "structs",
-//   type: [structType],
-//   resolveType(value) {
-//     if (value instanceof structType) {
-//       return structType;
-//     }
-//   },
-// });
+
 // Define Query Type
 const queryType = new graphql.GraphQLObjectType({
   name: "Query",
