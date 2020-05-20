@@ -1,5 +1,3 @@
-*~
-
 # Node
 /build
 /node_modules
@@ -12,7 +10,6 @@
 .idea
 
 # Tests
-sauce_connect.log
 /coverage
 /sandbox
 /dailycodingproblems
@@ -20,10 +17,13 @@ dcp/**/*
 .theia/
 core.*
 lib/
+lib/dsaa/**
 npm-debug.log
 jsconfig.json
 /dist
 public/index.js
 public/node.js
 dsaa.json
+root.json
+.env
 # keep.json

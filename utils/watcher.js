@@ -19,7 +19,7 @@ function execPromise(command) {
         reject(error);
         return;
       }
-      log("asdsad", stdout.trim());
+      log("[./utils/watcher.js exec]", stdout.trim());
       resolve(stdout.trim());
     });
   });

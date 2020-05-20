@@ -78,14 +78,14 @@ class BinarySearchTree {
   printInorderTraversal(root: TreeNodeType) {
     if (root != null) {
       this.printInorderTraversal(root.left);
-      console.dir(root.key);
+      console.table(root);
       this.printInorderTraversal(root.right);
     }
   }
 
   printPreorderTraversal(root: TreeNodeType) {
     if (root != null) {
-      console.dir(root);
+      console.table(root);
       this.printPreorderTraversal(root.left);
       this.printPreorderTraversal(root.right);
     }
@@ -95,7 +95,7 @@ class BinarySearchTree {
     if (root != null) {
       this.printPostorderTraversal(root.left);
       this.printPostorderTraversal(root.right);
-      console.dir(root);
+      console.table(root);
     }
   }
 

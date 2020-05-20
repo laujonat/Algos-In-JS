@@ -53,3 +53,16 @@
 - Heap Sort
 - Quickselect
 - Test Data
+- Invert a binary tree
+
+# Practice
+
+- Clock
+- Search filter
+- Display image
+
+# Non-coding Questions
+
+- Explain the difference between composition and inheritance. In which cases would you use each?
+- How would you explain the difference between an API and SDK to a non-technical person?
+- How would you explain web cookies to someone non-technical?

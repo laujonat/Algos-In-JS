@@ -4,7 +4,7 @@ module.exports = [
   {
     name: "server",
     mode: "development",
-    entry: ["./index.js", "./node.js"],
+    entry: ["./app.js", "./node.js"],
     watch: true,
     target: "node",
     output: {
@@ -21,7 +21,7 @@ module.exports = [
       poll: 1000,
     },
     devtool: "eval",
-    entry: ["./src/index.js", "./public/style.css"],
+    entry: ["./src/app.js", "./public/style.css"],
     module: {
       rules: [
         {

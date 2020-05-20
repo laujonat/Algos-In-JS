@@ -31,19 +31,6 @@ You can use only constant extra space.
 */
 "use-strict";
 type A = Array<number>;
-/*
-  Steps:
-    - Start at i = 0, j = 0, where i,j mark the start of each array
-    - if arr1[i] < arr2[j] 
-        swap(arr2[i], arr2[j])
-          move j left until arr[j] > arr[i] && arr[j] <= arr[j+1] 
-    - else 
-        swap(arr2[j], arr2[arr1.length-1])
-          ...
-  arr1: [1, 3, 5]
-  arr2: [2, 4, 6, 0, 0, 0] 
-  -> [2, 4, 6, 1, 0, 0] -> [1, 4, 6, 2, 0, 0] -> [1, 2, 4, 6, 0 0]
-*/
 
 // better O(n)
 // O(1) space
@@ -60,7 +47,6 @@ function mergeFirstIntoSecondArrV2(arr1, arr2) {
       arr2[current] = arr1[i];
       i--;
     } else if (i < 0) {
-      // exhausting arr1 elements means all elements in arr2 are in their right place
       break;
     } else if (j < 0) {
       arr2[current] = arr1[i];

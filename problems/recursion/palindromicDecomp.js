@@ -12,7 +12,7 @@ Input: "abracadabra"
 
 Output: [ "a|b|r|a|c|a|d|a|b|r|a", "a|b|r|a|c|ada|b|r|a", "a|b|r|aca|d|a|b|r|a" ]
 */
-function solve(str) {
+function palindromicDecompV1(str) {
   let path = [];
   function checkPalindrome(str) {
     let res = true;
@@ -62,7 +62,7 @@ const isPalindrome = (str) => {
   return true;
 };
 
-var solveV2 = function(s) {
+const palindromicDecomp = function(s) {
   const result = [];
   let partition = "";
   const helper = (input, partition, i, res = []) => {
@@ -89,5 +89,5 @@ var solveV2 = function(s) {
 };
 
 const str = "abracadabra";
-let res = solveV2(str);
-module.exports = solveV2;
+// let res = solveV2(str);
+module.exports = palindromicDecomp;

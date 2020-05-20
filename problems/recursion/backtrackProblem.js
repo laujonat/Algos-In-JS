@@ -23,7 +23,7 @@ const helper = (
   return result;
 };
 
-const solve = function(arr, k) {
+const combinationsOfSizeK = function(arr, k) {
   if (k < 2) {
     return arr.reduce((acc, curr) => {
       acc.push([curr]);
@@ -36,4 +36,4 @@ const solve = function(arr, k) {
 
 let a = [1, 2, 3, 4];
 // let x = solve(a, 3);
-module.exports = solve;
+module.exports = combinationsOfSizeK;

@@ -12,9 +12,9 @@ const helper = (slate, n) => {
   helper(slate + "1", n - 1);
 };
 
-const solve = (str) => {
+const binaryStrings = (str) => {
   let n = str.length;
   return helper("", n);
 };
 
-module.exports = solve;
+module.exports = binaryStrings;

@@ -46,4 +46,5 @@ const bracketMatch = function(str: string): number {
   }
   return ans + count;
 };
+
 module.exports = bracketMatch;

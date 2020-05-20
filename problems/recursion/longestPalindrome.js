@@ -33,7 +33,7 @@ function solve(str) {
   return helper(0, 0);
 }
 
-var solveV2 = function(s) {
+const longestPalindrome = function(s) {
   const result = [];
   let curr = "";
   const helper = (input, partition, i) => {
@@ -87,4 +87,4 @@ var longestPalindromeV2 = function(s) {
 };
 let str = "babad";
 // let res = solve(str);
-module.exports = { solve, solveV2 };
+module.exports = longestPalindrome;

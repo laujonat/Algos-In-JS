@@ -39,3 +39,74 @@ Constraints:
 All sr, sc, tr, tc are valid locations in the grid, grid[sr][sc] = grid[tr][tc] = 1, and (sr, sc) != (tr, tc).
 [output] 
 */
+
+function shortestCellPath(grid, sr, sc, tr, tc) {
+  /**
+	@param grid: integer[][]
+	@param sr: integer
+	@param sc: integer
+	@param tr: integer
+	@param tc: integer
+	@return: integer
+  */
+
+  const queue = [];
+  const seen = new WeakMap();
+  let depth = 0;
+  queue.push({ r: sr, c: sc, depth });
+  while (queue) {
+    const { r, c, depth } = queue.shift();
+    if (tr === r && tc === c) {
+      return depth;
+    }
+    if (r + 1 >= 0 && r + 1 < grid.length) {
+      if (grid[r + 1][c]) {
+        if (!seen.get([r + 1, c])) {
+          queue.push({ r: r + 1, c, depth: depth + 1 });
+          seen.set([r + 1, c], depth);
+        }
+      }
+    }
+    if (r - 1 >= 0 && r - 1 < grid.length) {
+      if (grid[r - 1][c]) {
+        if (!seen.get([r - 1, c])) {
+          queue.push({ r: r - 1, c, depth: depth + 1 });
+          seen.set([r - 1, c], depth + 1);
+        }
+      }
+    }
+
+    if (c + 1 >= 0 && c + 1 < grid[0].length) {
+      if (grid[r][c + 1]) {
+        if (!seen.get([r, c + 1])) {
+          queue.push({ r, c: c + 1, depth: depth + 1 });
+          seen.set([r, c + 1], depth);
+        }
+      }
+    }
+
+    if (c - 1 >= 0 && c - 1 < grid[0].length) {
+      if (grid[r][c - 1]) {
+        if (!seen.get([r, c - 1])) {
+          queue.push({ r, c: c - 1, depth: depth + 1 });
+          seen.set([r, c - 1], depth);
+        }
+      }
+    }
+  }
+
+  return -1;
+}
+
+// let grid = [
+//   [1, 1, 1, 1],
+//   [0, 0, 0, 1],
+//   [1, 1, 1, 1],
+// ];
+// let sr = 0,
+//   sc = 0,
+//   tr = 2,
+//   tc = 0;
+// let res = shortestCellPath(grid, sr, sc, tr, tc);
+// console.log(res);
+module.exports = shortestCellPath;

@@ -23,6 +23,42 @@ The function must return a TreeNode instance that is the head of the formed circ
 Constraints:
 0 <= number of nodes <= 100000
 1 <= values stored in the nodes <= 10^9
-Input tree will be a binary tree
-
 */
+const { btree } = require("./test_utils/btree.js");
+
+const bToll = function(root) {
+  let prev = null;
+  let head = null;
+  let tail = null;
+  const helper = (root) => {
+    if (!root) {
+      return null;
+    }
+    helper(root.left_ptr);
+    if (!prev) {
+      head = root;
+    } else {
+      prev.right_ptr = root;
+      root.left_ptr = prev;
+    }
+    prev = root;
+    helper(root.right_ptr);
+  };
+  helper(root);
+  if (!head) {
+    // tree is empty
+    return null;
+  }
+  // connect last visited node to head of list
+  tail = prev;
+  tail.right_ptr = head;
+  head.left_ptr = tail;
+
+  return head;
+};
+// btree.printTree(btree.root);
+// let tree = bToll(btree.root);
+// console.table(tree);
+// console.table(tree.right_ptr);
+// console.table(tree.left_ptr);
+module.exports = bToll;

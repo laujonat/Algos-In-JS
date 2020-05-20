@@ -26,7 +26,7 @@ class TreeNode {
   }
 }
 
-class Graph {
+class UndirectedBinaryTreeGraph {
   // defining vertex array and
   // adjacent list
   constructor(numOfVertices) {
@@ -86,4 +86,4 @@ class Graph {
 // g.addEdge("D", "C");
 // g.addEdge("D", "E");
 // g.printGraph();
-module.exports = Graph;
+module.exports = UndirectedBinaryTreeGraph;

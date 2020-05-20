@@ -1,10 +1,15 @@
 const graphqlHTTP = require("express-graphql");
 const graphql = require("graphql");
-const app = require("../index.js");
+const app = require("../app.js");
 const path = require("path");
 const fs = require("fs");
-const { problemType, structType, objectScalarType } = require("./types.gql");
-const { buildSchema } = require("graphql");
+const {
+  problemType,
+  structType,
+  structsType,
+  objectScalarType,
+} = require("./types.gql");
+const db = require("../db/index.js");
 
 function readJsonFileSync(filepath, encoding) {
   if (typeof encoding == "undefined") {
@@ -18,26 +23,21 @@ function getConfig(file) {
   var filepath = path.resolve(__dirname, file);
   return readJsonFileSync(filepath);
 }
-
 let structs = getConfig(path.resolve(__dirname, "../dsaa.json"));
-let problems = getConfig(path.resolve(__dirname, "../data.json"));
-
-// Define Query Type
 const queryType = new graphql.GraphQLObjectType({
   name: "Query",
   fields: {
     structs: {
-      args: {
-        dataid: { type: graphql.GraphQLString },
-      },
-      type: structType,
-      resolve: (root, args, context, info) => {
-        return new Promise((resolve, reject) => {
-          let res = structs.filter((el) => {
-            return String(el.dataid) === String(args.dataid);
-          })[0];
-          return resolve(res);
-        });
+      type: new graphql.GraphQLList(structsType),
+      resolve: function() {
+        console.log(db.get());
+        return structs;
+        // return new Promise(function(resolve, reject) {
+        //   setTimeout(function() {
+        //     resolve(JSON.stringify([...structs]));
+        //     // collection.find().toArray(function(err, docs) {
+        //   }, 4000);
+        // });
       },
     },
     struct: {
@@ -61,7 +61,8 @@ const queryType = new graphql.GraphQLObjectType({
         id: { type: graphql.GraphQLString },
       },
       resolve: (_, { id }) => {
-        return problems[id];
+        // return problems[id];
+        return null;
       },
     },
   },

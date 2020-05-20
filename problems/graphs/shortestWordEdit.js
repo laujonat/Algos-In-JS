@@ -29,3 +29,36 @@ Constraints:
 [output] array.integer
 
 */
+
+const shortestWordEditPath = (source, target, words) => {
+  const isOneEdit = (word1, word2) => {
+    let count = 0;
+    for (let i = 0; i < word1.length; i++) {
+      if (word1[i] !== word2[i]) count++;
+    }
+    return count <= 1;
+  };
+
+  const queue = [[source, 0]];
+  const haventSeen = new Set(words);
+
+  while (queue.length > 0) {
+    let [word, distance] = queue.shift();
+    if (word === target) return distance;
+    haventSeen.delete(word);
+
+    haventSeen.forEach((thing) => {
+      if (isOneEdit(word, thing)) {
+        queue.push([thing, distance + 1]);
+      }
+    });
+  }
+
+  return -1;
+};
+
+let source = "bit";
+let target = "dog";
+let words = ["but", "put", "big", "pot", "pog", "dog", "lot"];
+
+module.exports = shortestWordEditPath;

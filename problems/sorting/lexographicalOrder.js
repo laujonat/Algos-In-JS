@@ -31,7 +31,7 @@ VALUES can repeat.
 Keys and values will contain only lower case letters and numerics.
 */
 
-function solve(arr) {
+function lexographicalOrder(arr) {
   const dict = {};
   function capturePairs(str) {
     return str.match(/\b[a-z0-9]+\b/gi);
@@ -57,7 +57,7 @@ function solve(arr) {
   }
   return res;
 }
-module.exports = solve;
+module.exports = lexographicalOrder;
 // let arr = ["key1 abcd", "key2 two", "key3 aaaa", "key1 zzz"];
 // let res = solve(arr);
 // console.log(res);

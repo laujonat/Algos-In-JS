@@ -1,35 +1,3 @@
-/*
-  n -> length(A)
-  if n <= 1 return;
-
-  L = mergeSort(A[1:n/2])
-  R = mergeSort(A[n/2 + 1, n])
-
-  return merge(L, R);
-
-  merge(L in A, R in A)
-  i = 0 // leftStart
-  j = 0 -> (n/2 - 1) // rightStart
-  a = []
-  k = 0
-  1 4 99 23 89 
-  1 
-
-  for i in L and for j in R
-    if A(i) <= A(j)
-      a[k].push(A(i));
-      i++
-
-    else // A(i) > A(j)
-    j++
-
-  while i < length(A)
-    
-  while 
-    
-
-
-*/
 type R = Array<number>;
 const merge = function(leftArr: R, rightArr: R): R {
   let i = 0;

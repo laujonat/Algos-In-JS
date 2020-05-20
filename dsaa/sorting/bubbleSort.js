@@ -1,18 +1,26 @@
 // @flow
 type R = Array<number>;
 
-const bubbleSort = function(arr: R, n: number): R {
-  for (let i = 0; i < n - 1; i++) {
-    for (let j = n - 1; j >= i; j--) {
-      if (arr[j] < arr[j - 1]) {
-        let temp = arr[j];
-        arr[j] = arr[j - 1];
-        arr[j - 1] = temp;
+class BubbleSort<R, Number> {
+  arr: Array<number>;
+  n: number;
+  constructor(arr: Array<number>, n: number) {
+    this.arr = arr;
+    this.n = n || arr.length;
+  }
+  sort() {
+    for (let i = 0; i < this.n - 1; i++) {
+      for (let j = this.n - 1; j >= i; j--) {
+        if (this.arr[j] < this.arr[j - 1]) {
+          let temp = this.arr[j];
+          this.arr[j] = this.arr[j - 1];
+          this.arr[j - 1] = temp;
+        }
       }
     }
+
+    return this.arr;
   }
+}
 
-  return arr;
-};
-
-module.exports = bubbleSort;
+module.exports = BubbleSort;

@@ -4,12 +4,12 @@ type A = any;
 type B = any;
 
 class TreeNode<A, B> {
-  key: mixed;
-  val: mixed;
-  left_ptr: mixed;
-  right_ptr: mixed;
-  parent: mixed;
-  constructor(key: mixed, val: mixed) {
+  key: A;
+  val: B;
+  left_ptr: A;
+  right_ptr: B;
+  parent: A;
+  constructor(key: A, val: B) {
     this.key = key;
     this.val = val;
     this.left_ptr = null;

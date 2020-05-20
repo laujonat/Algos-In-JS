@@ -17,6 +17,14 @@
   },
   {
     "id": 2,
+    "name": "Node",
+    "category": "dsaa",
+    "type": "node",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/dsaa/node/Node.js",
+    "params": []
+  },
+  {
+    "id": 3,
     "name": "Tree Node",
     "category": "dsaa",
     "type": "node",
@@ -24,7 +32,7 @@
     "params": []
   },
   {
-    "id": 3,
+    "id": 4,
     "name": "Binary Search",
     "category": "dsaa",
     "type": "searching",
@@ -32,7 +40,7 @@
     "params": []
   },
   {
-    "id": 4,
+    "id": 5,
     "name": "Bubble Sort",
     "category": "dsaa",
     "type": "sorting",
@@ -40,7 +48,7 @@
     "params": []
   },
   {
-    "id": 5,
+    "id": 6,
     "name": "Counting Sort",
     "category": "dsaa",
     "type": "sorting",
@@ -48,7 +56,7 @@
     "params": []
   },
   {
-    "id": 6,
+    "id": 7,
     "name": "Insertion Sort",
     "category": "dsaa",
     "type": "sorting",
@@ -56,7 +64,7 @@
     "params": []
   },
   {
-    "id": 7,
+    "id": 8,
     "name": "Insertion Sort",
     "category": "dsaa",
     "type": "sorting",
@@ -64,7 +72,7 @@
     "params": []
   },
   {
-    "id": 8,
+    "id": 9,
     "name": "Merge Sort",
     "category": "dsaa",
     "type": "sorting",
@@ -72,7 +80,7 @@
     "params": []
   },
   {
-    "id": 9,
+    "id": 10,
     "name": "Quick Sort",
     "category": "dsaa",
     "type": "sorting",
@@ -80,7 +88,7 @@
     "params": []
   },
   {
-    "id": 10,
+    "id": 11,
     "name": "Quicksort",
     "category": "dsaa",
     "type": "sorting",
@@ -88,7 +96,7 @@
     "params": []
   },
   {
-    "id": 11,
+    "id": 12,
     "name": "Selection Sort",
     "category": "dsaa",
     "type": "sorting",
@@ -96,7 +104,7 @@
     "params": []
   },
   {
-    "id": 12,
+    "id": 13,
     "name": "De Queue",
     "category": "dsaa",
     "type": "struct",
@@ -104,7 +112,7 @@
     "params": []
   },
   {
-    "id": 13,
+    "id": 14,
     "name": "Doubly Linked List",
     "category": "dsaa",
     "type": "struct",
@@ -112,7 +120,7 @@
     "params": []
   },
   {
-    "id": 14,
+    "id": 15,
     "name": "Min Heap",
     "category": "dsaa",
     "type": "struct",
@@ -120,7 +128,7 @@
     "params": []
   },
   {
-    "id": 15,
+    "id": 16,
     "name": "Queue",
     "category": "dsaa",
     "type": "struct",
@@ -128,7 +136,7 @@
     "params": []
   },
   {
-    "id": 16,
+    "id": 17,
     "name": "Singly Linked List",
     "category": "dsaa",
     "type": "struct",
@@ -136,7 +144,7 @@
     "params": []
   },
   {
-    "id": 17,
+    "id": 18,
     "name": "Binary Search Tree",
     "category": "dsaa",
     "type": "trees",
@@ -144,7 +152,7 @@
     "params": []
   },
   {
-    "id": 18,
+    "id": 19,
     "name": "Binary Tree",
     "category": "dsaa",
     "type": "trees",
@@ -152,7 +160,7 @@
     "params": []
   },
   {
-    "id": 19,
+    "id": 20,
     "name": "Binary Tree Graph",
     "category": "dsaa",
     "type": "trees",
@@ -160,7 +168,7 @@
     "params": []
   },
   {
-    "id": 20,
+    "id": 21,
     "name": "",
     "category": "",
     "type": "home",
@@ -168,7 +176,7 @@
     "params": []
   },
   {
-    "id": 21,
+    "id": 22,
     "name": "",
     "category": "",
     "type": "home",
@@ -176,7 +184,7 @@
     "params": []
   },
   {
-    "id": 22,
+    "id": 23,
     "name": "Calculate Drone Min Energy",
     "category": "problems",
     "type": "arrays",
@@ -184,7 +192,23 @@
     "params": []
   },
   {
-    "id": 23,
+    "id": 24,
+    "name": "Find Array Quad Sum",
+    "category": "problems",
+    "type": "arrays",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/arrays/findArrayQuadSum.js",
+    "params": []
+  },
+  {
+    "id": 25,
+    "name": "Find The Duplicates",
+    "category": "problems",
+    "type": "arrays",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/arrays/findTheDuplicates.js",
+    "params": []
+  },
+  {
+    "id": 26,
     "name": "Matrix Spiral Copy",
     "category": "problems",
     "type": "arrays",
@@ -192,7 +216,7 @@
     "params": []
   },
   {
-    "id": 24,
+    "id": 27,
     "name": "Fib With Dp",
     "category": "problems",
     "type": "dp",
@@ -200,7 +224,7 @@
     "params": []
   },
   {
-    "id": 25,
+    "id": 28,
     "name": "Alien Dictionary",
     "category": "problems",
     "type": "graphs",
@@ -208,7 +232,15 @@
     "params": []
   },
   {
-    "id": 26,
+    "id": 29,
+    "name": "Island Path",
+    "category": "problems",
+    "type": "graphs",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/graphs/islandPath.js",
+    "params": []
+  },
+  {
+    "id": 30,
     "name": "Minimum Path Cost",
     "category": "problems",
     "type": "graphs",
@@ -216,7 +248,7 @@
     "params": []
   },
   {
-    "id": 27,
+    "id": 31,
     "name": "Reverse Edges",
     "category": "problems",
     "type": "graphs",
@@ -224,7 +256,7 @@
     "params": []
   },
   {
-    "id": 28,
+    "id": 32,
     "name": "Shortest Cell Path",
     "category": "problems",
     "type": "graphs",
@@ -232,7 +264,7 @@
     "params": []
   },
   {
-    "id": 29,
+    "id": 33,
     "name": "Shortest Word Edit",
     "category": "problems",
     "type": "graphs",
@@ -240,7 +272,7 @@
     "params": []
   },
   {
-    "id": 30,
+    "id": 34,
     "name": "Array Flatten",
     "category": "problems",
     "type": "recursion",
@@ -248,7 +280,7 @@
     "params": []
   },
   {
-    "id": 31,
+    "id": 35,
     "name": "Backtrack Problem",
     "category": "problems",
     "type": "recursion",
@@ -256,7 +288,7 @@
     "params": []
   },
   {
-    "id": 32,
+    "id": 36,
     "name": "Binary Strings",
     "category": "problems",
     "type": "recursion",
@@ -264,7 +296,7 @@
     "params": []
   },
   {
-    "id": 33,
+    "id": 37,
     "name": "Bracket Match",
     "category": "problems",
     "type": "recursion",
@@ -272,7 +304,7 @@
     "params": []
   },
   {
-    "id": 34,
+    "id": 38,
     "name": "Formed Brackets",
     "category": "problems",
     "type": "recursion",
@@ -280,7 +312,7 @@
     "params": []
   },
   {
-    "id": 35,
+    "id": 39,
     "name": "Generate All Expressions",
     "category": "problems",
     "type": "recursion",
@@ -288,7 +320,7 @@
     "params": []
   },
   {
-    "id": 36,
+    "id": 40,
     "name": "How Many Ts",
     "category": "problems",
     "type": "recursion",
@@ -296,7 +328,7 @@
     "params": []
   },
   {
-    "id": 37,
+    "id": 41,
     "name": "Tree",
     "category": "problems",
     "type": "recursion",
@@ -304,7 +336,7 @@
     "params": []
   },
   {
-    "id": 38,
+    "id": 42,
     "name": "Lettercase Permutation",
     "category": "problems",
     "type": "recursion",
@@ -312,7 +344,7 @@
     "params": []
   },
   {
-    "id": 39,
+    "id": 43,
     "name": "Longest Palindrome",
     "category": "problems",
     "type": "recursion",
@@ -320,7 +352,7 @@
     "params": []
   },
   {
-    "id": 40,
+    "id": 44,
     "name": "Num Paths To Destination",
     "category": "problems",
     "type": "recursion",
@@ -328,7 +360,7 @@
     "params": []
   },
   {
-    "id": 41,
+    "id": 45,
     "name": "Palindromic Decomp",
     "category": "problems",
     "type": "recursion",
@@ -336,7 +368,7 @@
     "params": []
   },
   {
-    "id": 42,
+    "id": 46,
     "name": "Print All Subsets",
     "category": "problems",
     "type": "recursion",
@@ -344,7 +376,7 @@
     "params": []
   },
   {
-    "id": 43,
+    "id": 47,
     "name": "Print Permutations",
     "category": "problems",
     "type": "recursion",
@@ -352,7 +384,7 @@
     "params": []
   },
   {
-    "id": 44,
+    "id": 48,
     "name": "Subsets Of Set",
     "category": "problems",
     "type": "recursion",
@@ -360,7 +392,7 @@
     "params": []
   },
   {
-    "id": 45,
+    "id": 49,
     "name": "Target Sum By Subsets",
     "category": "problems",
     "type": "recursion",
@@ -368,7 +400,7 @@
     "params": []
   },
   {
-    "id": 46,
+    "id": 50,
     "name": "Towers Of Hanoi",
     "category": "problems",
     "type": "recursion",
@@ -376,7 +408,7 @@
     "params": []
   },
   {
-    "id": 47,
+    "id": 51,
     "name": "Dutch National Flag",
     "category": "problems",
     "type": "sorting",
@@ -384,7 +416,7 @@
     "params": []
   },
   {
-    "id": 48,
+    "id": 52,
     "name": "Group Numbers",
     "category": "problems",
     "type": "sorting",
@@ -392,7 +424,7 @@
     "params": []
   },
   {
-    "id": 49,
+    "id": 53,
     "name": "Index Equals Value",
     "category": "problems",
     "type": "sorting",
@@ -400,7 +432,7 @@
     "params": []
   },
   {
-    "id": 50,
+    "id": 54,
     "name": "Messed Array Sort",
     "category": "problems",
     "type": "sorting",
@@ -408,7 +440,7 @@
     "params": []
   },
   {
-    "id": 51,
+    "id": 55,
     "name": "Lexographical Order",
     "category": "problems",
     "type": "sorting",
@@ -416,31 +448,31 @@
     "params": []
   },
   {
-    "id": 52,
-    "name": "Merge Sorted Arrays - V1",
+    "id": 56,
+    "name": "Merge Sorted Arrays",
     "category": "problems",
     "type": "sorting",
     "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/mergeKSortedArrays.js",
     "params": []
   },
   {
-    "id": 53,
-    "name": "Merge Sorted Arrays - V2",
+    "id": 57,
+    "name": "Merge Sorted Arrays",
     "category": "problems",
     "type": "sorting",
     "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/mergeKSortedArraysV2.js",
     "params": []
   },
   {
-    "id": 54,
-    "name": "Merge Sorted Arrays - V3",
+    "id": 58,
+    "name": "Merge Sorted Arrays",
     "category": "problems",
     "type": "sorting",
     "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/sorting/mergeKSortedArraysV3.js",
     "params": []
   },
   {
-    "id": 55,
+    "id": 59,
     "name": "Merge Two Sorted Arrays",
     "category": "problems",
     "type": "sorting",
@@ -448,7 +480,7 @@
     "params": []
   },
   {
-    "id": 56,
+    "id": 60,
     "name": "Min Length Subarray",
     "category": "problems",
     "type": "sorting",
@@ -456,7 +488,7 @@
     "params": []
   },
   {
-    "id": 57,
+    "id": 61,
     "name": "Three Sum",
     "category": "problems",
     "type": "sorting",
@@ -464,7 +496,7 @@
     "params": []
   },
   {
-    "id": 58,
+    "id": 62,
     "name": "Top Numbers",
     "category": "problems",
     "type": "sorting",
@@ -472,7 +504,7 @@
     "params": []
   },
   {
-    "id": 59,
+    "id": 63,
     "name": "Word Count Engine",
     "category": "problems",
     "type": "sorting",
@@ -480,7 +512,7 @@
     "params": []
   },
   {
-    "id": 60,
+    "id": 64,
     "name": "Binary Tree Paths",
     "category": "problems",
     "type": "trees",
@@ -488,7 +520,7 @@
     "params": []
   },
   {
-    "id": 61,
+    "id": 65,
     "name": "Bst From Sorted Array",
     "category": "problems",
     "type": "trees",
@@ -496,7 +528,7 @@
     "params": []
   },
   {
-    "id": 62,
+    "id": 66,
     "name": "Bst Kth Smallest Element",
     "category": "problems",
     "type": "trees",
@@ -504,7 +536,7 @@
     "params": []
   },
   {
-    "id": 63,
+    "id": 67,
     "name": "Bst Successor Search",
     "category": "problems",
     "type": "trees",
@@ -512,7 +544,15 @@
     "params": []
   },
   {
-    "id": 64,
+    "id": 68,
+    "name": "Btree To Circular Doubly Linked List",
+    "category": "problems",
+    "type": "trees",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/trees/btreeToCircularDoublyLinkedList.js",
+    "params": []
+  },
+  {
+    "id": 69,
     "name": "Inorder Traversal",
     "category": "problems",
     "type": "trees",
@@ -520,7 +560,7 @@
     "params": []
   },
   {
-    "id": 65,
+    "id": 70,
     "name": "Is Bst",
     "category": "problems",
     "type": "trees",
@@ -528,7 +568,23 @@
     "params": []
   },
   {
-    "id": 66,
+    "id": 71,
+    "name": "Largest Smallest Key",
+    "category": "problems",
+    "type": "trees",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/trees/largestSmallestBSTKey.js",
+    "params": []
+  },
+  {
+    "id": 72,
+    "name": "Least Commont Ancestor",
+    "category": "problems",
+    "type": "trees",
+    "filepath": "/home/laujonat/Programs/algoRepl/lib/problems/trees/leastCommontAncestor.js",
+    "params": []
+  },
+  {
+    "id": 73,
     "name": "Postorder Traversal",
     "category": "problems",
     "type": "trees",
@@ -536,7 +592,7 @@
     "params": []
   },
   {
-    "id": 67,
+    "id": 74,
     "name": "Preorder Traversal",
     "category": "problems",
     "type": "trees",
@@ -544,7 +600,7 @@
     "params": []
   },
   {
-    "id": 68,
+    "id": 75,
     "name": "Single Value Tree",
     "category": "problems",
     "type": "trees",
@@ -552,7 +608,7 @@
     "params": []
   },
   {
-    "id": 69,
+    "id": 76,
     "name": "Test",
     "category": "problems",
     "type": "trees",
@@ -560,7 +616,7 @@
     "params": []
   },
   {
-    "id": 70,
+    "id": 77,
     "name": "Ip Address",
     "category": "problems",
     "type": "warmup",
@@ -568,7 +624,7 @@
     "params": []
   },
   {
-    "id": 71,
+    "id": 78,
     "name": "",
     "category": "",
     "type": "home",
@@ -576,7 +632,7 @@
     "params": []
   },
   {
-    "id": 72,
+    "id": 79,
     "name": "",
     "category": "",
     "type": "home",

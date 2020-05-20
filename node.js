@@ -1,26 +1,44 @@
 const http = require("http");
-const app = require("./index.js");
+const app = require("./app.js");
+const init = require("./server");
 const path = require("path");
+const nodemon = require("nodemon");
+const glob = require("glob");
 const watcher = require("./utils/watcher.js");
+const { genMain, writeFile } = require("./utils/genmap.js");
+
+process.once("SIGHUP", function() {
+  console.log("Recieved signal SIGHUP");
+});
+nodemon({ script: "app.js" })
+  .on("start", function() {
+    init();
+  })
+  .on("restart", function() {
+    console.log("Restarted.");
+    genMain(writeFile, "root.json", false);
+  })
+  .on("crash", function() {
+    console.log("************\n \
+     Crashed. \n************\n");
+  });
 
 const log = (message) => {
   process.stdout.write(`${message}\n`);
 };
-const root = path.resolve(__dirname, "index.js");
-
+// const root = path.resolve(__dirname, "app.js");
 const normalizePort = (val) => {
   const port = parseInt(val, 10);
   if (Number.isNaN(port)) {
     return val;
-  }
-  if (port >= 0) {
+  } else if (port >= 0) {
     return port;
+  } else {
+    return false;
   }
-  return false;
 };
 
 const port = normalizePort(process.env.PORT || 8000);
-app.set("port", port);
 
 const server = http.createServer(app);
 let availablePort = port;

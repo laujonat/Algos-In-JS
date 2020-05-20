@@ -10,31 +10,46 @@ Follow up:
 If you have figured out the O(n) solution, try coding another solution of which the time complexity is O(n log n). 
 
 */
-// Not all cases passed
 const minSumArray = function(arr, sum) {
-  let mlen = arr.length;
+  if (arr.length <= 0) {
+    return 0;
+  }
+  let start = 0;
   let end = 0;
-  const minSumArrayHelper = function(arr, sum, start, end) {
-    if (arr.length <= 1) {
-      return arr[0];
-    }
-    let len = end - start;
-    lsum = arr.slice(start, end).reduce((acc, el) => {
-      return acc + el;
-    }, 0);
+  let mlen = arr.length + 1;
 
-    if (lsum >= sum) {
+  let rsum = arr[start];
+  while (end < arr.length) {
+    if (arr[end] > sum) {
+      return 1;
+    }
+    if (rsum >= sum) {
+      let len = end + 1 - start;
       if (len < mlen) {
         mlen = len;
       }
-      console.log(mlen, arr);
-      minSumArrayHelper(arr.slice(1), sum, start + 1, end + 1);
+      rsum -= arr[start];
+      start++;
     } else {
-      minSumArrayHelper(arr.slice(start), sum, start, end + 1);
+      end++;
+      rsum += arr[end];
     }
-    return mlen;
-  };
-  return minSumArrayHelper(arr, sum, 0, 0);
+  }
+  end = arr.length - 1;
+  while (start <= end) {
+    rsum -= arr[start];
+    start += 1;
+    if (rsum >= sum) {
+      let len = end - start;
+      if (len < mlen) {
+        mlen = len;
+      }
+    }
+  }
+  if (mlen === Math.POSITIVE_INFINITY) {
+    return 0;
+  }
+  return mlen;
 };
-// let res = minSumArray([1, 4, 4], 4);
+
 module.exports = minSumArray;

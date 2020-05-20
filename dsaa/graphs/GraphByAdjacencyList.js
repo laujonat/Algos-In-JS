@@ -1,16 +1,7 @@
-/*
-  Description: Graph implementation using an adjacency list. 
-  Properties: {
-      "n": "Number of vertices",
-      "bidir": "Set true if graph is directed",
-      "visited": "Class instance of Map",
-      "edgeMap": "Map of all edges that exist in the graph"
-  }
-*/
 const LinkedList = require("../struct/DoublyLinkedList.js");
 const Queue = require("../struct/Queue.js");
 
-class Graph {
+class GraphByAdjList {
   constructor(n, bidir) {
     this.n = n;
     this.bidir = bidir ? bidir : true;
@@ -73,7 +64,6 @@ class Graph {
     for (let vertex of this.adjList.entries()) {
       let [key, neighbors] = vertex;
       let numEdges = neighbors.length;
-      // If the graph is directed, count number of in-degree edges
       if (!this.bidir) {
         for (const edge of this.edgeMap.values()) {
           edge === key && numEdges++;
@@ -127,7 +117,6 @@ class Graph {
 
   shortestPathDFS(source, target) {}
 
-  // O(degree(v)) -> O(n + m)
   dfsV2(source, c, dist = 0) {
     console.info("visiting", source, "distance", dist);
     const stack = [];
@@ -177,7 +166,6 @@ class Graph {
    * O(degree(v))
    */
   bfs(source, c, visited = new Map()) {
-    // Vertices that have been discovered but not yet captured
     const queue = new Queue();
     const parent = {};
     const seen = new Map();
@@ -202,44 +190,36 @@ class Graph {
   }
 }
 
-let dag = new Graph(5);
-dag.addEdge(0, 1, false);
-dag.addEdge(0, 2, false);
-dag.addEdge(1, 3, false);
-dag.addEdge(1, 4, false);
-// console.log("has cycle", dag.hasEulerianCycle());
-// console.log("has eulerian path", dag.hasEulerianPath());
-
-let graph = new Graph(10);
-graph.addEdge(0, 1);
-graph.addEdge(0, 6);
-graph.addEdge(0, 8);
-graph.addEdge(1, 4);
-graph.addEdge(1, 6);
-graph.addEdge(1, 9);
-graph.addEdge(2, 4);
-graph.addEdge(2, 6);
-graph.addEdge(3, 4);
-graph.addEdge(3, 5);
-graph.addEdge(3, 8);
-graph.addEdge(4, 5);
-graph.addEdge(4, 9);
-graph.addEdge(5, 9);
-graph.addEdge(7, 8);
-graph.addEdge(7, 9);
+// let graph = new GraphByAdjList(10);
+// graph.addEdge(0, 1);
+// graph.addEdge(0, 6);
+// graph.addEdge(0, 8);
+// graph.addEdge(1, 4);
+// graph.addEdge(1, 6);
+// graph.addEdge(1, 9);
+// graph.addEdge(2, 4);
+// graph.addEdge(2, 6);
+// graph.addEdge(3, 4);
+// graph.addEdge(3, 5);
+// graph.addEdge(3, 8);
+// graph.addEdge(4, 5);
+// graph.addEdge(4, 9);
+// graph.addEdge(5, 9);
+// graph.addEdge(7, 8);
+// graph.addEdge(7, 9);
 // console.log("has cycle", graph.hasEulerianCycle());
 // console.log("has eulerian path", graph.hasEulerianPath());
 
-let dfs = new Graph(10);
-dfs.addEdge(0, 1, false);
-dfs.addEdge(0, 2, false);
-dfs.addEdge(2, 3, false);
-dfs.addEdge(2, 4, false);
-dfs.addEdge(1, 5, false);
-dfs.addEdge(1, 6, false);
-dfs.addEdge(6, 7, false);
-dfs.addEdge(7, 8, false);
-dfs.addEdge(10, 11, false);
-dfs.addEdge(11, 12, false);
-dfs.addEdge(12, 10, false);
-module.exports = Graph;
+// let dfs = new GraphByAdjList(10);
+// dfs.addEdge(0, 1, false);
+// dfs.addEdge(0, 2, false);
+// dfs.addEdge(2, 3, false);
+// dfs.addEdge(2, 4, false);
+// dfs.addEdge(1, 5, false);
+// dfs.addEdge(1, 6, false);
+// dfs.addEdge(6, 7, false);
+// dfs.addEdge(7, 8, false);
+// dfs.addEdge(10, 11, false);
+// dfs.addEdge(11, 12, false);
+// dfs.addEdge(12, 10, false);
+module.exports = GraphByAdjList;
