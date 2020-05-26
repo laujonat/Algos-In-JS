@@ -6,14 +6,18 @@ Author: Jonathan Lau
 
 * {
   box-sizing: border-box;
-  font-family: "Ubuntu Mono", Arial, Helvetica, sans-serif;
-  letter-spacing: 0.4px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 body {
-  font-size: 1.11em;
+  font-size: 1em;
   height: 100vh;
   width: 100vw;
+  background-color: #fff;
+  letter-spacing: -0.1px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 header {
@@ -21,21 +25,33 @@ header {
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 1.35em;
   margin: 30px auto;
 }
 
 h5 {
   font-size: 1.15em;
 }
-
+select {
+  display: unset;
+}
+select.browser-default {
+  cursor: pointer;
+  display: none;
+  font-size: 1em;
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #f2f2f2;
+}
+textarea {
+  resize: none;
+}
 table {
   font-size: 14px;
   width: 100vw;
   text-align: justify;
   display: inline-block;
-  padding: 0 15px;
-  margin: 0 10px;
 }
 
 table:after {
@@ -95,21 +111,17 @@ main {
 }
 #view {
   color: #263238;
-  padding: 20px;
   width: 50vw;
   height: 100vh;
   font-weight: 200;
-  background: #eeeeee;
 }
 
 #view-content-container {
   color: #263238;
   height: 100vh;
-  background-color: #f5f5f5;
 }
 
 #view-content {
-  background-color: white;
   overflow-y: auto;
   overflow-x: hidden;
   text-align: justify;
@@ -120,7 +132,10 @@ main {
 }
 
 #view-content-header {
-  padding: 20px;
+  padding: 20px 0;
+}
+#search-text-area-secondary {
+  height: 400px;
 }
 
 .row .view-main {
@@ -136,14 +151,15 @@ main {
   margin: 0;
   border-color: transparent;
 }
-
+.radio-input {
+  margin: auto;
+}
 .collection-item {
   cursor: pointer;
   font-weight: 200;
   font-family: "Helvetica Neue", "Helvetica", "Segoe UI", Arial, sans-serif;
-  background-color: #eeeeee;
   color: #263238;
-  padding: 10px;
+  padding: 5px 10px;
   margin: 0 auto;
 }
 
@@ -153,19 +169,15 @@ main {
 
 .collection-item-wrap {
   width: 100%;
-  padding: 10px;
   font-family: "Helvetica Neue", "Helvetica", "Segoe UI", Arial, sans-serif;
   font-size: 14px;
   color: #263238;
-  margin: 0 auto;
+  text-align: left;
 }
 
 .search-form {
-  color: #263238;
-  width: 450px;
-  padding: 14px 20px;
-  margin: auto;
-  background: #0f0f0f;
+  color: #373b41;
+  /* display: inline; */
   -moz-border-radius: 6px;
   border-radius: 6px;
 }
@@ -173,42 +185,42 @@ main {
 .search-form input {
   font-size: 1.15em;
   width: 100%;
-  height: 20px;
-  padding: 10px 5px;
+  height: 10px;
   float: left;
   border: 0;
-  background: #424242;
   border-radius: 3px 0 0 3px;
+}
+
+.search-form-secondary {
+  display: none;
+  margin-top: 40px;
+  width: 100%;
 }
 
 #search-input {
   text-align: left;
   padding: 5px;
-  width: 400px;
+  /* width: 400px; */
+  height: 30px;
   border-radius: 3px;
-  background-color: #e0e0e0;
   box-shadow: none;
-  border-bottom: 2px solid #424242;
 }
 
 #search-input.valid {
-  border-bottom: 1px solid #000;
   box-shadow: 0 1px 0 0 #000;
 }
 #search-input.invalid {
-  border-bottom: 1px solid #000;
   box-shadow: 0 1px 0 0 #000;
 }
 
 #search-input:focus {
   outline: none;
-  border-bottom: 2px solid #424242;
 }
 #search-input:active {
   outline: none;
-  border-bottom: 2px solid #424242;
 }
 
 .progress {
+  display: none;
   margin: auto;
 }

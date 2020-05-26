@@ -15,36 +15,59 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-
     <link
       href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="row grey darken-4">
+    <main class="row">
       <!-- <div class="wrapper"> -->
       <div class="row">
-        <div class="col s3">
-          <header class="header center grey-text text-lighten-1">
+        <div class="col center s3">
+          <header class="header">
             <h1>
               Sandbox
             </h1>
             <div class="row">
-              <h5 class="header light white-text text-lighten-0">
+              <h5 class="header">
                 Technical Interview Questions
               </h5>
             </div>
           </header>
+          <div class="container s6">
+            <form class="radio-input">
+              <label for="selA">
+                <input
+                  id="selA"
+                  name="form-select"
+                  class="with-gap blue darken-3"
+                  type="radio"
+                  checked
+                />
+                <span>Search</span>
+              </label>
+              <label for="selB">
+                <input
+                  id="selB"
+                  name="form-select"
+                  class="with-gap blue darken-3"
+                  type="radio"
+                />
+                <span>Create</span>
+              </label>
+            </form>
+          </div>
           <div class="divider transparent">
             <div class="progress">
               <div class="indeterminate"></div>
             </div>
           </div>
           <!-- <div class="row"> -->
-          <div class="container s6">
+          <div class="container center s4" style="display:inline-block;">
             <form class="search-form">
               <input
                 autocomplete="off"
@@ -53,30 +76,30 @@
                 class="input-field light"
                 placeholder="Search for questions or data structures"
               />
-              <ul class="collection"></ul>
             </form>
+            <select class="browser-default">
+              <option value="" disabled selected>Choose your option</option>
+              <option value="1">New</option>
+              <option value="2">From Existing</option>
+            </select>
+            <form class="search-form-secondary" style="display:none;">
+              <input
+                autocomplete="off"
+                id="search-input-secondary"
+                type="text"
+                class="input-field light"
+                placeholder="Search"
+              />
+            </form>
+            <ul class="collection"></ul>
           </div>
           <!-- </div> -->
         </div>
         <!-- <div class="row"> -->
-        <div class="col white s12 m8">
+        <div class="col s12 m8">
           <div id="view-content-container">
             <div id="view-content" class="container center">
               <div class="view-title"></div>
-            </div>
-            <div class="row">
-              <div class="col s1">1</div>
-              <div class="col s1">2</div>
-              <div class="col s1">3</div>
-              <div class="col s1">4</div>
-              <div class="col s1">5</div>
-              <div class="col s1">6</div>
-              <div class="col s1">7</div>
-              <div class="col s1">8</div>
-              <div class="col s1">9</div>
-              <div class="col s1">10</div>
-              <div class="col s1">11</div>
-              <div class="col s1">12</div>
             </div>
           </div>
         </div>

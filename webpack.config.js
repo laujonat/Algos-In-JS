@@ -21,7 +21,7 @@ module.exports = [
       poll: 1000,
     },
     devtool: "eval",
-    entry: ["./src/app.js", "./public/style.css"],
+    entry: ["./src/index.js", "./public/style.css"],
     module: {
       rules: [
         {

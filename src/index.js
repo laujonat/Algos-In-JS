@@ -1,13 +1,16 @@
 "use-strict";
-const { createTable } = require("./table.js");
 let viewpanel = document.querySelector("#view-content");
 let searchInput = document.getElementById("search-input");
+let searchInputSecondary = document.getElementById("search-input-secondary");
 let collection = document.querySelector(".collection");
 let colitem = document.querySelector(".collection-item");
+let createSelection = document.querySelector(".browser-default");
+const { createTable } = require("./table.js");
+const { addInput, promptTextArea, typeSelection } = require("./prompt.js");
 let headers = new Headers();
 let colmap = new Map();
 let fileSync = [];
-// Handle loading of data structure types in view panel
+
 const loadStruct = (e, dataid) => {
   e.preventDefault();
   const options = {
@@ -22,6 +25,40 @@ const loadStruct = (e, dataid) => {
     })
     .then(({ data: { struct } }) => renderStruct({ ...struct }));
 };
+
+const liDisplayOptions = (e, params) => {
+  e.preventDefault();
+  if (!showCreateForm()) {
+    loadStruct(e, params.id);
+  } else {
+    const textarea = document.createElement("textarea");
+    const addbtn = document.createElement("a");
+    addbtn.appendChild(document.createTextNode("+"));
+    addbtn.style.marginLeft = "5px";
+    addbtn.classList.add(
+      "btn-floating",
+      "btn-small",
+      "waves-effect",
+      "waves-light",
+      "blue-grey",
+      "lighten-4"
+    );
+    addbtn.onclick = function() {
+      addInput("Param", "Description");
+      viewpanel.appendChild(addbtn);
+    };
+    promptTextArea();
+    let span = document.createElement("span");
+    let h3 = document.createElement("h3");
+    h3.setAttribute("id", "view-content-header");
+    h3.appendChild(document.createTextNode("Function Parameters"));
+    span.appendChild(h3);
+    viewpanel.appendChild(span);
+    addInput("Param", "Description");
+    viewpanel.appendChild(addbtn);
+  }
+};
+
 headers.append("Content-Type", "text/plain");
 headers.set("Content-Type", "application/json;charset=UTF-8");
 const xhttp = new XMLHttpRequest();
@@ -38,9 +75,9 @@ const sendGetRequest = async (loadStruct) => {
       div.setAttribute("class", "collection-item-wrap");
       div.appendChild(document.createTextNode(el.name));
       li.appendChild(div);
-      if (el.category === "dsaa") {
-        li.addEventListener("click", (e) => loadStruct(e, el.id));
-      }
+      // if (el.category === "dsaa") {
+      li.addEventListener("click", (e) => liDisplayOptions(e, el));
+      // }
       colmap.set(el.id, li);
       currentSelected.set(el.id, false);
       collection.appendChild(li);
@@ -83,7 +120,7 @@ function successCallback(res) {
   return res;
 }
 // Filter result data by input query string
-var showSearchResults = function(searchQuery) {
+var showSearchResults = function(searchQuery, successCallback) {
   let a = searchData(searchQuery).then((res) => {
     return successCallback(res);
   });
@@ -127,33 +164,94 @@ const handleChange = function(e) {
       };
     }
   }
-  showSearchResults(e.currentTarget.value);
+  showSearchResults(e.currentTarget.value, successCallback);
+};
+
+function showCreateForm() {
+  return (
+    document.querySelector(".search-form-secondary").style.display !== "none"
+  );
+}
+
+const handleSecondarySearch = function(e) {
+  let colitem = document.querySelector(".collection-item");
+  showSearchResults(e.currentTarget.value, successCallback);
 };
 
 const clearView = function() {
   viewpanel.innerHTML = "";
 };
 
+const clearInputs = function() {
+  searchInput.value = "";
+  searchInputSecondary.value = "";
+};
+
 let currentSelected = new Map();
-// Attach event listener to list items
+
 const handleListItemEvent = function(edge) {
-  currentSelected.set(edge.id, true);
+  currentSelected.set(edge.id, edge.name);
+  searchInput.value = edge.name;
+  searchInputSecondary.value = edge.name;
   clearView();
   var h1 = document.createElement("h1");
   h1.setAttribute("id", "view-content-header");
   h1.append(document.createTextNode(edge.name));
   viewpanel.appendChild(h1);
-  if (colmap.get(edge.id)) {
-    colmap.get(edge.id).onblur = (e) => {
-      e.currentTarget.value = edge.name;
-      collection.innerHTML = "";
-    };
-  }
 };
+const sel = document.querySelector(".browser-default");
+function getSelectedOption() {
+  let opt;
+  for (let i = 0, len = sel.options.length; i < len; i++) {
+    opt = sel.options[i];
+    if (opt.selected === true) {
+      break;
+    }
+  }
+  return opt;
+}
 
-// Register for both events
+function selectedControl() {
+  clearInputs();
+  const opt = getSelectedOption();
+  switch (opt.value) {
+    case "1":
+      document.querySelector(".search-form-secondary").style.display = "none";
+      break;
+    case "2":
+      document.querySelector(".search-form-secondary").style.display =
+        "inline-block";
+      break;
+    default:
+      break;
+  }
+}
+sel.addEventListener("change", selectedControl);
 searchInput.addEventListener("change", handleChange);
 searchInput.addEventListener("keyup", handleChange);
+searchInputSecondary.addEventListener("change", handleSecondarySearch);
+searchInputSecondary.addEventListener("keyup", handleSecondarySearch);
+createSelection.addEventListener("change", selectedControl);
+const radios = document.getElementsByName("form-select");
+const check = (e) => {
+  let rcheck = e.target.id;
+  clearInputs();
+  switch (rcheck) {
+    case "selA":
+      document.querySelector(".search-form").style.display = "inline";
+      document.querySelector(".search-form-secondary").style.display = "none";
+      document.querySelector(".browser-default").style.display = "none";
+      break;
+    case "selB":
+      document.querySelector(".search-form").style.display = "none";
+      document.querySelector(".browser-default").style.display = "inline";
+      break;
+    default:
+  }
+};
+radios[0].addEventListener("click", check, false);
+radios[1].addEventListener("click", check, false);
+
 searchInput.onclick = (e) => {};
 document.addEventListener("click", (evt) => {
   let targetElement = evt.target; // clicked element
@@ -165,14 +263,13 @@ document.addEventListener("click", (evt) => {
   } while (targetElement);
 
   collection.innerHTML = "";
-  searchInput.value = "";
 });
 
 if (document.readyState === "complete") {
 } else if (document.readyState === "interactive") {
 } else {
   document.addEventListener("DOMContentLoaded", function() {
-    console.log("DOMContentLoaded!");
+    M.AutoInit();
   });
 
   window.addEventListener("load", () => {

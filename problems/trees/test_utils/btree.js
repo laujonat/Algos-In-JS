@@ -94,14 +94,14 @@ btreeInvalid.buildTree();
 // btree.rightEdge(4, 7);
 // btree.buildTree();
 
-const btree = new BinaryTree(3);
-btree.setRootIndex(1);
-btree.insert(1, 1);
-btree.insert(1, 2);
-btree.insert(1, 3);
-btree.leftEdge(1, 0);
-btree.rightEdge(1, 2);
-btree.buildTree();
+// const btree = new BinaryTree(3);
+// btree.setRootIndex(1);
+// btree.insert(1, 1);
+// btree.insert(1, 2);
+// btree.insert(1, 3);
+// btree.leftEdge(1, 0);
+// btree.rightEdge(1, 2);
+// btree.buildTree();
 
 const _btree = new BinaryTree(3);
 _btree.setRootIndex(1);
@@ -112,5 +112,22 @@ _btree.setRootIndex(1);
 _btree.leftEdge(1, 0);
 _btree.rightEdge(1, 2);
 _btree.buildTree();
+
+const btree = new BinaryTree(7);
+btree.setRootIndex(0);
+btree.insert(0, 1);
+btree.insert(0, 2);
+btree.insert(0, 3);
+btree.insert(0, 4);
+btree.insert(0, 5);
+btree.insert(0, 6);
+btree.insert(0, 7);
+btree.leftEdge(0, 1);
+btree.rightEdge(0, 2);
+btree.leftEdge(1, 3);
+btree.rightEdge(1, 4);
+btree.leftEdge(3, 5);
+btree.rightEdge(3, 6);
+btree.buildTree();
 
 module.exports = { btree, _btree, btreeInvalid };
