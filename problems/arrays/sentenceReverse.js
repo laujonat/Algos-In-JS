@@ -7,32 +7,39 @@ Implement a function reverseWords that reverses the order of the words in the ar
 Explain your solution and analyze its time and space complexities.
 */
 
-function sentenceReverse(arr) {
-  const reverse = arr.reduce((acc, el, i) => {
-    acc[arr.length - 1 - i] = el;
-    return acc;
-  }, []);
-  let end = reverse.length;
-  let low = 0;
-  let seg = 0;
-  let res = [];
-  let sub = [];
-  while (end > 0) {
-    if (reverse[seg] !== " ") {
-      // console.log(low, seg);
-      low++;
-      [reverse[low], reverse[seg]] = [reverse[seg], reverse[low]];
-      seg++;
-    } else {
-      low = seg;
-    }
-    end--;
-  }
+function sentenceReverseDumb(arr) {
+  return arr
+    .join("")
+    .split(" ")
+    .reverse()
+    .join(" ")
+    .split("");
+}
 
-  return reverse;
+function reverse(arr, start, end) {
+  let i = start;
+  let j = end;
+  while (i < j) {
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+    i++;
+    j--;
+  }
+  return arr;
+}
+function sentenceReverse(arr) {
+  reverse(arr, 0, arr.length - 1);
+  let i = 0;
+  let bound = 0;
+  while (i < arr.length) {
+    if (arr[i] === " ") {
+      reverse(arr, bound, i - 1);
+      bound = i + 1;
+    }
+    i++;
+  }
+  reverse(arr, bound, arr.length - 1);
+  return arr;
 }
 
 let arr = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"];
-
-// let res = sentenceReverse(arr);
-// console.log(res);
+module.exports = sentenceReverse;

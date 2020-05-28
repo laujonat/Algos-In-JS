@@ -1,11 +1,13 @@
 let viewpanel = document.querySelector("#view-content");
 
-const promptTextArea = () => {
+const promptTextArea = (row, col, placeholder, id = null) => {
   const textarea = document.createElement("textarea");
-  textarea.setAttribute("row", "60");
-  textarea.setAttribute("col", "100");
-  textarea.setAttribute("id", "search-text-area-secondary");
-  textarea.setAttribute("placeholder", "Enter prompt");
+  textarea.setAttribute("row", row.toString());
+  textarea.setAttribute("col", col.toString());
+  if (id) {
+    textarea.setAttribute("id", id);
+  }
+  textarea.setAttribute("placeholder", placeholder);
   viewpanel.appendChild(textarea);
 };
 
@@ -27,6 +29,25 @@ const typeSelection = () => {
   }
   select.options.setSelectedIndex = 0;
   viewpanel.appendChild(select);
+};
+
+const addExamples = () => {
+  const div = document.createElement("div");
+  div.style.display = "flex";
+  div.style.justifyContent = "space-around";
+  input.setAttribute("type", "text");
+  input.setAttribute("id", "param3");
+  input.setAttribute("placeholder", name);
+  div.appendChild(input);
+};
+
+const addHeader = (text) => {
+  let span = document.createElement("span");
+  let h3 = document.createElement("h3");
+  h3.setAttribute("id", "view-content-header");
+  h3.appendChild(document.createTextNode(text));
+  span.appendChild(h3);
+  viewpanel.appendChild(span);
 };
 
 const addInput = (name, description) => {
@@ -52,4 +73,5 @@ module.exports = {
   promptTextArea,
   typeSelection,
   addInput,
+  addHeader,
 };

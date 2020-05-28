@@ -67,17 +67,34 @@ const genTemplate = (write) => {
   }
   bigOutput("[genTemplate]: Done.");
 };
+/**
+ *@param file node-glob file
+ */
+function getReadableSyncedFile(file) {
+  let index = file.lastIndexOf("dsaa");
+  let indexb = file.lastIndexOf("problems");
+  let [category, type, name] = file
+    .substring(index > 0 ? index : indexb)
+    .split("/");
+  let regex = name.match(/[a-zA-Z][a-z]+/g);
+  regex.pop();
+  let readablename = regex.join(" ");
+  return {
+    category,
+    type,
+    name: readablename.charAt(0).toUpperCase() + readablename.slice(1),
+  };
+}
 
-const genMain = function(writeFile, filename, force) {
+const genMain = function(writeFile, filename, force = false) {
   glob.sync(libdir + "/**/*.js").forEach(function(file, id) {
     let obj = {};
     let r = require(file);
-    // r = null;
-
     if (isClass(r)) {
       let proto = initConstruct(r);
       json.set(id, {
         id,
+        ...getReadableSyncedFile(file),
         param: Object.getOwnPropertyNames(proto),
         file: file.slice(1),
         proto: Object.getOwnPropertyNames(r.prototype),
@@ -87,19 +104,18 @@ const genMain = function(writeFile, filename, force) {
       if (!r.name) {
       } else {
         json.set(id, {
-          ...obj,
+          id,
+          ...getReadableSyncedFile(file),
           file: file.slice(1),
-          proto: "",
+          proto: Array.from(Object.getOwnPropertyNames(r)),
           fn: SourceCode.splitLines(r.toString()),
         });
       }
     }
   });
-
   if (force) {
     writeFile(filename, Array.from(json.values()));
   }
-  bigOutput(`${filename} has been created.`);
 };
 if (process.argv.length === 3) {
   const targetIdx = process.argv.indexOf("--target");
@@ -109,10 +125,15 @@ if (process.argv.length === 3) {
   process.exit(1);
 } else {
   const targetIdx = process.argv.indexOf("--target");
+  const drIdx = process.argv.indexOf("--dry-run");
   if (targetIdx > -1) {
     let nameValue = process.argv[targetIdx + 1];
     if (nameValue === "--root") {
-      genMain(writeFile, "root.json", true);
+      if (drIdx > -1) {
+        genMain(writeFile, "root.json", false);
+      } else {
+        genMain(writeFile, "root.json", true);
+      }
     } else if (nameValue === "---data") {
     } else {
       bigOutput("\nInvalid flag. \nUse [--root] [--data].\n");

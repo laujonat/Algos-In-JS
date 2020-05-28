@@ -6,9 +6,9 @@ type B = any;
 class TreeNode<A, B> {
   key: A;
   val: B;
-  left_ptr: A;
-  right_ptr: B;
-  parent: A;
+  left_ptr: A | null;
+  right_ptr: B | null;
+  parent: A | null;
   constructor(key: A, val: B) {
     this.key = key;
     this.val = val;

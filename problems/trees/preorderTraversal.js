@@ -13,3 +13,7 @@ Input format:
   Output format:  
   Return an array containing the node values in pre-order traversal of the tree.
 */
+const { btree, btreeInvalid } = require("./test_utils/btree.js");
+// O(n) space
+// O(n) time
+function preorderTraversal(root) {}

@@ -8,10 +8,21 @@
  $ npm run start
 ```
 
-## JSON Template (WIP)
+## JSON Template
 
 ```sh
  $ node utils/genmap.js
+```
+
+## Create Mongodb Account. See documentation.
+
+Create a new db collection. Create a `.env` and fill in the following fields.
+
+```
+ MONGODB_BASE=mongodb+srv://
+ MONGODB_URL=<dburl>
+ MONGODB_USER=<user>
+ MONGODB_PASSWORD=<password>
 ```
 
 # Links
@@ -52,8 +63,8 @@
 - Radix Sort
 - Heap Sort
 - Quickselect
-- Test Data
-- Invert a binary tree
+- Seed Data
+- Strip comments
 
 # Practice
 

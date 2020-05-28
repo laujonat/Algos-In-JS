@@ -1,4 +1,3 @@
-//@flow
 /*
 Merge Two BSTs
 Problem Statement:
@@ -23,7 +22,6 @@ Return root of the resultant BST.
 */
 "use-strict";
 const { insert } = require("./test_utils/bst.js");
-type T = typeof TreeNode;
 class Node {
   constructor(key) {
     this.key = key;

@@ -6,7 +6,12 @@ let collection = document.querySelector(".collection");
 let colitem = document.querySelector(".collection-item");
 let createSelection = document.querySelector(".browser-default");
 const { createTable } = require("./table.js");
-const { addInput, promptTextArea, typeSelection } = require("./prompt.js");
+const {
+  addInput,
+  addHeader,
+  promptTextArea,
+  typeSelection,
+} = require("./prompt.js");
 let headers = new Headers();
 let colmap = new Map();
 let fileSync = [];
@@ -31,30 +36,51 @@ const liDisplayOptions = (e, params) => {
   if (!showCreateForm()) {
     loadStruct(e, params.id);
   } else {
-    const textarea = document.createElement("textarea");
+    /* Otherwise, we want to display a form so a user can enter in data for a question or class. */
+    const savebtn = document.createElement("a");
+    savebtn.appendChild(document.createTextNode("save"));
+
+    savebtn.classList.add("waves-effect", "waves-light", "btn-small");
+    savebtn.style.float = "right";
+    savebtn.style.marginBottom = "10px";
+    savebtn.style.marginRight = "5px";
+
+    viewpanel.appendChild(savebtn);
+
     const addbtn = document.createElement("a");
-    addbtn.appendChild(document.createTextNode("+"));
-    addbtn.style.marginLeft = "5px";
-    addbtn.classList.add(
-      "btn-floating",
-      "btn-small",
-      "waves-effect",
-      "waves-light",
-      "blue-grey",
-      "lighten-4"
-    );
+    addbtn.appendChild(document.createTextNode("+ Add"));
+    addbtn.style.marginRight = "5px";
+    addbtn.classList.add("waves-effect", "waves-light", "btn-small");
     addbtn.onclick = function() {
       addInput("Param", "Description");
       viewpanel.appendChild(addbtn);
     };
-    promptTextArea();
-    let span = document.createElement("span");
-    let h3 = document.createElement("h3");
-    h3.setAttribute("id", "view-content-header");
-    h3.appendChild(document.createTextNode("Function Parameters"));
-    span.appendChild(h3);
-    viewpanel.appendChild(span);
-    addInput("Param", "Description");
+    addbtn.style.float = "right";
+
+    if (params.category === "dsaa") {
+      const textarea = document.createElement("section");
+      const codediv = document.createElement("div");
+      codediv.classList.add("code-div");
+      const codestr = params.fn.join("\r\n\n");
+      codestr.replace(/\n/g, "<br />");
+      codediv.innerText = codestr;
+      textarea.append(codediv);
+      viewpanel.append(textarea);
+    } else {
+      promptTextArea(30, 40, "Enter Prompt", "search-text-area-secondary");
+    }
+
+    addHeader("Example Input");
+    promptTextArea(30, 10, "Optional");
+
+    addHeader("Example Output");
+    promptTextArea(30, 10, "Optional");
+
+    addHeader("Constraints");
+    promptTextArea(30, 10, "Optional");
+
+    addHeader("Input Parameters");
+    addInput("Param", "Description (Not supported)");
     viewpanel.appendChild(addbtn);
   }
 };
@@ -75,9 +101,7 @@ const sendGetRequest = async (loadStruct) => {
       div.setAttribute("class", "collection-item-wrap");
       div.appendChild(document.createTextNode(el.name));
       li.appendChild(div);
-      // if (el.category === "dsaa") {
       li.addEventListener("click", (e) => liDisplayOptions(e, el));
-      // }
       colmap.set(el.id, li);
       currentSelected.set(el.id, false);
       collection.appendChild(li);
@@ -234,17 +258,21 @@ searchInputSecondary.addEventListener("keyup", handleSecondarySearch);
 createSelection.addEventListener("change", selectedControl);
 const radios = document.getElementsByName("form-select");
 const check = (e) => {
+  const selection = document.querySelector(".browser-default");
+  const searchform = document.querySelector(".search-form");
+  const searchformsecondary = document.querySelector(".search-form-secondary");
   let rcheck = e.target.id;
   clearInputs();
   switch (rcheck) {
     case "selA":
-      document.querySelector(".search-form").style.display = "inline";
-      document.querySelector(".search-form-secondary").style.display = "none";
-      document.querySelector(".browser-default").style.display = "none";
+      searchform.style.display = "inline";
+      searchformsecondary.style.display = "none";
+      selection.selectedIndex = 0;
+      selection.style.display = "none";
       break;
     case "selB":
-      document.querySelector(".search-form").style.display = "none";
-      document.querySelector(".browser-default").style.display = "inline";
+      searchform.style.display = "none";
+      selection.style.display = "inline";
       break;
     default:
   }

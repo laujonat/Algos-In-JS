@@ -117,8 +117,17 @@ main {
 }
 
 #view-content-container {
+  background-color: #0d47a1;
   color: #263238;
   height: 100vh;
+}
+
+.code-div {
+  display: block;
+  clear: both;
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid orange;
 }
 
 #view-content {
@@ -135,7 +144,7 @@ main {
   padding: 20px 0;
 }
 #search-text-area-secondary {
-  height: 400px;
+  height: 250px;
 }
 
 .row .view-main {

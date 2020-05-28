@@ -15,6 +15,8 @@ const corsOptions = {
 };
 console.log("GraphQL API server at http://localhost:8000/graphql");
 app.use(cors(corsOptions));
+app.use(/\/((?!graphql).)*/, bodyParser.urlencoded({ extended: true }));
+app.use(/\/((?!graphql).)*/, bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: false }));

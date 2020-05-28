@@ -14,3 +14,35 @@ Analyze the time and space complexities of your solution.
 Note: it’s called pancake sort because it resembles sorting pancakes on a plate with a spatula, where you can only use the spatula to flip some of the top pancakes in the plate. To read more about the problem, see the Pancake Sorting Wikipedia page.
 
 */
+function flip(arr, k) {
+  let i = 0;
+  let j = k;
+  while (i < j) {
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+    i++;
+    j--;
+  }
+}
+
+function pancakeSort(arr) {
+  let lastIdx = arr.length - 1;
+  let k = arr.length - 1;
+
+  function maxLargestIndex(end) {
+    let max = 0;
+    for (let i = 1; i <= end; i++) {
+      if (arr[i] > arr[max]) {
+        max = i;
+      }
+    }
+    return max;
+  }
+  for (let i = arr.length - 1; i > 0; i--) {
+    let maxIdx = maxLargestIndex(i);
+    flip(arr, maxIdx);
+    flip(arr, i);
+  }
+  return arr;
+}
+
+module.exports = pancakeSort;
