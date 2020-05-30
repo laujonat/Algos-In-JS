@@ -1,14 +1,17 @@
 const graphql = require("graphql");
 const { objectScalarType } = require("../utils/gqlScalar.js");
-// const elementType = require("../types/elementType.js");
 const db = require("../../db/index.js");
 const prepare = require("../utils/prepare.js");
 const nodesToEdges = require("./nodesToEdges.js");
 const elementConnection = require("../types/connections/elementConnection.js");
+const promptConnection = require("../types/connections/promptConnection.js");
+const elementEdge = require("../types/edges/elementEdge.js");
+const elementType = require("../types/elementType.js");
+
 const toConnection = require("./toConnection.js");
 
 const elements = {
-  type: elementConnection,
+  type: new graphql.GraphQLList(elementType),
   args: {
     first: {
       defaultValue: 10,
@@ -44,31 +47,16 @@ const elements = {
           );
 
     const Root = await db.get().collection("root");
-    const Prompt = await db.get().collection("prompt");
     const els = new Promise((resolve) => {
       setTimeout(async () => {
-        let res = Root.find({ id: args.id })
+        let res = Root.find({})
           .limit(args.first)
           .toArray();
-
         resolve(res);
       }, 2000);
     });
-    // const promptCount = await Prompt.find({ elementid: args.id }).count();
-    // Promise.resolve(els).then((res) => {
-    //   // console.log('res', res);
-    //   const edges = nodesToEdges(res, after);
-    //   console.log("edges", edges);
-    //   const connection = toConnection(
-    //     edges,
-    //     promptCount,
-    //     edges.length === args.first,
-    //     after > 0
-    //   );
-    //   console.log(connection);
-    // });
-
-    return els;
+    return Promise.resolve(els).then((res) => res);
+    // return els;
   },
 };
 

@@ -54,7 +54,7 @@ function shortestCellPath(grid, sr, sc, tr, tc) {
   const seen = new WeakMap();
   let depth = 0;
   queue.push({ r: sr, c: sc, depth });
-  while (queue) {
+  while (queue.length !== 0) {
     const { r, c, depth } = queue.shift();
     if (tr === r && tc === c) {
       return depth;

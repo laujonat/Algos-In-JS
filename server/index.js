@@ -38,11 +38,10 @@ const initHttpServer = async () => {
 
   app.get("/search/:id", async (req, res) => {
     const params = req.params;
-    let qres;
     const query =
       '{ node(id:"' +
       params.id +
-      '") { id type name category type param file proto fn} }';
+      '") { _id type name category type param file proto fn} }';
     try {
       let data = await graphql(schema, query);
       res.status(200);
@@ -55,11 +54,10 @@ const initHttpServer = async () => {
 
   app.get("/dsaa/:id", async (req, res) => {
     const params = req.params;
-    let qres;
     const query =
-      '{ struct(dataid:"' +
-      params.id +
-      '") { id type name params description properties} }';
+      "{ element(id:" +
+      parseInt(params.id, 10) +
+      ") { id _id type name category param file proto fn} }";
     try {
       let data = await graphql(schema, query);
       res.status(200);

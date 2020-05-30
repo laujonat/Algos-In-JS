@@ -1,8 +1,8 @@
-const promptType = require("../promptType");
 const graphql = require("graphql");
+const promptType = require("../promptType");
 
 const promptEdge = new graphql.GraphQLObjectType({
-  name: "AuthorEdge",
+  name: "PromptEdge",
   description: "List of edges.",
   fields: {
     node: {

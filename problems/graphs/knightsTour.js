@@ -1,8 +1,6 @@
 /*
 Knight's Tour On A Chess Board
 
-
-
 You are given a rows * cols chessboard and a knight that moves like in normal chess. Currently knight is at starting position denoted by start_row th row and start_col th col, and want to reach at ending position denoted by end_row th row and end_col th col.  The goal is to calculate the minimum number of moves that the knight needs to take to get from starting position to ending position.
 
 start_row, start_col, end_row and end_col are 0-indexed. 
@@ -45,3 +43,82 @@ Constraints:
 0 <= start_row, end_row < rows
 0 <= start_col, end_col < cols
 */
+"use-strict";
+function buildBoard(rows, cols) {
+  const grid = new Array(rows);
+  for (let i = 0; i < grid.length; i++) {
+    grid[i] = new Array(cols).fill(0);
+  }
+  return grid;
+}
+
+function findMinimumNumberOfMoves(
+  rows,
+  cols,
+  start_row,
+  start_col,
+  end_row,
+  end_col
+) {
+  if (start_row === end_row && start_col === end_col) {
+    return 0;
+  }
+  const result = bfs(
+    start_row,
+    start_col,
+    end_row,
+    end_col,
+    buildBoard(rows, cols)
+  );
+  return result;
+}
+function bfs(sr, sc, end_row, end_col, board) {
+  let cols = board[0].length;
+  let rows = board.length;
+  const withinColumnBounds = (col, cols) => {
+    return col < cols && col >= 0;
+  };
+  const withinRowBounds = (row, rows) => {
+    return row < rows && row >= 0;
+  };
+  const dir = [
+    [-2, -1],
+    [-2, 1],
+    [2, -1],
+    [2, 1],
+    [-1, -2],
+    [-1, 2],
+    [1, 2],
+    [1, -2],
+  ];
+  let Q = [];
+
+  Q.push([sr, sc]);
+
+  while (Q.length !== 0) {
+    let [r, c] = Q.shift();
+    // console.log(r, end_row, c, end_col);
+    if (r === end_row && c === end_col) {
+      return board[r][c];
+    }
+    for (let i = 0; i < dir.length; i++) {
+      // current direction option
+      let dirCurr = dir[i];
+      let row = r + dirCurr[0];
+      let col = c + dirCurr[1];
+
+      if (
+        withinColumnBounds(col, cols) &&
+        withinRowBounds(row, rows) &&
+        board[row][col] === 0 // not visited
+      ) {
+        board[row][col] += board[r][c] + 1; // set unvisted to some value other than 0
+        Q.push([row, col]);
+      }
+    }
+  }
+
+  return -1;
+}
+
+module.exports = findMinimumNumberOfMoves;

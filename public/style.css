@@ -87,6 +87,13 @@ main {
   border: 1px solid transparent;
 }
 
+.container {
+  position: relative;
+}
+i.right {
+  margin: 0;
+  padding: 0;
+}
 .divider {
   margin: auto;
   padding: 20px;
@@ -98,7 +105,12 @@ main {
     rgba(0, 0, 0, 0.03) 0px 1.5px 0.5px -1px,
     rgba(0, 0, 0, 0.2) 0px 1px 2.5px 0px;
 }
-
+#reset-btn {
+  position: absolute;
+  float: right;
+  right: 0;
+  top: 0;
+}
 #field-header {
   font-weight: bold;
 }
@@ -125,9 +137,11 @@ main {
 .code-div {
   display: block;
   clear: both;
-  height: 300px;
+  height: fit-content;
+  min-height: 200px;
   overflow-y: auto;
-  border: 1px solid orange;
+  max-height: 300px;
+  border: 1px solid grey;
 }
 
 #view-content {

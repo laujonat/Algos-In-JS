@@ -100,7 +100,7 @@ for (const [src, { files, path, dir }] of dirmap.entries()) {
             error(e.message);
           });
       } catch (e) {
-        error(e);
+        console.error(e);
       }
     });
 }

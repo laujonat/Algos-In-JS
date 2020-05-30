@@ -22,38 +22,14 @@ const element = {
           );
 
     const Root = await db.get().collection("root");
-    const Prompt = await db.get().collection("prompt");
     const els = new Promise((resolve) => {
       setTimeout(async () => {
         let res = Root.findOne({ id: args.id });
-
         resolve(res);
       }, 2000);
     });
-    // const promptCount = await Prompt.find({ elementid: args.id }).count();
-    // return Promise.resolve(els).then((res) => {
-    //   // console.log('res', res);
-    //   const edges = nodesToEdges(Array.from(res), after);
-    //   console.log("edges", edges);
-    //   return toConnection(
-    //     edges,
-    //     promptCount,
-    //     edges.length === args.first,
-    //     after > 0
-    //   );
-    // });
     return els;
   },
 };
-// resolve: async (_, { id }) => {
-//   const Root = await db.get().collection("root");
-//   const results = new Promise((resolve) => {
-//     setTimeout(async () => {
-//       let res = Root.findOne({ id: parseInt(id, 10) });
-//       resolve(res);
-//     }, 2000);
-//   });
-//   return results;
-// },
 
 module.exports = element;

@@ -1,10 +1,15 @@
 "use-strict";
 let viewpanel = document.querySelector("#view-content");
+let viewpanelheader = document.querySelector("#view-content-header");
+let resetbtn = document.getElementById("reset-btn");
 let searchInput = document.getElementById("search-input");
 let searchInputSecondary = document.getElementById("search-input-secondary");
 let collection = document.querySelector(".collection");
 let colitem = document.querySelector(".collection-item");
 let createSelection = document.querySelector(".browser-default");
+let controller = new AbortController();
+let signal = controller.signal;
+
 const { createTable } = require("./table.js");
 const {
   addInput,
@@ -15,7 +20,16 @@ const {
 let headers = new Headers();
 let colmap = new Map();
 let fileSync = [];
-
+const debounce = function(fn, time) {
+  let timeout;
+  return function() {
+    const _fn = () => {
+      return fn.apply(this, arguments);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(_fn, time);
+  };
+};
 const loadStruct = (e, dataid) => {
   e.preventDefault();
   const options = {
@@ -28,10 +42,27 @@ const loadStruct = (e, dataid) => {
     .then(function(response) {
       return response.json();
     })
-    .then(({ data: { struct } }) => renderStruct({ ...struct }));
+    .then((res) => {
+      const {
+        data: { element },
+      } = res;
+      renderStruct(element);
+    });
+};
+
+const saveEntry = (e) => {
+  const entry = document.getElementById("search-text-area-secondary");
+  const exinputP1 = document.getElementById("example-input-param1");
+  const exinputP2 = document.getElementById("example-input-param2");
+  const exinputCnts = document.getElementById("example-input-constraints");
+  console.log(entry.value);
+  console.log(exinputP1.value);
+  console.log(exinputP2.value);
+  console.log(exinputCnts.value);
 };
 
 const liDisplayOptions = (e, params) => {
+  viewpanel.setAttribute("data-id", params._id);
   e.preventDefault();
   if (!showCreateForm()) {
     loadStruct(e, params.id);
@@ -44,7 +75,7 @@ const liDisplayOptions = (e, params) => {
     savebtn.style.float = "right";
     savebtn.style.marginBottom = "10px";
     savebtn.style.marginRight = "5px";
-
+    savebtn.onclick = saveEntry;
     viewpanel.appendChild(savebtn);
 
     const addbtn = document.createElement("a");
@@ -56,7 +87,6 @@ const liDisplayOptions = (e, params) => {
       viewpanel.appendChild(addbtn);
     };
     addbtn.style.float = "right";
-
     if (params.category === "dsaa") {
       const textarea = document.createElement("section");
       const codediv = document.createElement("div");
@@ -71,13 +101,13 @@ const liDisplayOptions = (e, params) => {
     }
 
     addHeader("Example Input");
-    promptTextArea(30, 10, "Optional");
+    promptTextArea(30, 10, "Optional", "example-input-param1");
 
     addHeader("Example Output");
-    promptTextArea(30, 10, "Optional");
+    promptTextArea(30, 10, "Optional", "example-input-param2");
 
     addHeader("Constraints");
-    promptTextArea(30, 10, "Optional");
+    promptTextArea(30, 10, "Optional", "example-input-constraints");
 
     addHeader("Input Parameters");
     addInput("Param", "Description (Not supported)");
@@ -116,28 +146,50 @@ const isEmpty = function(str) {
 
 const renderStruct = (data) => {
   if (data.name) {
+    viewpanel.setAttribute("data-id", data._id);
     document.getElementById("view-content-header").innerHTML = data.name;
     for (const key of Object.keys(data)) {
-      if (key === "params") {
-        createTable(key, data[key]);
-      } else if (key === "properties") {
-        if (Object.values(data[key]).length === 0) {
-          return;
-        }
-        createTable(key, data[key]);
+      switch (key) {
+        case "params":
+          createTable(key, data[key]);
+          break;
+        case "properties":
+          if (Object.values(data[key]).length === 0) {
+            break;
+          }
+          createTable(key, data[key]);
+          break;
+        case "fn":
+          const textarea = document.createElement("section");
+          const codediv = document.createElement("div");
+          codediv.classList.add("code-div");
+          const codestr = data.fn.join("\r\n\n");
+          codestr.replace(/\n/g, "<br />");
+          codediv.innerText = data[key];
+          textarea.append(codediv);
+          viewpanel.append(textarea);
+          break;
+        default:
+          break;
       }
     }
   }
 };
+
 const searchData = function(searchText) {
-  const regex = new RegExp(searchText, "gi");
-  fileSync.sort((a, b) => a.id - b.id);
-  return new Promise((resolve) =>
-    resolve(fileSync.filter((m) => m.name.match(regex)))
-  );
+  fileSync.sortOn("name");
+  let res = fileSync.filter((m) => {
+    let regex = new RegExp(searchText, "gi");
+    return m.name.match(regex);
+  });
+
+  return new Promise((resolve) => resolve(res));
 };
 
 function successCallback(res) {
+  if (isHidden(resetbtn)) {
+    resetbtn.style.display = "inline";
+  }
   res.map((el) => {
     collection.appendChild(colmap.get(el.id));
   });
@@ -150,6 +202,8 @@ var showSearchResults = function(searchQuery, successCallback) {
   });
   return new Promise((resolve) => resolve(a));
 };
+// showSearchResults = memoizeResult(showSearchResults);
+showSearchResults = debounce(showSearchResults, 200);
 
 const memoizeResult = function(func) {
   const cache = new Map();
@@ -165,18 +219,6 @@ const memoizeResult = function(func) {
   };
 };
 
-const debounce = function(fn, time) {
-  let timeout;
-  return function() {
-    const _fn = () => {
-      return fn.apply(this, arguments);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(_fn, time);
-  };
-};
-// showSearchResults = memoizeResult(showSearchResults);
-showSearchResults = debounce(showSearchResults, 200);
 const handleChange = function(e) {
   let colitem = document.querySelector(".collection-item");
   if (isEmpty(e.currentTarget.value)) {
@@ -243,6 +285,9 @@ function selectedControl() {
       document.querySelector(".search-form-secondary").style.display = "none";
       break;
     case "2":
+      if (!isHidden(resetbtn)) {
+        resetbtn.style.display = "none";
+      }
       document.querySelector(".search-form-secondary").style.display =
         "inline-block";
       break;
@@ -250,12 +295,21 @@ function selectedControl() {
       break;
   }
 }
+function isHidden(el) {
+  return el.offsetParent === null;
+}
 sel.addEventListener("change", selectedControl);
 searchInput.addEventListener("change", handleChange);
 searchInput.addEventListener("keyup", handleChange);
 searchInputSecondary.addEventListener("change", handleSecondarySearch);
 searchInputSecondary.addEventListener("keyup", handleSecondarySearch);
 createSelection.addEventListener("change", selectedControl);
+resetbtn.onclick = (e) => {
+  if (!isHidden(resetbtn)) {
+    resetbtn.style.display = "none";
+  }
+  clearInputs();
+};
 const radios = document.getElementsByName("form-select");
 const check = (e) => {
   const selection = document.querySelector(".browser-default");
@@ -265,12 +319,18 @@ const check = (e) => {
   clearInputs();
   switch (rcheck) {
     case "selA":
+      if (!isHidden(resetbtn)) {
+        resetbtn.style.display = "none";
+      }
       searchform.style.display = "inline";
       searchformsecondary.style.display = "none";
       selection.selectedIndex = 0;
       selection.style.display = "none";
       break;
     case "selB":
+      if (!isHidden(resetbtn)) {
+        resetbtn.style.display = "none";
+      }
       searchform.style.display = "none";
       selection.style.display = "inline";
       break;
@@ -298,6 +358,16 @@ if (document.readyState === "complete") {
 } else {
   document.addEventListener("DOMContentLoaded", function() {
     M.AutoInit();
+    Array.prototype.sortOn = function(key) {
+      this.sort(function(a, b) {
+        if (a[key] < b[key]) {
+          return -1;
+        } else if (a[key] > b[key]) {
+          return 1;
+        }
+        return 0;
+      });
+    };
   });
 
   window.addEventListener("load", () => {

@@ -2,7 +2,7 @@ const elementType = require("../elementType");
 const graphql = require("graphql");
 
 const elementEdge = new graphql.GraphQLObjectType({
-  name: "AuthorEdge",
+  name: "ElementEdge",
   description: "List of edges.",
   fields: {
     node: {
