@@ -1,4 +1,9 @@
 let viewpanel = document.querySelector("#view-content");
+const selection = document.querySelector(".browser-default");
+let searchInput = document.getElementById("search-input");
+let searchInputSecondary = document.getElementById("search-input-secondary");
+const searchform = document.querySelector(".search-form");
+const searchformsecondary = document.querySelector(".search-form-secondary");
 
 const promptTextArea = (row, col, placeholder, id = null) => {
   const textarea = document.createElement("textarea");
@@ -41,13 +46,25 @@ const addExamples = () => {
   div.appendChild(input);
 };
 
-const addHeader = (text) => {
+const addHeader = (text, size = "h3") => {
   let span = document.createElement("span");
-  let h3 = document.createElement("h3");
+  let h3 = document.createElement(size);
   h3.setAttribute("id", "view-content-header");
   h3.appendChild(document.createTextNode(text));
   span.appendChild(h3);
   viewpanel.appendChild(span);
+};
+
+const makeBtn = (text = null, onclick) => {
+  const btn = document.createElement("a");
+  btn.appendChild(document.createTextNode(text));
+
+  btn.classList.add("waves-effect", "waves-light", "btn-small");
+  btn.style.float = "right";
+  btn.style.marginBottom = "10px";
+  btn.style.marginRight = "5px";
+  btn.onclick = onclick;
+  viewpanel.appendChild(btn);
 };
 
 const addInput = (name, description) => {
@@ -56,22 +73,44 @@ const addInput = (name, description) => {
   div.style.display = "flex";
   div.style.justifyContent = "space-around";
   input.setAttribute("type", "text");
-  input.setAttribute("id", "param1");
-  input.classList.add("input-field", "light");
+  input.setAttribute("id", "input-param-name");
   input.setAttribute("placeholder", name);
+  input.classList.add("input-field", "light");
   div.appendChild(input);
   input = document.createElement("input");
   input.setAttribute("type", "text");
-  input.classList.add("input-field", "light");
-  input.setAttribute("id", "param2");
+  input.setAttribute("id", "input-param-desc");
   input.setAttribute("placeholder", description);
+  input.classList.add("input-field", "light");
   div.appendChild(input);
   viewpanel.appendChild(div);
 };
-
+const clearInputs = function() {
+  searchInput.value = "";
+  searchInputSecondary.value = "";
+};
+const createDropdownCheck = (e) => {
+  let rcheck = e.target.id;
+  clearInputs();
+  switch (rcheck) {
+    case "selA": // Create from new
+      searchform.style.display = "inline";
+      searchformsecondary.style.display = "none";
+      selection.selectedIndex = 0;
+      selection.style.display = "none";
+      break;
+    case "selB": // Edit/Update existing
+      searchform.style.display = "none";
+      selection.style.display = "inline";
+      break;
+    default:
+  }
+};
 module.exports = {
   promptTextArea,
   typeSelection,
   addInput,
   addHeader,
+  makeBtn,
+  createDropdownCheck,
 };

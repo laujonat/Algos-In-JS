@@ -32,6 +32,12 @@ h1 {
 h5 {
   font-size: 1.15em;
 }
+
+i.right {
+  margin: 0;
+  padding: 0;
+}
+
 select {
   display: unset;
 }
@@ -65,7 +71,6 @@ td {
   padding: 15px;
 }
 th {
-  /* border: 1px solid rgba(0, 0, 0, 0.12); */
   padding: 15px;
 }
 
@@ -79,6 +84,9 @@ main {
   margin-bottom: 0;
 }
 
+.row .view-main {
+  margin: 0;
+}
 .wrapper {
   display: inline;
   position: relative;
@@ -90,10 +98,7 @@ main {
 .container {
   position: relative;
 }
-i.right {
-  margin: 0;
-  padding: 0;
-}
+
 .divider {
   margin: auto;
   padding: 20px;
@@ -157,17 +162,11 @@ i.right {
 #view-content-header {
   padding: 20px 0;
 }
-#search-text-area-secondary {
+
+#entry-textarea {
   height: 250px;
 }
 
-.row .view-main {
-  margin: 0;
-}
-
-/* / */
-/* / Search Box  */
-/* / */
 .collection {
   overflow-y: auto;
   max-height: 500px;

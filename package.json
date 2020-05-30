@@ -11,10 +11,11 @@
     "eslint-plugin-flowtype": "^4.7.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
-    "mongodb": "^3.5.7",
     "flow": "^0.2.3",
     "flow-typed": "^3.1.0",
     "graphql": "^15.0.0",
+    "mongodb": "^3.5.7",
+    "multer": "^1.4.2",
     "request": "^2.79.0"
   },
   "devDependencies": {

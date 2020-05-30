@@ -1,4 +1,6 @@
 "use-strict";
+const { debounce, memoize } = require("./perf.js");
+const { postData, showSearchResults } = require("./api");
 let viewpanel = document.querySelector("#view-content");
 let viewpanelheader = document.querySelector("#view-content-header");
 let resetbtn = document.getElementById("reset-btn");
@@ -14,22 +16,14 @@ const { createTable } = require("./table.js");
 const {
   addInput,
   addHeader,
+  makeBtn,
   promptTextArea,
-  typeSelection,
+  createDropdownCheck,
 } = require("./prompt.js");
 let headers = new Headers();
 let colmap = new Map();
 let fileSync = [];
-const debounce = function(fn, time) {
-  let timeout;
-  return function() {
-    const _fn = () => {
-      return fn.apply(this, arguments);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(_fn, time);
-  };
-};
+
 const loadStruct = (e, dataid) => {
   e.preventDefault();
   const options = {
@@ -50,43 +44,51 @@ const loadStruct = (e, dataid) => {
     });
 };
 
-const saveEntry = (e) => {
-  const entry = document.getElementById("search-text-area-secondary");
-  const exinputP1 = document.getElementById("example-input-param1");
-  const exinputP2 = document.getElementById("example-input-param2");
-  const exinputCnts = document.getElementById("example-input-constraints");
-  console.log(entry.value);
-  console.log(exinputP1.value);
-  console.log(exinputP2.value);
-  console.log(exinputCnts.value);
+const saveEntry = async (e) => {
+  const formData = new FormData();
+  const entrytext = document.getElementById("entry-textarea");
+  if (!entrytext) {
+    alert("Datastructures not supported yet");
+    return;
+  }
+  const entry = entrytext.value;
+  const input = document.getElementById("example-input-param1").value;
+  const output = document.getElementById("example-input-param2").value;
+  const constraints = document.getElementById("example-input-constraints")
+    .value;
+  const inputparams = document.querySelectorAll("#input-param-name");
+  const inputdesc = document.querySelectorAll("#input-param-desc");
+  let _id = parseInt(viewpanel.getAttribute("data-id"), 10);
+  formData.append("entry", entry);
+  formData.append("input", input);
+  formData.append("output", output);
+  formData.append("elementid", _id);
+  const inputsList = [];
+  let inputs = {};
+  for (var i = 0; i < inputparams.length; i++) {
+    console.log(inputparams[i].value);
+    inputs["name"] = inputparams[i].value;
+    inputs["desc"] = inputdesc[i].value;
+    inputsList.push(JSON.stringify(inputs));
+    inputs = {};
+  }
+  formData.append("inputparams", inputsList);
+  try {
+    const res = await postData(`/search`, formData);
+    console.log("res", res);
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 const liDisplayOptions = (e, params) => {
-  viewpanel.setAttribute("data-id", params._id);
+  viewpanel.setAttribute("data-id", params.id);
   e.preventDefault();
   if (!showCreateForm()) {
     loadStruct(e, params.id);
   } else {
-    /* Otherwise, we want to display a form so a user can enter in data for a question or class. */
-    const savebtn = document.createElement("a");
-    savebtn.appendChild(document.createTextNode("save"));
+    makeBtn("save", saveEntry);
 
-    savebtn.classList.add("waves-effect", "waves-light", "btn-small");
-    savebtn.style.float = "right";
-    savebtn.style.marginBottom = "10px";
-    savebtn.style.marginRight = "5px";
-    savebtn.onclick = saveEntry;
-    viewpanel.appendChild(savebtn);
-
-    const addbtn = document.createElement("a");
-    addbtn.appendChild(document.createTextNode("+ Add"));
-    addbtn.style.marginRight = "5px";
-    addbtn.classList.add("waves-effect", "waves-light", "btn-small");
-    addbtn.onclick = function() {
-      addInput("Param", "Description");
-      viewpanel.appendChild(addbtn);
-    };
-    addbtn.style.float = "right";
     if (params.category === "dsaa") {
       const textarea = document.createElement("section");
       const codediv = document.createElement("div");
@@ -97,7 +99,7 @@ const liDisplayOptions = (e, params) => {
       textarea.append(codediv);
       viewpanel.append(textarea);
     } else {
-      promptTextArea(30, 40, "Enter Prompt", "search-text-area-secondary");
+      promptTextArea(30, 40, "Enter Prompt", "entry-textarea");
     }
 
     addHeader("Example Input");
@@ -110,8 +112,11 @@ const liDisplayOptions = (e, params) => {
     promptTextArea(30, 10, "Optional", "example-input-constraints");
 
     addHeader("Input Parameters");
-    addInput("Param", "Description (Not supported)");
-    viewpanel.appendChild(addbtn);
+    addInput("Param", "Description");
+    makeBtn("+ Add", function() {
+      addInput("Param", "Description");
+      viewpanel.appendChild(addbtn);
+    });
   }
 };
 
@@ -120,6 +125,13 @@ headers.set("Content-Type", "application/json;charset=UTF-8");
 const xhttp = new XMLHttpRequest();
 const sendGetRequest = async (loadStruct) => {
   xhttp.open("GET", "/syncFiles", true);
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      if (!isHidden(resetbtn)) {
+        resetbtn.style.display = "none";
+      }
+    }
+  };
   xhttp.onloadend = function(e) {
     let res = xhttp.responseText;
     fileSync = Array.from(JSON.parse(res));
@@ -133,7 +145,6 @@ const sendGetRequest = async (loadStruct) => {
       li.appendChild(div);
       li.addEventListener("click", (e) => liDisplayOptions(e, el));
       colmap.set(el.id, li);
-      currentSelected.set(el.id, false);
       collection.appendChild(li);
     });
   };
@@ -145,8 +156,13 @@ const isEmpty = function(str) {
 };
 
 const renderStruct = (data) => {
+  if (!data) {
+    return;
+  }
   if (data.name) {
-    viewpanel.setAttribute("data-id", data._id);
+    if (document.querySelector(".code-div")) {
+      document.querySelector(".code-div").innerHTML = "";
+    }
     document.getElementById("view-content-header").innerHTML = data.name;
     for (const key of Object.keys(data)) {
       switch (key) {
@@ -187,37 +203,19 @@ const searchData = function(searchText) {
 };
 
 function successCallback(res) {
-  if (isHidden(resetbtn)) {
-    resetbtn.style.display = "inline";
-  }
+  collection.innerHTML = "";
+
   res.map((el) => {
     collection.appendChild(colmap.get(el.id));
   });
-  return res;
-}
-// Filter result data by input query string
-var showSearchResults = function(searchQuery, successCallback) {
-  let a = searchData(searchQuery).then((res) => {
-    return successCallback(res);
-  });
-  return new Promise((resolve) => resolve(a));
-};
-// showSearchResults = memoizeResult(showSearchResults);
-showSearchResults = debounce(showSearchResults, 200);
-
-const memoizeResult = function(func) {
-  const cache = new Map();
-  return (...args) => {
-    const key = args[0];
-    if (cache.has(key)) {
-      return cache.get(key);
-    } else {
-      const val = func.apply(this, arguments);
-      cache.set(key, val);
-      return val;
+  console.log("RES", res);
+  return new Promise((resolve) => {
+    if (isHidden(resetbtn)) {
+      resetbtn.style.display = "inline";
     }
-  };
-};
+    resolve(res);
+  });
+}
 
 const handleChange = function(e) {
   let colitem = document.querySelector(".collection-item");
@@ -230,7 +228,7 @@ const handleChange = function(e) {
       };
     }
   }
-  showSearchResults(e.currentTarget.value, successCallback);
+  showSearchResults(fileSync, e.currentTarget.value, successCallback);
 };
 
 function showCreateForm() {
@@ -241,7 +239,7 @@ function showCreateForm() {
 
 const handleSecondarySearch = function(e) {
   let colitem = document.querySelector(".collection-item");
-  showSearchResults(e.currentTarget.value, successCallback);
+  showSearchResults(fileSync, e.currentTarget.value, successCallback);
 };
 
 const clearView = function() {
@@ -253,17 +251,13 @@ const clearInputs = function() {
   searchInputSecondary.value = "";
 };
 
-let currentSelected = new Map();
-
 const handleListItemEvent = function(edge) {
-  currentSelected.set(edge.id, edge.name);
+  resetbtn.style.display = "inline";
+
   searchInput.value = edge.name;
   searchInputSecondary.value = edge.name;
   clearView();
-  var h1 = document.createElement("h1");
-  h1.setAttribute("id", "view-content-header");
-  h1.append(document.createTextNode(edge.name));
-  viewpanel.appendChild(h1);
+  addHeader(edge.name, "h1");
 };
 const sel = document.querySelector(".browser-default");
 function getSelectedOption() {
@@ -311,34 +305,8 @@ resetbtn.onclick = (e) => {
   clearInputs();
 };
 const radios = document.getElementsByName("form-select");
-const check = (e) => {
-  const selection = document.querySelector(".browser-default");
-  const searchform = document.querySelector(".search-form");
-  const searchformsecondary = document.querySelector(".search-form-secondary");
-  let rcheck = e.target.id;
-  clearInputs();
-  switch (rcheck) {
-    case "selA":
-      if (!isHidden(resetbtn)) {
-        resetbtn.style.display = "none";
-      }
-      searchform.style.display = "inline";
-      searchformsecondary.style.display = "none";
-      selection.selectedIndex = 0;
-      selection.style.display = "none";
-      break;
-    case "selB":
-      if (!isHidden(resetbtn)) {
-        resetbtn.style.display = "none";
-      }
-      searchform.style.display = "none";
-      selection.style.display = "inline";
-      break;
-    default:
-  }
-};
-radios[0].addEventListener("click", check, false);
-radios[1].addEventListener("click", check, false);
+radios[0].addEventListener("click", createDropdownCheck, false);
+radios[1].addEventListener("click", createDropdownCheck, false);
 
 searchInput.onclick = (e) => {};
 document.addEventListener("click", (evt) => {
@@ -349,7 +317,7 @@ document.addEventListener("click", (evt) => {
     }
     targetElement = targetElement.parentNode;
   } while (targetElement);
-
+  resetbtn.style.display = "none";
   collection.innerHTML = "";
 });
 
@@ -370,7 +338,12 @@ if (document.readyState === "complete") {
     };
   });
 
-  window.addEventListener("load", () => {
-    sendGetRequest(loadStruct);
+  window.addEventListener("load", async () => {
+    try {
+      controller.abort();
+      sendGetRequest(loadStruct);
+    } catch (e) {
+      console.error(e);
+    }
   });
 }

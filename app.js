@@ -1,27 +1,30 @@
-const cors = require("cors");
-const fs = require("fs");
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const graphqlHTTP = require("express-graphql");
 const { graphql } = require("graphql");
 const schema = require("./schema");
+const multer = require("multer");
+const upload = multer();
 require("dotenv").config();
 
 const app = express();
-
-const corsOptions = {
-  origin: "http://localhost:8000",
-};
-console.log("GraphQL API server at http://localhost:8000/graphql");
-app.use(cors(corsOptions));
-app.use(/\/((?!graphql).)*/, bodyParser.urlencoded({ extended: true }));
-app.use(/\/((?!graphql).)*/, bodyParser.json());
-app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json({ limit: "50mb" }));
-app.use(bodyParser.urlencoded({ limit: "50mb", extended: false }));
+
+console.log("GraphQL API server at http://localhost:8000/graphql");
+app.use(cors());
+app.use(/\/((?!graphql).)*/, bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "public")));
+app.use(upload.array());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
+});
+app.post("/", function(req, res) {
+  res.send("All good!");
 });
 
 module.exports = app;

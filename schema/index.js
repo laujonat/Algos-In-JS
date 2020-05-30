@@ -6,7 +6,7 @@ const path = require("path");
 const fs = require("fs");
 const db = require("../db/index.js");
 const query = require("./query.js");
-
-const schema = new graphql.GraphQLSchema({ query });
+const mutation = require("./types/mutations/index.js");
+const schema = new graphql.GraphQLSchema({ mutation: mutation, query });
 console.log("Running a GraphQL API server at http://localhost:8000/graphql");
 module.exports = schema;
