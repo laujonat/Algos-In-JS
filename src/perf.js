@@ -13,7 +13,8 @@ function memoize(method) {
   let cache = {};
 
   return async function() {
-    let args = JSON.stringify(arguments);
+    let args = JSON.stringify(...arguments);
+    // console.log(arguments);
     cache[args] = cache[args] || method.apply(this, arguments);
     return cache[args];
   };

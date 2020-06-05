@@ -65,6 +65,7 @@ const makeBtn = (text = null, onclick) => {
   btn.style.marginRight = "5px";
   btn.onclick = onclick;
   viewpanel.appendChild(btn);
+  return btn;
 };
 
 const addInput = (name, description) => {

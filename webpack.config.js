@@ -10,8 +10,8 @@ module.exports = [
     target: "node",
     output: {
       path: path.resolve("./public"),
-      filename: "node.js"
-    }
+      filename: "node.js",
+    },
   },
   {
     optimization: {
@@ -20,28 +20,41 @@ module.exports = [
           uglifyOptions: {
             warnings: false,
             parse: {},
-            extractComments: true, 
+            extractComments: true,
             mangle: true, // Note `mangle.properties` is `false` by default.
             toplevel: false,
             nameCache: null,
-          }
-        })
-      ]
+          },
+        }),
+      ],
     },
     name: "client",
     mode: "development",
     watch: true,
     watchOptions: {
       aggregateTimeout: 200,
-      poll: 1000
+      poll: 1000,
+    },
+    resolve: {
+      alias: {
+        components: path.resolve(
+          __dirname,
+          " node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"
+        ),
+        "~": path.resolve(__dirname),
+        webcomponents: path.resolve(__dirname, "src/webcomponents"),
+      },
     },
     devtool: "eval",
-    entry: ["./src/index.js", "./public/style.css"],
+    entry: {
+      index: "./src/index.js",
+      style: "./public/style.css",
+    },
     module: {
       rules: [
         {
           test: /\.html$/i,
-          loader: "html-loader"
+          loader: "html-loader",
         },
         {
           test: /\.css$/i,
@@ -50,16 +63,15 @@ module.exports = [
             {
               loader: "css-loader",
               options: {
-                modules: true
-              }
-            }
-          ]
-        }
-      ]
+                modules: true,
+              },
+            },
+          ],
+        },
+      ],
     },
     output: {
-      path: path.resolve("./public"),
-      filename: "index.js"
-    }
-  }
+      path: path.resolve(__dirname, "public"),
+    },
+  },
 ];

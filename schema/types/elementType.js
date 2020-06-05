@@ -82,6 +82,7 @@ const elementType = new graphql.GraphQLObjectType({
       resolve: async (obj, args, context) => {
         const { entry, input, output, inputparams } = args;
         const myobj = { elementid: obj.id, entry, input, output, inputparams };
+        console.log("m", myobj);
         const Prompt = await db.get().collection("prompt");
         return new Promise((resolve, reject) => {
           const res = Prompt.findOneAndUpdate(

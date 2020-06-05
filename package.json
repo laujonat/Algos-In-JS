@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -39,7 +40,7 @@
   "scripts": {
     "start": "npm run webpack --watch && webpack-dev-server",
     "start:dev": "npm run nodemon node.js",
-    "nodemon": "nodemon --ignore lib/ --signal SIGHUP",
+    "nodemon": "nodemon --ignore lib/ --ignore root.json --signal SIGHUP",
     "build": "npm run flow:build && npm run build:ds && npm run build:problems && npm run build:sandbox",
     "build:ds": "babel dsaa -d lib/dsaa",
     "build:problems": "babel problems -d lib/problems",
@@ -53,7 +54,10 @@
     "webpack": "webpack --config webpack.config.js"
   },
   "nodemonConfig": {
-    "delay": "2500"
+    "delay": "2500",
+    "ignore": [
+      "root.json"
+    ]
   },
   "keywords": [
     "express",

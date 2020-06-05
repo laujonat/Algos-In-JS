@@ -5,18 +5,46 @@ const path = require("path");
 const nodemon = require("nodemon");
 const glob = require("glob");
 const watcher = require("./utils/watcher.js");
+const fs = require("fs");
 const { genMain, writeFile } = require("./utils/genmap.js");
 
 process.once("SIGHUP", function() {
   console.log("Recieved signal SIGHUP");
 });
+async function genFile() {
+  try {
+    await genMain(writeFile, "root.json", true);
+  } catch (e) {
+    console.error(e);
+  }
+}
+async function initNodeServer(run, start) {
+  const files = ["root.json"];
+  files.forEach(function(filePath) {
+    if (fs.existsSync(filePath)) {
+      fs.access(filePath, (error) => {
+        if (!error) {
+          // fs.unlinkSync(filePath, function(error) {
+          //   console.log(error);
+          // });
+        } else {
+          console.log(error);
+        }
+      });
+    }
+    console.log("writing");
+  });
+  await run(writeFile, "root.json", true);
+  start();
+}
 nodemon({ script: "app.js" })
   .on("start", function() {
-    init();
+    console.log("*********");
+    initNodeServer(genFile, init);
   })
   .on("restart", function() {
     console.log("Restarted.");
-    genMain(writeFile, "root.json", false);
+    genMain(writeFile, "root.json", true);
   })
   .on("crash", function() {
     console.log("************\n \

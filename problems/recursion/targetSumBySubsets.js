@@ -43,3 +43,4 @@ const twoSumBySubsets = function(arr, target) {
 };
 // let a = twoSumBySubsets([6, 3, 5, 3, 6], 6);
 // let ab = twoSumBySubsets([-11, 8], 8);
+module.exports = twoSumBySubsets;

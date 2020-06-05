@@ -1,18 +1,14 @@
-/*
-  def fib(n)
-    if n == 0 or n == 1
-      return n
-    else 
-      return fib(n-1) + fib(n-2)
+var mem = {};
+var fibWithDp = function(n) {
+  if (mem[n]) {
+    return mem[n];
+  }
+  if (n <= 2) {
+    mem[n] = 1;
+  } else {
+    mem[n] = fibWithDp(n - 1) + fibWithDp(n - 2);
+  }
+  return mem[n];
+};
 
-  memo = {}
-   def fib(n
-    if(memo[n])
-      return memo[n]
-    if n == 0 or n == 1
-      return n
-    else 
-      memo[n] = fib(n-1) + fib(n-2)
-*/
-
-module.exports = {};
+module.exports = fibWithDp;

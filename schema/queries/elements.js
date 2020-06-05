@@ -47,15 +47,14 @@ const elements = {
           );
 
     const Root = await db.get().collection("root");
+    // .limit(args.first)
     const els = new Promise((resolve) => {
       setTimeout(async () => {
-        let res = Root.find({})
-          .limit(args.first)
-          .toArray();
+        let res = Root.find({}).toArray();
         resolve(res);
       }, 2000);
     });
-    return Promise.resolve(els).then((res) => res);
+    return els;
     // return els;
   },
 };

@@ -26,7 +26,19 @@ const createNestedParamCell = (...args) => {
   }
   return thead;
 };
+
+const addTab = (title, content) => {};
+
+const makeTabs = () => {
+  const table = document.createElement("div");
+  const header = document.createElement("div");
+  table.classList.add("tabs");
+  for (let i = 0; i < 2; i++) {}
+
+  viewpanel.appendChild(table);
+};
 module.exports = {
+  makeTabs,
   createTable: (key, data) => {
     const table = document.createElement("table");
     table.classList.add("responsive-table");

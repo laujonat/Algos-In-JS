@@ -15,7 +15,7 @@ app.use(bodyParser.json({ limit: "50mb" }));
 
 console.log("GraphQL API server at http://localhost:8000/graphql");
 app.use(cors());
-app.use(/\/((?!graphql).)*/, bodyParser.urlencoded({ extended: true }));
+// app.use(/\/((?!graphql).)*/, bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(upload.array());

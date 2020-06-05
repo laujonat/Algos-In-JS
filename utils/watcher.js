@@ -97,7 +97,7 @@ for (const [src, { files, path, dir }] of dirmap.entries()) {
             log(result);
           })
           .catch(function(e) {
-            error(e.message);
+            console.error(e.message);
           });
       } catch (e) {
         console.error(e);

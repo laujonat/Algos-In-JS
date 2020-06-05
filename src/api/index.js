@@ -17,22 +17,41 @@ async function postData(url = "", data = {}) {
   return response.json(); // parses JSON response into native JavaScript objects
 }
 
-const searchData = function(fileSync, searchText) {
-  fileSync.sortOn("name");
-  let res = fileSync.filter((m) => {
+const searchData = function(data, searchText) {
+  if (!Array.isArray(data)) {
+    return null;
+  }
+  let res;
+  // if (data.elements) {
+  res = data.filter((m) => {
     let regex = new RegExp(searchText, "gi");
     return m.name.match(regex);
   });
-
-  return new Promise((resolve) => resolve(res));
+  // }
+  return new Promise((resolve, reject) => {
+    try {
+      resolve(res);
+    } catch (e) {
+      reject(res);
+    }
+  });
 };
 
 // Filter result data by input query string
-let showSearchResults = function(fileSync, searchQuery, successCallback) {
-  let a = searchData(fileSync, searchQuery).then((res) => {
-    successCallback(res);
-  });
-  return new Promise((resolve) => resolve(a));
+let showSearchResults = async function(fileSync, searchQuery, successCallback) {
+  // if (fileSync.data) {
+  let res = null;
+  try {
+    res = await searchData(fileSync, searchQuery);
+    console.log("RES", res);
+    if (res) {
+      return new Promise((resolve) => resolve(successCallback(res)));
+    }
+  } catch (e) {
+    console.error(e);
+  }
+
+  return res;
 };
 showSearchResults = memoize(showSearchResults);
 showSearchResults = debounce(showSearchResults, 200);

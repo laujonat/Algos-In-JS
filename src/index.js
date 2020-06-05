@@ -9,10 +9,11 @@ let searchInputSecondary = document.getElementById("search-input-secondary");
 let collection = document.querySelector(".collection");
 let colitem = document.querySelector(".collection-item");
 let createSelection = document.querySelector(".browser-default");
+let progress = document.querySelector(".progress");
 let controller = new AbortController();
 let signal = controller.signal;
 
-const { createTable } = require("./table.js");
+const { createTable, makeTabs } = require("./table.js");
 const {
   addInput,
   addHeader,
@@ -24,24 +25,69 @@ let headers = new Headers();
 let colmap = new Map();
 let fileSync = [];
 
-const loadStruct = (e, dataid) => {
+const loadStruct = (e, data) => {
   e.preventDefault();
-  const options = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  fetch(`/dsaa/${dataid}`, options)
-    .then(function(response) {
-      return response.json();
-    })
-    .then((res) => {
-      const {
-        data: { element },
-      } = res;
-      renderStruct(element);
-    });
+  document.getElementById("view-content-header").innerHTML = data.name;
+  const textarea = document.createElement("section");
+  const codediv = document.createElement("div");
+  codediv.classList.add("code-div");
+  const codestr = data.fn.join("\r\n\n");
+  codestr.replace(/\n/g, "<br />");
+  codediv.innerText = data.fn;
+  textarea.append(codediv);
+  addHeader("Code");
+  viewpanel.append(textarea);
+  addHeader("Params");
+  createTable("param", data.param);
+  addHeader("Category");
+  createTable("category", data.category);
+  addHeader("File Path");
+  createTable("category", data.file);
+  addHeader("Prototypes");
+  createTable("proto", data.proto);
+  //   for (const key of Object.keys(data)) {
+  //     switch (key) {
+  //       case "params":
+  //         createTable(key, data[key]);
+  //         break;
+  //       case "properties":
+  //         if (Object.values(data[key]).length === 0) {
+  //           break;
+  //         }
+  //         createTable(key, data[key]);
+  //         break;
+  //       case "fn":
+  //         const textarea = document.createElement("section");
+  //         const codediv = document.createElement("div");
+  //         codediv.classList.add("code-div");
+  //         const codestr = data.fn.join("\r\n\n");
+  //         codestr.replace(/\n/g, "<br />");
+  //         codediv.innerText = data[key];
+  //         textarea.append(codediv);
+  //         viewpanel.append(textarea);
+  //         break;
+  //       default:
+  //         break;
+  //     }
+  //   }
+  // }
+  // const options = {
+  //   method: "GET",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // };
+  // fetch(`/dsaa/${dataid}`, options)
+  //   .then(function(response) {
+  //     return response.json();
+  //   })
+  //   .then((err) => {
+  //     if (err) {
+  //       console.error(err);
+  //     }
+  //     console.log(err);
+  //     renderStruct(err);
+  //   });
 };
 
 const saveEntry = async (e) => {
@@ -66,7 +112,6 @@ const saveEntry = async (e) => {
   const inputsList = [];
   let inputs = {};
   for (var i = 0; i < inputparams.length; i++) {
-    console.log(inputparams[i].value);
     inputs["name"] = inputparams[i].value;
     inputs["desc"] = inputdesc[i].value;
     inputsList.push(JSON.stringify(inputs));
@@ -74,8 +119,7 @@ const saveEntry = async (e) => {
   }
   formData.append("inputparams", inputsList);
   try {
-    const res = await postData(`/search`, formData);
-    console.log("res", res);
+    const res = await postData(`/updateEntry`, formData);
   } catch (e) {
     console.error(e);
   }
@@ -85,7 +129,7 @@ const liDisplayOptions = (e, params) => {
   viewpanel.setAttribute("data-id", params.id);
   e.preventDefault();
   if (!showCreateForm()) {
-    loadStruct(e, params.id);
+    loadStruct(e, params);
   } else {
     makeBtn("save", saveEntry);
 
@@ -111,12 +155,11 @@ const liDisplayOptions = (e, params) => {
     addHeader("Constraints");
     promptTextArea(30, 10, "Optional", "example-input-constraints");
 
-    addHeader("Input Parameters");
-    addInput("Param", "Description");
     makeBtn("+ Add", function() {
       addInput("Param", "Description");
-      viewpanel.appendChild(addbtn);
     });
+    addHeader("Input Parameters");
+    addInput("Param", "Description");
   }
 };
 
@@ -124,6 +167,7 @@ headers.append("Content-Type", "text/plain");
 headers.set("Content-Type", "application/json;charset=UTF-8");
 const xhttp = new XMLHttpRequest();
 const sendGetRequest = async (loadStruct) => {
+  progress.style.display = "inline";
   xhttp.open("GET", "/syncFiles", true);
   xhttp.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
@@ -134,19 +178,25 @@ const sendGetRequest = async (loadStruct) => {
   };
   xhttp.onloadend = function(e) {
     let res = xhttp.responseText;
-    fileSync = Array.from(JSON.parse(res));
-    fileSync.forEach((el, i) => {
-      const li = document.createElement("li");
-      const div = document.createElement("div");
-      li.setAttribute("class", "collection-item");
-      li.onclick = (e) => handleListItemEvent(el);
-      div.setAttribute("class", "collection-item-wrap");
-      div.appendChild(document.createTextNode(el.name));
-      li.appendChild(div);
-      li.addEventListener("click", (e) => liDisplayOptions(e, el));
-      colmap.set(el.id, li);
-      collection.appendChild(li);
-    });
+    let fileSync = JSON.parse(res).data;
+    setTimeout(() => {
+      progress.style.display = "none";
+    }, 6000);
+    if (fileSync.hasOwnProperty("elements")) {
+      const { elements } = fileSync;
+      elements.forEach((el, i) => {
+        const li = document.createElement("li");
+        const div = document.createElement("div");
+        li.setAttribute("class", "collection-item");
+        li.onclick = (e) => handleListItemEvent(el);
+        div.setAttribute("class", "collection-item-wrap");
+        div.appendChild(document.createTextNode(el.name));
+        li.appendChild(div);
+        li.addEventListener("click", (e) => liDisplayOptions(e, el));
+        colmap.set(el.id, li);
+        collection.appendChild(li);
+      });
+    }
   };
   xhttp.send();
 };
@@ -193,11 +243,15 @@ const renderStruct = (data) => {
 };
 
 const searchData = function(searchText) {
-  fileSync.sortOn("name");
-  let res = fileSync.filter((m) => {
-    let regex = new RegExp(searchText, "gi");
-    return m.name.match(regex);
-  });
+  if (!Array.isArray(fileSync)) {
+    return;
+  } else {
+    fileSync.sortOn("name");
+    let res = fileSync.filter((m) => {
+      let regex = new RegExp(searchText, "gi");
+      return m.name.match(regex);
+    });
+  }
 
   return new Promise((resolve) => resolve(res));
 };
@@ -208,7 +262,6 @@ function successCallback(res) {
   res.map((el) => {
     collection.appendChild(colmap.get(el.id));
   });
-  console.log("RES", res);
   return new Promise((resolve) => {
     if (isHidden(resetbtn)) {
       resetbtn.style.display = "inline";
@@ -228,7 +281,13 @@ const handleChange = function(e) {
       };
     }
   }
-  showSearchResults(fileSync, e.currentTarget.value, successCallback);
+  if (fileSync.length !== 0) {
+    showSearchResults(
+      fileSync.data.elements,
+      e.currentTarget.value,
+      successCallback
+    );
+  }
 };
 
 function showCreateForm() {
@@ -239,7 +298,9 @@ function showCreateForm() {
 
 const handleSecondarySearch = function(e) {
   let colitem = document.querySelector(".collection-item");
+  // if (fileSync) {
   showSearchResults(fileSync, e.currentTarget.value, successCallback);
+  // }
 };
 
 const clearView = function() {
@@ -292,6 +353,7 @@ function selectedControl() {
 function isHidden(el) {
   return el.offsetParent === null;
 }
+
 sel.addEventListener("change", selectedControl);
 searchInput.addEventListener("change", handleChange);
 searchInput.addEventListener("keyup", handleChange);
@@ -304,6 +366,7 @@ resetbtn.onclick = (e) => {
   }
   clearInputs();
 };
+const currentDocument = document.currentScript.ownerDocument;
 const radios = document.getElementsByName("form-select");
 radios[0].addEventListener("click", createDropdownCheck, false);
 radios[1].addEventListener("click", createDropdownCheck, false);
@@ -337,8 +400,20 @@ if (document.readyState === "complete") {
       });
     };
   });
-
+  window.addEventListener("WebComponentsReady", async function() {
+    // show body now that everything is ready
+    document.body.style.opacity = 1;
+    // const TabComponent = require("webcomponents/tabs/tabs.js");
+  });
   window.addEventListener("load", async () => {
+    makeTabs();
+
+    const res = await fetch("./webcomponents/tabs/tabs.html");
+    console.log(res);
+    const textTemplate = await res.text();
+
+    console.log(customElements);
+    viewpanel.append(textTemplate);
     try {
       controller.abort();
       sendGetRequest(loadStruct);

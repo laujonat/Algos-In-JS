@@ -243,6 +243,7 @@ main {
 }
 
 .progress {
-  display: none;
+  /* display: none; */
+  width: 100%;
   margin: auto;
 }
