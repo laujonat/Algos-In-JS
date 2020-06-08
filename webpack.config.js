@@ -35,15 +35,6 @@ module.exports = [
       aggregateTimeout: 200,
       poll: 1000,
     },
-    resolve: {
-      alias: {
-        components: path.resolve(
-          __dirname,
-          " node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"
-        ),
-        "~": path.resolve(__dirname),
-      },
-    },
     devtool: "eval",
     entry: {
       index: "./src/index.js",

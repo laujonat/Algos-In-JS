@@ -34,6 +34,4 @@ function preorderTraversal(root) {
   }
   return output.map((node) => node.val);
 }
-// let r = preorderTraversal(btree.root);
-// console.log(r);
 module.exports = preorderTraversal;

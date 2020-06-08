@@ -22,39 +22,32 @@ const searchData = function(data, searchText) {
     return null;
   }
   let res;
-  // if (data.elements) {
   res = data.filter((m) => {
     let regex = new RegExp(searchText, "gi");
     return m.name.match(regex);
   });
-  // }
-  return new Promise((resolve, reject) => {
-    try {
-      resolve(res);
-    } catch (e) {
-      reject(res);
-    }
-  });
+  return res;
 };
 
 // Filter result data by input query string
-let showSearchResults = async function(fileSync, searchQuery, successCallback) {
-  // if (fileSync.data) {
+let showSearchResults = async function(elements, searchQuery, successCallback) {
+  if (!elements) {
+    return elements;
+  }
+
   let res = null;
   try {
-    res = await searchData(fileSync, searchQuery);
-    console.log("RES", res);
-    if (res) {
-      return new Promise((resolve) => resolve(successCallback(res)));
-    }
+    res = await searchData(elements, searchQuery);
+    successCallback(res);
+    return res;
   } catch (e) {
     console.error(e);
   }
 
-  return res;
+  return [];
 };
-showSearchResults = memoize(showSearchResults);
-showSearchResults = debounce(showSearchResults, 200);
+// showSearchResults = memoize(showSearchResults);
+// showSearchResults = debounce(showSearchResults, 200);
 module.exports = {
   showSearchResults,
   postData,

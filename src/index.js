@@ -13,7 +13,7 @@ let progress = document.querySelector(".progress");
 let controller = new AbortController();
 let signal = controller.signal;
 
-const { createTable, makeTabs } = require("./table.js");
+const { createPrompt, createTable, makeTabs } = require("./table.js");
 const {
   addInput,
   addHeader,
@@ -41,53 +41,10 @@ const loadStruct = (e, data) => {
   createTable("param", data.param);
   addHeader("Category");
   createTable("category", data.category);
-  addHeader("File Path");
-  createTable("category", data.file);
   addHeader("Prototypes");
   createTable("proto", data.proto);
-  //   for (const key of Object.keys(data)) {
-  //     switch (key) {
-  //       case "params":
-  //         createTable(key, data[key]);
-  //         break;
-  //       case "properties":
-  //         if (Object.values(data[key]).length === 0) {
-  //           break;
-  //         }
-  //         createTable(key, data[key]);
-  //         break;
-  //       case "fn":
-  //         const textarea = document.createElement("section");
-  //         const codediv = document.createElement("div");
-  //         codediv.classList.add("code-div");
-  //         const codestr = data.fn.join("\r\n\n");
-  //         codestr.replace(/\n/g, "<br />");
-  //         codediv.innerText = data[key];
-  //         textarea.append(codediv);
-  //         viewpanel.append(textarea);
-  //         break;
-  //       default:
-  //         break;
-  //     }
-  //   }
-  // }
-  // const options = {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // };
-  // fetch(`/dsaa/${dataid}`, options)
-  //   .then(function(response) {
-  //     return response.json();
-  //   })
-  //   .then((err) => {
-  //     if (err) {
-  //       console.error(err);
-  //     }
-  //     console.log(err);
-  //     renderStruct(err);
-  //   });
+  addHeader("Prompt");
+  createPrompt("prompt", data.prompt);
 };
 
 const saveEntry = async (e) => {
@@ -166,24 +123,30 @@ const liDisplayOptions = (e, params) => {
 headers.append("Content-Type", "text/plain");
 headers.set("Content-Type", "application/json;charset=UTF-8");
 const xhttp = new XMLHttpRequest();
-const sendGetRequest = async (loadStruct) => {
+xhttp.open("GET", "/syncFiles", true);
+function addListeners(xhr) {
+  xhttp.addEventListener("progress", updateProgress);
+  xhttp.addEventListener("load", transferComplete);
+  xhttp.addEventListener("error", transferFailed);
+  xhttp.addEventListener("abort", transferCanceled);
+}
+
+function updateProgress(evt) {
   progress.style.display = "inline";
-  xhttp.open("GET", "/syncFiles", true);
-  xhttp.onreadystatechange = function() {
-    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      if (!isHidden(resetbtn)) {
-        resetbtn.style.display = "none";
-      }
-    }
-  };
-  xhttp.onloadend = function(e) {
-    let res = xhttp.responseText;
-    let fileSync = JSON.parse(res).data;
-    setTimeout(() => {
-      progress.style.display = "none";
-    }, 6000);
-    if (fileSync.hasOwnProperty("elements")) {
-      const { elements } = fileSync;
+}
+
+function transferComplete(evt) {
+  console.log("The transfer is complete.");
+  let res = xhttp.responseText;
+  fileSync = JSON.parse(res).data;
+
+  if (fileSync.hasOwnProperty("elements")) {
+    const { elements } = fileSync;
+    searchInput.addEventListener("change", handleChange);
+    searchInput.addEventListener("keyup", handleChange);
+    searchInputSecondary.addEventListener("change", handleSecondarySearch);
+    searchInputSecondary.addEventListener("keyup", handleSecondarySearch);
+    elements &&
       elements.forEach((el, i) => {
         const li = document.createElement("li");
         const div = document.createElement("div");
@@ -196,6 +159,24 @@ const sendGetRequest = async (loadStruct) => {
         colmap.set(el.id, li);
         collection.appendChild(li);
       });
+  }
+}
+
+function transferFailed(evt) {
+  console.log("An error occurred while loading the file.");
+}
+
+function transferCanceled(evt) {
+  console.log("The transfer has been canceled by the user.");
+}
+const sendGetRequest = async () => {
+  progress.style.display = "inline";
+  addListeners(xhttp);
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      if (!isHidden(resetbtn)) {
+        resetbtn.style.display = "none";
+      }
     }
   };
   xhttp.send();
@@ -203,43 +184,6 @@ const sendGetRequest = async (loadStruct) => {
 
 const isEmpty = function(str) {
   return !str || 0 === str.length;
-};
-
-const renderStruct = (data) => {
-  if (!data) {
-    return;
-  }
-  if (data.name) {
-    if (document.querySelector(".code-div")) {
-      document.querySelector(".code-div").innerHTML = "";
-    }
-    document.getElementById("view-content-header").innerHTML = data.name;
-    for (const key of Object.keys(data)) {
-      switch (key) {
-        case "params":
-          createTable(key, data[key]);
-          break;
-        case "properties":
-          if (Object.values(data[key]).length === 0) {
-            break;
-          }
-          createTable(key, data[key]);
-          break;
-        case "fn":
-          const textarea = document.createElement("section");
-          const codediv = document.createElement("div");
-          codediv.classList.add("code-div");
-          const codestr = data.fn.join("\r\n\n");
-          codestr.replace(/\n/g, "<br />");
-          codediv.innerText = data[key];
-          textarea.append(codediv);
-          viewpanel.append(textarea);
-          break;
-        default:
-          break;
-      }
-    }
-  }
 };
 
 const searchData = function(searchText) {
@@ -256,20 +200,6 @@ const searchData = function(searchText) {
   return new Promise((resolve) => resolve(res));
 };
 
-function successCallback(res) {
-  collection.innerHTML = "";
-
-  res.map((el) => {
-    collection.appendChild(colmap.get(el.id));
-  });
-  return new Promise((resolve) => {
-    if (isHidden(resetbtn)) {
-      resetbtn.style.display = "inline";
-    }
-    resolve(res);
-  });
-}
-
 const handleChange = function(e) {
   let colitem = document.querySelector(".collection-item");
   if (isEmpty(e.currentTarget.value)) {
@@ -282,11 +212,14 @@ const handleChange = function(e) {
     }
   }
   if (fileSync.length !== 0) {
-    showSearchResults(
-      fileSync.data.elements,
-      e.currentTarget.value,
-      successCallback
-    );
+    showSearchResults(fileSync.elements, e.currentTarget.value, function(
+      result
+    ) {
+      collection.innerHTML = "";
+      result.map((el) => {
+        collection.appendChild(colmap.get(el.id));
+      });
+    });
   }
 };
 
@@ -298,9 +231,12 @@ function showCreateForm() {
 
 const handleSecondarySearch = function(e) {
   let colitem = document.querySelector(".collection-item");
-  // if (fileSync) {
-  showSearchResults(fileSync, e.currentTarget.value, successCallback);
-  // }
+  showSearchResults(fileSync.elements, e.currentTarget.value, function(result) {
+    collection.innerHTML = "";
+    result.map((el) => {
+      collection.appendChild(colmap.get(el.id));
+    });
+  });
 };
 
 const clearView = function() {
@@ -355,10 +291,7 @@ function isHidden(el) {
 }
 
 sel.addEventListener("change", selectedControl);
-searchInput.addEventListener("change", handleChange);
-searchInput.addEventListener("keyup", handleChange);
-searchInputSecondary.addEventListener("change", handleSecondarySearch);
-searchInputSecondary.addEventListener("keyup", handleSecondarySearch);
+
 createSelection.addEventListener("change", selectedControl);
 resetbtn.onclick = (e) => {
   if (!isHidden(resetbtn)) {
@@ -407,7 +340,7 @@ if (document.readyState === "complete") {
     makeTabs();
     try {
       controller.abort();
-      sendGetRequest(loadStruct);
+      sendGetRequest();
     } catch (e) {
       console.error(e);
     }
