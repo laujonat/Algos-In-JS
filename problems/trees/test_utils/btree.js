@@ -126,8 +126,8 @@ btree.leftEdge(0, 1);
 btree.rightEdge(0, 2);
 btree.leftEdge(1, 3);
 btree.rightEdge(1, 4);
-btree.leftEdge(3, 5);
-btree.rightEdge(3, 6);
+btree.leftEdge(4, 5);
+btree.rightEdge(4, 6);
 btree.buildTree();
 
 module.exports = { btree, _btree, btreeInvalid };

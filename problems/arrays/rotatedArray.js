@@ -45,8 +45,7 @@ function rotatedArray(arr, num) {
     }
   }
 }
-let shiftArr = [9, 12, 17, 2, 4, 5];
-let num = 2;
-let res = rotatedArray(shiftArr, num);
-console.log(res);
+// let shiftArr = [9, 12, 17, 2, 4, 5];
+// let num = 2;
+// let res = rotatedArray(shiftArr, num);
 module.exports = rotatedArray;

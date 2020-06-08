@@ -401,19 +401,10 @@ if (document.readyState === "complete") {
     };
   });
   window.addEventListener("WebComponentsReady", async function() {
-    // show body now that everything is ready
     document.body.style.opacity = 1;
-    // const TabComponent = require("webcomponents/tabs/tabs.js");
   });
   window.addEventListener("load", async () => {
     makeTabs();
-
-    const res = await fetch("./webcomponents/tabs/tabs.html");
-    console.log(res);
-    const textTemplate = await res.text();
-
-    console.log(customElements);
-    viewpanel.append(textTemplate);
     try {
       controller.abort();
       sendGetRequest(loadStruct);

@@ -14,6 +14,26 @@ Input format:
   Return an array containing the node values in pre-order traversal of the tree.
 */
 const { btree, btreeInvalid } = require("./test_utils/btree.js");
-// O(n) space
-// O(n) time
-function preorderTraversal(root) {}
+
+function preorderTraversal(root) {
+  if (!root) {
+    return null;
+  }
+  const stack = [];
+  stack.push(root);
+  const output = [];
+  while (stack.length) {
+    let current = stack.pop();
+    output.push(current);
+    if (current.right_ptr) {
+      stack.push(current.right_ptr);
+    }
+    if (current.left_ptr) {
+      stack.push(current.left_ptr);
+    }
+  }
+  return output.map((node) => node.val);
+}
+// let r = preorderTraversal(btree.root);
+// console.log(r);
+module.exports = preorderTraversal;

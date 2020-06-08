@@ -23,7 +23,7 @@ jsconfig.json
 /dist
 public/index.js
 public/node.js
-public/webcomponents.js
+public/webcomponents/**/*
 dsaa.json
 root.json
 .env

@@ -13,3 +13,32 @@ Input format:
   Output format:  
   Return an array containing the node values in in-order traversal of the tree.
 */
+const { btree } = require("./test_utils/btree.js");
+
+function inorderIterativeTraversal(root) {
+  if (!root) {
+    return [];
+  }
+  const stack = [];
+  const output = [];
+  let curr = root;
+  const goDownLeft = (node) => {
+    let curr = node;
+    while (curr) {
+      stack.push(curr);
+      curr = curr.left_ptr;
+    }
+  };
+  goDownLeft(root);
+  while (stack.length > 0) {
+    let current = stack.pop();
+    output.push(current.val);
+
+    if (current.right_ptr) {
+      goDownLeft(current.right_ptr);
+    }
+  }
+  return output;
+}
+
+module.exports = inorderIterativeTraversal;

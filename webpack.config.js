@@ -42,7 +42,6 @@ module.exports = [
           " node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"
         ),
         "~": path.resolve(__dirname),
-        webcomponents: path.resolve(__dirname, "src/webcomponents"),
       },
     },
     devtool: "eval",
