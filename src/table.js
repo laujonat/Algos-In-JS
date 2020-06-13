@@ -37,6 +37,7 @@ const makeTabs = () => {
 };
 
 const createPrompt = (key, data) => {
+  console.log(data);
   const { edges } = data;
   const table = document.createElement("table");
   table.classList.add("responsive-table");

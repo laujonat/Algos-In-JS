@@ -26,6 +26,7 @@ let colmap = new Map();
 let fileSync = [];
 
 const loadStruct = (e, data) => {
+  console.log(data);
   e.preventDefault();
   document.getElementById("view-content-header").innerHTML = data.name;
   const textarea = document.createElement("section");

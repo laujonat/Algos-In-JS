@@ -119,7 +119,6 @@ class GraphByAdjList {
 
   dfsV2(source, c, dist = 0) {
     console.info("visiting", source, "distance", dist);
-    const stack = [];
     const parent = {};
     this.visited.set(source, c);
     this.neighbors(source).forEach((currentVertex) => {
