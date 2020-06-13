@@ -1,6 +1,6 @@
-# Javascript Practice
+# Data Structures & Algorithms - Interview Prep in JS
 
-## Development
+## How to Run
 
 ```sh
  $ npm install
@@ -8,10 +8,38 @@
  $ npm run start
 ```
 
-## JSON Template
+## Compiling
+
+#### Setup Flow-types
 
 ```sh
- $ node utils/genmap.js
+ $ npm install flow-bin -g
+```
+
+#### Build All
+
+```sh
+ $ npm run build
+```
+
+#### Build Problem Sets
+
+```sh
+ $ npm run build:problems
+```
+
+#### Build Data Structure Implementations
+
+```sh
+ $ npm run build:ds
+```
+
+## JSON Template
+
+Compile all files from `/problems` and `/dsaa` into a JSON file.
+
+```sh
+ $ node utils/genmap.js --target --root
 ```
 
 ## Create Mongodb Account. See documentation.
@@ -24,6 +52,27 @@ Create a new db collection. Create a `.env` and fill in the following fields.
  MONGODB_USER=<user>
  MONGODB_PASSWORD=<password>
 ```
+
+## Folder Organization
+
+- GraphQL Schema: `/schema/**/*`
+- Node Server: `/server/**/*`
+- MongoDB Connection: `/db/**/*`
+- Utils: `/utils/**/*`
+- Leetcode-ish Problems (Organized by Types): `/problems/**/`
+  - Sorting
+  - Recursion
+  - Graphs
+  - Dynamic Programming
+  - Arrays
+  - Trees
+- Data Structures (Organized by Types): `/dsaa/**/`
+  - Graphs
+  - Node
+  - Searching
+  - Sorting
+  - Trees
+  - Struct
 
 # Links
 
@@ -66,7 +115,7 @@ Create a new db collection. Create a `.env` and fill in the following fields.
 - Seed Data
 - Strip comments
 
-# Practice
+# Frontend Practice
 
 - Clock
 - Search filter
