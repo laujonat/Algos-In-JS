@@ -53,6 +53,11 @@ Create a new db collection. Create a `.env` and fill in the following fields.
  MONGODB_PASSWORD=<password>
 ```
 
+## GraphQL Schema
+
+- MongoDB Collections: `root`, `prompt`
+- Nodes represent problems and data structure implementations. They are categorized by their type, and each node has an edge to `prompt`.
+
 ## Folder Organization
 
 - GraphQL Schema: `/schema/**/*`
@@ -63,6 +68,7 @@ Create a new db collection. Create a `.env` and fill in the following fields.
   - Sorting
   - Recursion
   - Graphs
+  - Linked Lists
   - Dynamic Programming
   - Arrays
   - Trees
@@ -80,9 +86,13 @@ Create a new db collection. Create a `.env` and fill in the following fields.
   - https://html.spec.whatwg.org/multipage/webappapis.html#webappapis
   - https://developer.mozilla.org/en-US/docs/Web/HTML/Element#Inline_text_semantics
 - Cors https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-- Fetch API https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+- Networking
+  - Abort Controller https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort
+  - XHR https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+  - Fetch API https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 - Event Loop https://blog.carbonfive.com/the-javascript-event-loop-explained/
 - Form Data https://www.javascripture.com/FormData
+- Layouts & DOM Thrash https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing
 - Async https://exploringjs.com/impatient-js/ch_async-js.html
 - Critial Rendering Path https://developers.google.com/web/fundamentals/performance/critical-rendering-path/
 - Interview Prep
@@ -113,10 +123,10 @@ Create a new db collection. Create a `.env` and fill in the following fields.
 - Heap Sort
 - Quickselect
 - Seed Data
-- Strip comments
 
 # Frontend Practice
 
+- File System with search filter
 - Clock
 - Search filter
 - Display image
@@ -126,3 +136,9 @@ Create a new db collection. Create a `.env` and fill in the following fields.
 - Explain the difference between composition and inheritance. In which cases would you use each?
 - How would you explain the difference between an API and SDK to a non-technical person?
 - How would you explain web cookies to someone non-technical?
+
+# Systems Design
+
+- Create a file system API
+- Create a General REST API
+- URL Shortener

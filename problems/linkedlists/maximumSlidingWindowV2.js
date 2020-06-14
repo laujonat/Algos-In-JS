@@ -44,22 +44,8 @@ Constraints:
 1 <= w <= n
 */
 
-function maxInSlidingWindow(arr, w) {
-  let lo = 0;
-  let hi = w - 1;
-  const result = [];
-  while (hi < arr.length) {
-    let max = Number.NEGATIVE_INFINITY;
-    for (let i = lo; i <= hi; i++) {
-      if (arr[i] > max) {
-        max = arr[i];
-      }
-    }
-    result.push(max);
-    lo++;
-    hi++;
-  }
-  return result;
-}
+// T(n): O(n*log(k))
+// Space: O(k)
+function maxInSlidingWindowV2(arr, w) {}
 
-module.exports = maxInSlidingWindow;
+module.exports = maxInSlidingWindowV2;
