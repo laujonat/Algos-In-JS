@@ -49,10 +49,8 @@ const topK = function(arr, k) {
   if (Object.keys(distinct).length < k) {
     return Array.from(Object.keys(distinct));
   }
-
   function heapifyUp() {
     let i = heap.length - 1;
-    // parent
     let p = Math.floor((i - 1) / 2);
     while (heap[p] && heap[p] < heap[i]) {
       let temp = heap[p];
@@ -62,19 +60,24 @@ const topK = function(arr, k) {
       p = Math.floor((i - 1) / 2);
     }
   }
+  function left(i) {
+    return 2 * i + 1;
+  }
+  function right(i) {
+    return 2 * i + 2;
+  }
   // pop
   function heapifyDown() {
     let i = 0;
-    let l = 2 * i + 1;
-    let r = 2 * i + 2;
-    while (heap[2 * i + 1]) {
-      l = 2 * i + 1;
-      r = 2 * i + 2;
+    let l = left(i);
+    let r = right(i);
+    while (heap[left(i)]) {
+      l = left(i);
+      r = right(i);
       let largest = l;
       if (heap[r] && heap[l] < heap[r]) {
         largest = r;
       }
-
       if (heap[i] > heap[largest]) {
         break;
       } else {
@@ -85,7 +88,6 @@ const topK = function(arr, k) {
       i = l;
     }
   }
-
   function pop() {
     if (heap.length === 0) {
       return;
@@ -97,7 +99,6 @@ const topK = function(arr, k) {
     heapifyDown();
     return max;
   }
-
   let res = [];
   for (let i = 0; i < k; i++) {
     res.push(pop());
