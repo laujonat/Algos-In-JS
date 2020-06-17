@@ -130,4 +130,19 @@ btree.leftEdge(4, 5);
 btree.rightEdge(4, 6);
 btree.buildTree();
 
+// const btree = new BinaryTree(5);
+// btree.setRootIndex(0);
+// btree.insert(0, 8);
+// btree.insert(0, 4);
+// btree.insert(0, 13);
+// btree.insert(0, 2);
+// btree.insert(0, 6);
+// btree.insert(0, 19);
+// btree.leftEdge(0, 1);
+// btree.rightEdge(0, 2);
+// btree.leftEdge(1, 3);
+// btree.rightEdge(1, 4);
+// btree.leftEdge(2, 5);
+// btree.buildTree();
+
 module.exports = { btree, _btree, btreeInvalid };

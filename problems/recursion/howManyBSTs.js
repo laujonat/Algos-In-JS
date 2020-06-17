@@ -6,9 +6,7 @@ For the purpose of this exercise, do solve the problem using recursion first eve
 
 Example One
 Input: 1
-
 Output: 1
-
 Example Two
 Input: 2
 Output: 2
@@ -36,7 +34,6 @@ Suppose the values are 1, 2, 3 then the possible trees are
    /
 
 (1)
-
 
 
    (3)
@@ -73,8 +70,6 @@ Suppose the values are 1, 2, 3 then the possible trees are
 
 (2)
 
-
-
    (2)
 
   /   \
@@ -96,7 +91,7 @@ function howManyBSTs(n) {
     return 1;
   }
   let res = [];
-  const arr = new Array(3).fill().map((el, i) => i + 1);
+  const arr = new Array(n).fill().map((el, i) => i + 1);
   let count = 0;
 
   function helper(arr, subset) {
@@ -104,7 +99,9 @@ function howManyBSTs(n) {
       res.push(subset);
       return;
     }
+    console.log("f", subset);
     helper(arr.slice(1), subset);
+    console.log("a", subset);
     helper(arr.slice(1), subset.concat(arr[0]));
 
     return res;
@@ -112,5 +109,6 @@ function howManyBSTs(n) {
   return helper(arr, []);
 }
 
+// let res = howManyBSTs(2);
+// console.log(res);
 module.exports = howManyBSTs;
-// let res = howManyBSTs(3);

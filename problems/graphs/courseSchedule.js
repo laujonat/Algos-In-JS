@@ -34,6 +34,17 @@ Run top level DFS (iterate through all nodes and run DFS from each unvisited one
 Remember the order in which the nodes were “finished with” by DFS.
 Return the reverse of that order.
 */
+/*
+dependencies
+  [0]: [1, 2]
+  [1]: [3]
+  [2]: [3]
+  [3]: []
+
+  [0]: [1]
+  [1]: [0]
+
+*/
 function courseSchedule(n, prerequisites) {
   let visited = {};
   let visiting = {};
@@ -48,10 +59,9 @@ function courseSchedule(n, prerequisites) {
       dependencies.get(c1).push(c2);
     }
   });
-  // console.log(dependencies);
   let hasCycle = false;
   const dfs = (course) => {
-    // console.log(course, visiting[course]);
+    console.log(course);
     if (hasCycle || visiting[course]) {
       // visited but isn’t finished, that means there is a cycle.
       return -1;
@@ -60,6 +70,7 @@ function courseSchedule(n, prerequisites) {
     visiting[course] = true;
     const neighbors = dependencies.get(course);
     neighbors.forEach((v, i) => {
+      // console.log("visiting", v);
       if (!visited[v]) {
         // continue visiting next available neighbor
         if (dfs(v) === -1) {
@@ -81,7 +92,6 @@ function courseSchedule(n, prerequisites) {
       }
     }
   }
-  // console.log(hasCycle);
   return !hasCycle ? ordering : [-1];
 }
 let n = 3,
@@ -89,6 +99,13 @@ let n = 3,
     [0, 1],
     [1, 0],
   ];
+// prerequisitesA = [
+//   [1, 0],
+//   [2, 0],
+//   [3, 1],
+//   [3, 2],
+// ];
+
 // prerequisites = [
 //   [1, 0],
 //   [2, 0],
