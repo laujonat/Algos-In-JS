@@ -33,6 +33,35 @@ const peaksAndValleys = (arr) => {
   }
   return result;
 };
-let r = [5, 3, 1, 2, 3, 7];
 
-console.log(peaksAndValleys(r));
+const peaksAndValleysV2 = (arr) => {
+  if (arr.length < 3) {
+    return arr;
+  }
+  function swap(i, j) {
+    let temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+  let lo = 0;
+  let hi = 2;
+  const result = [arr[0], arr[1], arr[2]];
+  while (hi < arr) {
+    let mid = arr[Math.floor(hi - lo / 2) + lo];
+    let min = Math.min(arr[min], arr[lo], arr[hi]);
+    if (arr[lo] > arr[hi]) {
+      swap(hi, mid);
+    } else {
+      swap(lo, mid);
+    }
+
+    lo++;
+    hi++;
+  }
+
+  return result;
+};
+let r = [5, 3, 1, 2, 3];
+
+// console.log(peaksAndValleys(r));
+module.exports = peaksAndValleysV2;

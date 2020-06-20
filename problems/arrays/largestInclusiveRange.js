@@ -47,6 +47,6 @@ function largestInclusiveRangeV2(arr) {
 
   return range;
 }
-let a = [9, 6, 1, 3, 8, 10, 12, 11];
-console.log(largestInclusiveRangeV2(a));
+// let a = [9, 6, 1, 3, 8, 10, 12, 11
+// console.log(largestInclusiveRangeV2(a));
 module.exports = largestInclusiveRangeV2;
