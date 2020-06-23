@@ -78,7 +78,6 @@ function nQueens(n): T {
         arrayOfColumnPlacements[numRow] = j;
         arrangementHelper(numRow + 1, arrayOfColumnPlacements);
         arrayOfColumnPlacements.pop(0);
-        // console.log("Arrr", arrayOfColumnPlacements);
       }
     }
 
@@ -88,5 +87,6 @@ function nQueens(n): T {
   return arrangementHelper(0, []);
 }
 
-let r = nQueens(4);
-console.log(r);
+// let r = nQueens(4);
+// console.log(r);
+module.exports = nQueens;
