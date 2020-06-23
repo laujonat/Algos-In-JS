@@ -18,6 +18,27 @@ Explanation: By calling next repeatedly until hasNext returns false,
 
 */
 
-function arrayFlatten(arr) {}
+// T(n): O(n)
+// Space: O(n)
+function arrayFlatten(arr, res = []) {
+  if (arr.length <= 1) {
+    return arr;
+  }
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      let a = arrayFlatten(arr[i], res);
+      res.concat(a);
+    } else {
+      res.push(arr[i]);
+    }
+  }
+  return res;
+}
 
-module.exports = arrayFlatten;
+function arrayFlattenV2(arr) {
+  return arr.reduce(
+    (a, b) => a.concat(Array.isArray(b) ? arrayFlattenV2(b) : b),
+    []
+  );
+}
+module.exports = arrayFlattenV2;
