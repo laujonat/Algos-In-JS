@@ -24,4 +24,6 @@ function rootToLeafPath(node, k) {
 
   return foundInLeft || foundInRight;
 }
-console.log(rootToLeafPath(btree.root, 15));
+// console.log(rootToLeafPath(btree.root, 15));
+
+module.exports = rootToLeafPath;
