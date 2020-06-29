@@ -34,6 +34,7 @@ function getShortestUniqueSubstring(arr, str) {
 
   for (let j = 0; j < str.length; j++) {
     let tailChar = str.charAt(j);
+    console.log("current tail", tailChar, "header", headIdx);
     if (!countMap.has(tailChar)) {
       // characters not in arr
       continue;
@@ -55,7 +56,7 @@ function getShortestUniqueSubstring(arr, str) {
         result = str.substring(headIdx, j + 1);
       }
       let headChar = str.charAt(headIdx);
-
+      console.log("headChar", headChar);
       if (countMap.has(headChar)) {
         let headCount = countMap.get(headChar) - 1;
         if (headCount == 0) {
@@ -71,10 +72,8 @@ function getShortestUniqueSubstring(arr, str) {
 }
 // var arr = ["x", "y", "z"],
 //   str = "xyyzyzyx";
-// let a = ["A", "B", "C", "E", "K", "I"];
-// let b = "KADOBECODEBANCDDDEI";
-// var arr = ["a", "a"],
-//   str = "abcda";
+// // let a = ["A", "B", "C", "E", "K", "I"];
+// // let b = "KADOBECODEBANCDDDEI";
 // console.log(getShortestUniqueSubstring(arr, str));
 
 module.exports = getShortestUniqueSubstring;

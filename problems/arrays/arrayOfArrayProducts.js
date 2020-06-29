@@ -39,7 +39,7 @@ function arrayOfArrayProducts(arr) {
     return acc;
   }, []);
 }
-// let arr = [2, 7, 3, 4];
+// let arr = [1, 2, 3, 4, 5];
 // let r = arrayOfArrayProducts(arr);
 // console.log(r);
 module.exports = arrayOfArrayProducts;

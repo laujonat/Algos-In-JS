@@ -42,4 +42,6 @@ Constraints:
 
 */
 
+function generateAllExpressions(s, target) {}
+
 module.exports = {};
