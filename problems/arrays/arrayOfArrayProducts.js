@@ -30,7 +30,6 @@ function arrayOfArrayProducts(arr) {
     product *= el;
     return acc;
   }, []);
-
   product = 1;
   return arr.reduce((acc, el, i) => {
     let idx = arr.length - i - 1;
@@ -39,7 +38,7 @@ function arrayOfArrayProducts(arr) {
     return acc;
   }, []);
 }
-// let arr = [1, 2, 3, 4, 5];
-// let r = arrayOfArrayProducts(arr);
-// console.log(r);
+let arr = [1, 2, 3, 4, 5];
+let r = arrayOfArrayProducts(arr);
+console.log(r);
 module.exports = arrayOfArrayProducts;
