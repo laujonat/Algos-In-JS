@@ -24,6 +24,30 @@ Do it in one pass over the linked list.
 If the given linked list is empty, return null.
 */
 const { Node } = require("../../dsaa/node/Node.js");
-function findMiddleNode(head) {}
+const LinkedList = require("../../dsaa/struct/SinglyLinkedList.js");
 
+function findMiddleNode(head) {
+  if (!head) {
+    return null;
+  }
+  let slow = head;
+  let fast = head;
+  while (fast) {
+    if (fast.next) {
+      fast = fast.next.next;
+      slow = slow.next;
+    } else {
+      return slow;
+    }
+  }
+
+  return slow;
+}
+const linkedList = new LinkedList();
+linkedList.add(5);
+linkedList.add(0);
+linkedList.add(3);
+linkedList.add(6);
+// linkedList.add(67);
+console.log(findMiddleNode(linkedList.head));
 module.exports = findMiddleNode;
