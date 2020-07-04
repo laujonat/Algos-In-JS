@@ -43,11 +43,11 @@ function findMiddleNode(head) {
 
   return slow;
 }
-const linkedList = new LinkedList();
-linkedList.add(5);
-linkedList.add(0);
-linkedList.add(3);
-linkedList.add(6);
+// const linkedList = new LinkedList();
+// linkedList.add(5);
+// linkedList.add(0);
+// linkedList.add(3);
+// linkedList.add(6);
 // linkedList.add(67);
-console.log(findMiddleNode(linkedList.head));
+// console.log(findMiddleNode(linkedList.head));
 module.exports = findMiddleNode;

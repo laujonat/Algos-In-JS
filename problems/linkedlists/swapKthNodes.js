@@ -25,9 +25,46 @@ Constraints:
   1 <= k <= n
 Try to access linked list nodes minimum number of times.
 */
-const { Node } = require("../../dsaa/node/Node.js");
-const LinkedList = require("../../dsaa/struct/SinglyLinkedList.js");
 
-function swapNodes(head, k) {}
+const linkedList = require("./test_utils/singlyll.js");
 
+function swapNodes(head, k) {
+  if (!head) {
+    return null;
+  }
+  let prevleft = null;
+  let leftPtr = head;
+  let i = 1;
+  while (i !== k) {
+    prevleft = leftPtr;
+    leftPtr = leftPtr.next;
+    i++;
+  }
+  let afterKthNode = leftPtr;
+  let prevright = null;
+  let rightptr = head;
+  while (afterKthNode.next) {
+    afterKthNode = afterKthNode.next;
+    prevright = rightptr;
+    rightptr = rightptr.next;
+  }
+  if (prevleft !== null) {
+    prevleft.next = rightptr;
+  } else {
+    head = rightptr;
+  }
+
+  if (prevright !== null) {
+    prevright.next = leftPtr;
+  } else {
+    head = leftPtr;
+  }
+  let temp = leftPtr.next;
+  leftPtr.next = rightptr.next;
+  rightptr.next = temp;
+  return head;
+}
+
+// let r = swapNodes(linkedList.head, 2);
+// console.log(r);
 module.exports = swapNodes;
