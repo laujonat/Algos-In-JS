@@ -54,8 +54,8 @@ function awardBudgetCuts(grants: T, newBudget: number): number {
   return newBudget;
 }
 
-let grantsArray = [2, 100, 50, 120, 1000],
-  newBudget = 190;
-console.log(awardBudgetCuts(grantsArray, newBudget));
+// let grantsArray = [2, 100, 50, 120, 1000],
+//   newBudget = 190;
+// console.log(awardBudgetCuts(grantsArray, newBudget));
 
 module.exports = awardBudgetCuts;

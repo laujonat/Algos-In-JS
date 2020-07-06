@@ -38,7 +38,7 @@ function arrayOfArrayProducts(arr) {
     return acc;
   }, []);
 }
-let arr = [1, 2, 3, 4, 5];
-let r = arrayOfArrayProducts(arr);
-console.log(r);
+// let arr = [1, 2, 3, 4, 5];
+// let r = arrayOfArrayProducts(arr);
+// console.log(r);
 module.exports = arrayOfArrayProducts;
