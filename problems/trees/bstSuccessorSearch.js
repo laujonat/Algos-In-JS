@@ -24,10 +24,6 @@ const findInOrderSuccessor = function(inputNode) {
     }
     return null;
   }
-  if (rightChild) {
-    return rightChild;
-  }
-
   if (rightChild.left) {
     while (leftChild.left) {
       leftChild = leftChild.left;
