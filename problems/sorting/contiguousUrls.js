@@ -13,23 +13,28 @@ You should return the following:
 // n * m
 type H = Array<string>;
 function contiguousUrls(user1: H, user2: H): H {
-  let mlen = 0;
-  let p1 = 0;
-  j;
-  let p2 = 0;
-  let start = 0;
-  let end = 0;
-  // for(let i = 0; i < user1.length; i++) {
-
-  // }
-  // while (p1 < user1.length && p2 < user2.length) {
-  //   if(user1[p1] === user2[p2]) {
-  //     p1++;
-  //     p2++;
-  //   }
-  // }
+  // check if either lists are empty
+  let res = [];
+  let max = Number.NEGATIVE_INFINITY;
+  for (let i = 0; i < user1.length; i++) {
+    let current = user1[i];
+    let ptr = user2.indexOf(current);
+    let start = i;
+    let scout = i;
+    let tempstack = [];
+    while (user1[scout] === user2[ptr]) {
+      tempstack.push(user1[scout]);
+      console.log(tempstack);
+      ptr++;
+      scout++;
+    }
+    if (tempstack.length > max) {
+      max = tempstack.length;
+      res = tempstack.slice();
+    }
+  }
+  return res;
 }
 var user1 = ["/home", "/login", "/user", "/one", "/two"];
 var user2 = ["/home", "/red", "/login", "/user", "/one", "/pink"];
-console.log(contiguousUrls(user1, user2));
 module.exports = contiguousUrls;
