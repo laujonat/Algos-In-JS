@@ -10,7 +10,6 @@ user2 = ['/home', '/red', '/login', '/user', '/one', '/pink']
 You should return the following:
 ['/login', '/user', '/one']
 */
-// n * m
 type H = Array<string>;
 function contiguousUrls(user1: H, user2: H): H {
   // check if either lists are empty
@@ -24,7 +23,6 @@ function contiguousUrls(user1: H, user2: H): H {
     let tempstack = [];
     while (user1[scout] === user2[ptr]) {
       tempstack.push(user1[scout]);
-      console.log(tempstack);
       ptr++;
       scout++;
     }
@@ -35,6 +33,4 @@ function contiguousUrls(user1: H, user2: H): H {
   }
   return res;
 }
-var user1 = ["/home", "/login", "/user", "/one", "/two"];
-var user2 = ["/home", "/red", "/login", "/user", "/one", "/pink"];
 module.exports = contiguousUrls;
