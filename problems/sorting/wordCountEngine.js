@@ -37,15 +37,13 @@ const wordCountEngine = (document) => {
   });
   let arr = [];
   for (const [k, v] of map.entries()) {
-    if (arr[v.count]) {
-      arr.push([k, v.count.toString()]);
-    } else {
-      arr.push([k, v.count.toString()]);
-    }
+    arr.push([k, v.count.toString()]);
   }
-  return arr;
+  return arr.sort((a, b) => {
+    return parseInt(b[1], 10) - parseInt(a[1], 10);
+  });
 };
 let document =
   "Practice makes perfect. you'll only get Perfect by practice. just practice!";
-// console.log(wordCountEngine(document));
+// console.log("a", wordCountEngine(document));
 module.exports = wordCountEngine;
