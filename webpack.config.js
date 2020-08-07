@@ -1,5 +1,17 @@
 const path = require("path");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+// const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+// minimizer: [
+//   new UglifyJsPlugin({
+//     uglifyOptions: {
+//       warnings: false,
+//       parse: {},
+//       extractComments: true,
+//       mangle: true, // Note `mangle.properties` is `false` by default.
+//       toplevel: false,
+//       nameCache: null,
+//     },
+//   }),
+// ],
 
 module.exports = [
   {
@@ -14,20 +26,7 @@ module.exports = [
     },
   },
   {
-    optimization: {
-      minimizer: [
-        new UglifyJsPlugin({
-          uglifyOptions: {
-            warnings: false,
-            parse: {},
-            extractComments: true,
-            mangle: true, // Note `mangle.properties` is `false` by default.
-            toplevel: false,
-            nameCache: null,
-          },
-        }),
-      ],
-    },
+    optimization: {},
     name: "client",
     mode: "development",
     watch: true,
