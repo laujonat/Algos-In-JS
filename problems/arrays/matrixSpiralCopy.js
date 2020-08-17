@@ -13,41 +13,52 @@ output: [1, 2, 3, 4, 5, 10, 15, 20, 19, 18, 17, 16, 11, 6, 7, 8, 9, 14, 13, 12]
 See the illustration below to understand better what a clockwise spiral order looks like.
 */
 
-const matrixSpiralCopy = (arr: Array<Array<number>>) => {
-  let row = arr.length;
-  let col = arr[0].length;
+function spiralMatrix(matrix) {
+  if (!matrix.length || !matrix[0].length) return [];
 
-  let top = 0;
-  let down = row - 1;
-  let left = 0;
-  let right = col - 1;
-  const res = [];
-  while (top <= down && left <= right) {
-    for (let i = left; i <= right; i++) {
-      res.push(arr[top][i]);
-    }
-    top++;
+  const solArr = [];
 
-    for (let i = top; i <= down; i++) {
-      res.push(arr[i][right]);
+  let l = 0;
+  let t = 0;
+  let r = matrix[0].length - 1;
+  let b = matrix.length - 1;
+
+  while (l <= r && t <= b) {
+    for (let i = l; i <= r; i++) {
+      solArr.push(matrix[t][i]);
     }
 
-    right--;
+    t++;
 
-    if (top <= down) {
-      for (let i = right; i >= left; i--) {
-        res.push(arr[down][i]);
+    for (let i = t; i <= b; i++) {
+      solArr.push(matrix[i][r]);
+    }
+
+    r--;
+
+    if (l <= r && t <= b) {
+      for (let i = r; i >= l; i--) {
+        solArr.push(matrix[b][i]);
       }
-      down--;
-    }
-    if (left <= right) {
-      for (let i = down; i <= top; i++) {
-        res.push(arr[i][left]);
+
+      b--;
+
+      for (let i = b; i >= t; i--) {
+        solArr.push(matrix[i][l]);
       }
-      left++;
+
+      l++;
     }
   }
-  return res;
-};
 
-module.exports = matrixSpiralCopy;
+  return solArr;
+}
+const inputMatrix = [
+  [1, 2, 3, 4, 5],
+  [6, 7, 8, 9, 10],
+  [11, 12, 13, 14, 15],
+  [16, 17, 18, 19, 20],
+];
+// let output: [1, 2, 3, 4, 5, 10, 15, 20, 19, 18, 17, 16, 11, 6, 7, 8, 9, 14, 13, 12]
+
+module.exports = spiralMatrix;
