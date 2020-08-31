@@ -55,7 +55,6 @@ function minimumSequence(arr): [number, number] {
   return [m, n];
 }
 
-let a = [10, 12, 20, 30, 25, 40, 32, 31, 35, 50, 60];
-let b = [0, 1, 15, 25];
-console.log(minimumSequence(b));
+// let a = [10, 12, 20, 30, 25, 40, 32, 31, 35, 50, 60];
+// let b = [0, 1, 15, 25];
 module.exports = minimumSequence;

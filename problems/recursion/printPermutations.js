@@ -38,7 +38,4 @@ const permutationsV2 = function(str: string) {
   };
   return helper("", 0);
 };
-
-// let res = permutationsV2("abc");
-// console.log(res);
 module.exports = permutationsV2;
