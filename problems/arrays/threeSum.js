@@ -17,42 +17,39 @@ A solution set is:
 
 */
 
-function threeSum(n);
-    const result = [];
-    const s = {}
-    const nums = n.sort((a, b) => a- b);
-    for(let i = 0; i < nums.length; i++) {
-            let lo = i+1
-            let hi = nums.length -  1;
-            while(lo < hi) {
-                let sum = nums[i] + nums[lo] + nums[hi];
-                if(sum === 0) {
-                    
-                }
-                if(sum < 0) {
-                  lo++;  
-                } else if(sum > 0) {
-                  hi--;
-                } else {
-                    if(!s[[nums[i], nums[lo], nums[hi]].join(',')]) {
-                        result.push([nums[i], nums[lo], nums[hi]]);
-                        s[[nums[i], nums[lo], nums[hi]].join(',')] = true;
-                    } 
-                    while(lo < hi && nums[lo] === nums[lo+1]) {
-                        lo++;
-                    }
-                    while(lo < hi && nums[hi] === nums[hi-1]) {
-                        hi--;
-                    }
-                    lo++;
-                    hi--;
-                }
-                
-            
-        }   
-    }    
-   
-    return result;
-};
+function threeSum(n) {
+  const result = [];
+  const s = {};
+  const nums = n.sort((a, b) => a - b);
+  for (let i = 0; i < nums.length; i++) {
+    let lo = i + 1;
+    let hi = nums.length - 1;
+    while (lo < hi) {
+      let sum = nums[i] + nums[lo] + nums[hi];
+      if (sum === 0) {
+      }
+      if (sum < 0) {
+        lo++;
+      } else if (sum > 0) {
+        hi--;
+      } else {
+        if (!s[[nums[i], nums[lo], nums[hi]].join(",")]) {
+          result.push([nums[i], nums[lo], nums[hi]]);
+          s[[nums[i], nums[lo], nums[hi]].join(",")] = true;
+        }
+        while (lo < hi && nums[lo] === nums[lo + 1]) {
+          lo++;
+        }
+        while (lo < hi && nums[hi] === nums[hi - 1]) {
+          hi--;
+        }
+        lo++;
+        hi--;
+      }
+    }
+  }
+
+  return result;
+}
 
 module.exports = threeSum;
