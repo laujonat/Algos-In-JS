@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <style>
+    /* #wrapper {
+      display: flex;
+      width: auto;
+    } */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .cell {
+      width: 100px;
+      height: 100px;
+      background: yellow;
+      border: 1px solid green;
+    }
+
+    .controls {
+      position: relative;
+      border: 1px solid black;
+      width: 200px;
+      height: 200px;
+    }
+    .controls > * {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      border: 1px solid orange;
+    }
+
+    .controls .up {
+      border: 1px solid black;
+      top: 0;
+      left: 37.5%;
+    }
+
+    .controls .down {
+      border: 1px solid black;
+      bottom: 0;
+      left: 37.5%;
+    }
+    .controls .left {
+      border: 1px solid blue;
+      top: 37.5%;
+      left: 0;
+    }
+    .controls .right {
+      border: 1px solid green;
+      top: 37.5%;
+      right: 0;
+    }
+
+    #currentCell {
+      background-color: pink;
+    }
+
+    .center {
+      border: 1px solid orange;
+      background: orange;
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -25px 0 0 -25px;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div class="container"></div>
+      <div class="controls">
+        <div class="center"></div>
+        <div class="up"></div>
+        <div class="down"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const container = document.querySelector(".container");
+    let rows = document.getElementsByClassName("gridRow");
+    let columns = document.getElementsByClassName("cell");
+
+    const Command = function(execute, value) {
+      this.execute = execute;
+      this.value = value;
+    };
+
+    function up(current) {
+      const [i, j] = current;
+      if (i - 1 >= 0) {
+        return [i - 1, j];
+      }
+      return current;
+    }
+
+    function down(current) {
+      const [i, j] = current;
+      if (i + 1 < rows[0].children.length) {
+        return [i + 1, j];
+      }
+      return current;
+    }
+    function left(current) {
+      const [i, j] = current;
+      if (j - 1 >= 0) {
+        return [i, j - 1];
+      }
+      return current;
+    }
+    function right(current) {
+      const [i, j] = current;
+      if (j + 1 < rows[0].children.length) {
+        return [i, j + 1];
+      }
+      return current;
+    }
+
+    const UpCommand = function(current) {
+      return new Command(up, current);
+    };
+
+    const DownCommand = function(current) {
+      return new Command(down, current);
+    };
+
+    const LeftCommand = function(current) {
+      return new Command(left, current);
+    };
+
+    const RightCommand = function(current) {
+      return new Command(right, current);
+    };
+
+    const Grid = function() {
+      let current = [0, 0];
+      let nodes = [];
+
+      return {
+        removeCurrent: function(coordinates) {
+          const [i, j] = coordinates;
+          nodes[i][j].removeAttribute("id");
+        },
+        setCurrent: function(coordinates) {
+          const [i, j] = coordinates;
+          nodes[i][j].setAttribute("id", "currentCell");
+        },
+        makeRows: function(rows) {
+          for (let i = 0; i < rows; i++) {
+            let div = document.createElement("div");
+            container.appendChild(div).className = "gridRow";
+            nodes[i] = new Array(3);
+          }
+        },
+        makeColumns: function(cols) {
+          for (let i = 0; i < rows.length; i++) {
+            for (let j = 0; j < cols; j++) {
+              let cell = document.createElement("div");
+              rows[j].appendChild(cell).className = "cell";
+              nodes[i][j] = cell;
+            }
+          }
+        },
+        defaultGrid: function() {
+          this.makeRows(3);
+          this.makeColumns(3);
+          columns[0].setAttribute("id", "currentCell");
+        },
+        execute: function(command) {
+          this.removeCurrent(this.getCurrentValue());
+          current = command.execute(this.getCurrentValue());
+          this.setCurrent(current);
+        },
+        getNodes: function() {
+          return nodes;
+        },
+        getCurrentValue: function() {
+          return current;
+        },
+      };
+    };
+
+    function run() {
+      const grid = new Grid();
+      grid.defaultGrid();
+      document
+        .getElementsByClassName("up")[0]
+        .addEventListener("click", () => grid.execute(new UpCommand()));
+      document
+        .getElementsByClassName("down")[0]
+        .addEventListener("click", () => grid.execute(new DownCommand()));
+
+      document
+        .getElementsByClassName("left")[0]
+        .addEventListener("click", () => grid.execute(new LeftCommand()));
+
+      document
+        .getElementsByClassName("right")[0]
+        .addEventListener("click", () => grid.execute(new RightCommand()));
+    }
+
+    run();
+  </script>
+</html>
