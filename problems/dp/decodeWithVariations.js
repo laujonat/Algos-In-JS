@@ -30,16 +30,17 @@ const decodeVariations = (string) => {
   const memo = {};
 
   const findVariations = (start, end) => {
-    if (memo[`${start},${end}`]) return memo[`${start},${end}`];
+    if (memo[start][end]) return memo[start][end];
     const num = parseInt(string.slice(start, end));
     if (num < 1 || num > 26 || end > length || string[start] === "0") return 0;
     if (end === length) return 1;
 
-    memo[`${end},${end + 1}`] = findVariations(end, end + 1);
-    memo[`${end},${end + 2}`] = findVariations(end, end + 2);
-    return memo[`${end},${end + 1}`] + memo[`${end},${end + 2}`];
+    memo[end][end + 1] = findVariations(end, end + 1);
+    memo[end][end + 2] = findVariations(end, end + 2);
+    return memo[end][end + 1] + memo[end][end + 1];
   };
 
   return findVariations(0, 1) + findVariations(0, 2);
 };
+// console.log("res", decodeVariations("1262"));
 module.exports = decodeVariations;

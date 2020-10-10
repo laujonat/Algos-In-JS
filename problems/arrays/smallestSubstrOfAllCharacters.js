@@ -22,6 +22,7 @@ Constraints:
 [output] string
 
 */
+function solution(arr, str) {}
 
 function getShortestUniqueSubstring(arr, str) {
   const countMap = new Map();
@@ -34,7 +35,6 @@ function getShortestUniqueSubstring(arr, str) {
 
   for (let j = 0; j < str.length; j++) {
     let tailChar = str.charAt(j);
-    console.log("current tail", tailChar, "header", headIdx);
     if (!countMap.has(tailChar)) {
       // characters not in arr
       continue;
@@ -47,7 +47,6 @@ function getShortestUniqueSubstring(arr, str) {
     while (unique === arr.length) {
       // all characters are within bounds
       let tempLen = j - headIdx + 1;
-      console.log("tempLen", tempLen);
       if (tempLen == arr.length) {
         return str.substring(headIdx, j + 1);
       }
@@ -56,7 +55,6 @@ function getShortestUniqueSubstring(arr, str) {
         result = str.substring(headIdx, j + 1);
       }
       let headChar = str.charAt(headIdx);
-      console.log("headChar", headChar);
       if (countMap.has(headChar)) {
         let headCount = countMap.get(headChar) - 1;
         if (headCount == 0) {

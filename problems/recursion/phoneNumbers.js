@@ -26,9 +26,9 @@ function letterCombinations(digits) {
 
   let prev = [""];
   let curr = [];
-  for (let i = 0; i < digits.length; i += 1) {
-    for (let j = 0; j < prev.length; j += 1) {
-      for (let k = 0; k < phone[digits[i]].length; k += 1) {
+  for (let i = 0; i < digits.length; i++) {
+    for (let j = 0; j < prev.length; j++) {
+      for (let k = 0; k < phone[digits[i]].length; k++) {
         curr.push(prev[j] + phone[digits[i]][k]);
       }
     }
